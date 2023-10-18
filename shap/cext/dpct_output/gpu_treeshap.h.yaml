@@ -1,0 +1,2067 @@
+---
+MainSourceFile:  '/home/user293/shap/shap/cext/dpct_output/gpu_treeshap.h'
+Replacements:
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          622
+    Length:          37
+    ReplacementText: "#include <oneapi/dpl/execution>\n#include <oneapi/dpl/algorithm>\n#include <sycl/sycl.hpp>\n#include <dpct/dpct.hpp>\n#include <dpct/dpl_utils.hpp>\n"
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          659
+    Length:          34
+    ReplacementText: ''
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          693
+    Length:          46
+    ReplacementText: ''
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          739
+    Length:          28
+    ReplacementText: ''
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          767
+    Length:          27
+    ReplacementText: ''
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          794
+    Length:          32
+    ReplacementText: ''
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          830
+    Length:          25
+    ReplacementText: '(SYCL_LANGUAGE_VERSION >= 202000)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          856
+    Length:          23
+    ReplacementText: ''
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          1158
+    Length:          0
+    ReplacementText: "\n#include <cmath>\n"
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          1834
+    Length:          9
+    ReplacementText: ''
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          1843
+    Length:          11
+    ReplacementText: ''
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          1912
+    Length:          8
+    ReplacementText: 'sycl::isnan(x)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          2087
+    Length:          9
+    ReplacementText: ''
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          2096
+    Length:          11
+    ReplacementText: ''
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          2220
+    Length:          51
+    ReplacementText: 'std::max(feature_lower_bound, other.feature_lower_bound)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          2299
+    Length:          51
+    ReplacementText: 'std::min(feature_upper_bound, other.feature_upper_bound)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          2980
+    Length:          9
+    ReplacementText: ''
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          2989
+    Length:          11
+    ReplacementText: ''
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          3403
+    Length:          9
+    ReplacementText: ''
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          3412
+    Length:          11
+    ReplacementText: ''
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          3507
+    Length:          9
+    ReplacementText: ''
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          3516
+    Length:          11
+    ReplacementText: ''
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          4296
+    Length:          11
+    ReplacementText: ''
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          4822
+    Length:          11
+    ReplacementText: ''
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          5210
+    Length:          9
+    ReplacementText: ''
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          5219
+    Length:          11
+    ReplacementText: ''
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          5506
+    Length:          9
+    ReplacementText: ''
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          5515
+    Length:          11
+    ReplacementText: ''
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          6225
+    Length:          21
+    ReplacementText: 'dpct::device_vector'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          6345
+    Length:          13
+    ReplacementText: DPCT_COMPATIBILITY_TEMP
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          6363
+    Length:          13
+    ReplacementText: DPCT_COMPATIBILITY_TEMP
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          6406
+    Length:          11
+    ReplacementText: ''
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          6417
+    Length:          15
+    ReplacementText: __dpct_inline__
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          6496
+    Length:          23
+    ReplacementText: 'dpct::atomic_fetch_add<sycl::access::address_space::generic_space>(address, val)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          7250
+    Length:          15
+    ReplacementText: __dpct_inline__
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          7266
+    Length:          11
+    ReplacementText: ''
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          7340
+    Length:          0
+    ReplacementText: "/*\n  DPCT1053:0: Migration of device assembly code is not supported.\n  */\n  "
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          7630
+    Length:          11
+    ReplacementText: ''
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          7692
+    Length:          11
+    ReplacementText: ''
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          7734
+    Length:          13
+    ReplacementText: 'sycl::popcount(mask_)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          7753
+    Length:          11
+    ReplacementText: ''
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          7806
+    Length:          31
+    ReplacementText: 'sycl::popcount(mask_ & lanemask32_lt())'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          7869
+    Length:          11
+    ReplacementText: ''
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          7957
+    Length:          12
+    ReplacementText: 'dpct::ffs<int>(mask_)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          8006
+    Length:          11
+    ReplacementText: ''
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          8110
+    Length:          11
+    ReplacementText: ''
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          8150
+    Length:          0
+    ReplacementText: ', const sycl::nd_item<3> &item_ct1'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          8171
+    Length:          31
+    ReplacementText: 'sycl::reduce_over_group(item_ct1.get_sub_group(), (mask_ & (0x1 << item_ct1.get_sub_group().get_local_linear_id())) && predicate ? (0x1 << item_ct1.get_sub_group().get_local_linear_id()) : 0, sycl::ext::oneapi::plus<>())'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          8207
+    Length:          12
+    ReplacementText: 'dpct::ffs<int>(mask_)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          8271
+    Length:          11
+    ReplacementText: ''
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          8736
+    Length:          11
+    ReplacementText: ''
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          8871
+    Length:          0
+    ReplacementText: ",\n                                                           const sycl::nd_item<3> &item_ct1"
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          8879
+    Length:          13
+    ReplacementText: DPCT_COMPATIBILITY_TEMP
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          9023
+    Length:          0
+    ReplacementText: "    /*\n    DPCT1023:1: The SYCL sub-group does not support mask options for dpct::select_from_sub_group. You can specify \"--use-experimental-features=masked-sub-group-operation\" to use the experimental helper function to migrate __shfl_sync.\n    */\n"
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          9047
+    Length:          27
+    ReplacementText: 'dpct::select_from_sub_group(item_ct1.get_sub_group(), label, i)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          9098
+    Length:          43
+    ReplacementText: 'sycl::reduce_over_group(item_ct1.get_sub_group(), (mask & (0x1 << item_ct1.get_sub_group().get_local_linear_id())) && label == current_label ? (0x1 << item_ct1.get_sub_group().get_local_linear_id()) : 0, sycl::ext::oneapi::plus<>())'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          9263
+    Length:          13
+    ReplacementText: 'sycl::clz((int)ballot)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          9483
+    Length:          29
+    ReplacementText: 'dpct::ffs<int>(mask & ~completed_mask)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          9577
+    Length:          0
+    ReplacementText: "    /*\n    DPCT1007:4: Migration of __assert_fail is not supported.\n    */\n"
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          10023
+    Length:          11
+    ReplacementText: ''
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          10418
+    Length:          11
+    ReplacementText: ''
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          10682
+    Length:          55
+    ReplacementText: '1.0f / static_cast<float>(unique_depth_ + 1)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          11254
+    Length:          0
+    ReplacementText: "    /*\n    DPCT1013:5: The rounding mode could not be specified and the generated code may have different accuracy than the original code. Verify the correctness. SYCL math built-in function rounding mode is aligned with OpenCL C 1.2 standard.\n    */\n"
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          11269
+    Length:          133
+    ReplacementText: 'pweight_ * new_zero_fraction * sycl::max(unique_depth_ - rank, size_t(0)) * inv_unique_depth'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          11484
+    Length:          0
+    ReplacementText: "    /*\n    DPCT1013:8: The rounding mode could not be specified and the generated code may have different accuracy than the original code. Verify the correctness. SYCL math built-in function rounding mode is aligned with OpenCL C 1.2 standard.\n    */\n"
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          11499
+    Length:          122
+    ReplacementText: 'sycl::fma(new_one_fraction * left_pweight, rank * inv_unique_depth, pweight_)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          11700
+    Length:          11
+    ReplacementText: ''
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          11868
+    Length:          81
+    ReplacementText: 'zero_one_fraction_[0] / static_cast<float>(unique_depth_ + 1)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          12076
+    Length:          0
+    ReplacementText: "          /*\n          DPCT1013:10: The rounding mode could not be specified and the generated code may have different accuracy than the original code. Verify the correctness. SYCL math built-in function rounding mode is aligned with OpenCL C 1.2 standard.\n          */\n"
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          12086
+    Length:          58
+    ReplacementText: '(unique_depth_ - i) * zero_frac_div_unique_depth'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          12170
+    Length:          0
+    ReplacementText: "          /*\n          DPCT1013:11: The rounding mode could not be specified and the generated code may have different accuracy than the original code. Verify the correctness. SYCL math built-in function rounding mode is aligned with OpenCL C 1.2 standard.\n          */\n"
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          12180
+    Length:          65
+    ReplacementText: 'next_one_portion * (unique_depth_ + 1) / (i + 1)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          12247
+    Length:          0
+    ReplacementText: "      /*\n      DPCT1013:12: The rounding mode could not be specified and the generated code may have different accuracy than the original code. Verify the correctness. SYCL math built-in function rounding mode is aligned with OpenCL C 1.2 standard.\n      */\n"
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          12261
+    Length:          44
+    ReplacementText: 'sycl::fma((float)tmp, zero_one_fraction_[1], total)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          12307
+    Length:          0
+    ReplacementText: "      /*\n      DPCT1013:13: The rounding mode could not be specified and the generated code may have different accuracy than the original code. Verify the correctness. SYCL math built-in function rounding mode is aligned with OpenCL C 1.2 standard.\n      */\n"
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          12332
+    Length:          41
+    ReplacementText: 'sycl::fma(-tmp, precomputed, ith_pweight)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          12399
+    Length:          0
+    ReplacementText: "          /*\n          DPCT1013:14: The rounding mode could not be specified and the generated code may have different accuracy than the original code. Verify the correctness. SYCL math built-in function rounding mode is aligned with OpenCL C 1.2 standard.\n          */\n"
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          12409
+    Length:          62
+    ReplacementText: '1.0f - zero_one_fraction_[1] * ith_pweight'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          12522
+    Length:          34
+    ReplacementText: 'numerator / precomputed'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          12743
+    Length:          11
+    ReplacementText: ''
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          12999
+    Length:          11
+    ReplacementText: ''
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          13247
+    Length:          11
+    ReplacementText: ''
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          14411
+    Length:          11
+    ReplacementText: ''
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          15017
+    Length:          9
+    ReplacementText: ''
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          15026
+    Length:          11
+    ReplacementText: ''
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          15216
+    Length:          10
+    ReplacementText: ''
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          15504
+    Length:          0
+    ReplacementText: ",\n                const sycl::nd_item<3> &item_ct1"
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          15627
+    Length:          10
+    ReplacementText: 'item_ct1.get_group(2)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          15640
+    Length:          11
+    ReplacementText: 'item_ct1.get_local_id(2)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          16045
+    Length:          11
+    ReplacementText: 'item_ct1.get_local_id(2)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          16258
+    Length:          43
+    ReplacementText: 'dpct::min((bank + 1) * kRowsPerWarp, X.NumRows())'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          16518
+    Length:          11
+    ReplacementText: ''
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          16534
+    Length:          52
+    ReplacementText: ''
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          16775
+    Length:          0
+    ReplacementText: ",\n               const sycl::nd_item<3> &item_ct1, DatasetT &s_X,\n               PathElement<SplitConditionT> *s_elements"
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          16853
+    Length:          24
+    ReplacementText: ''
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          16891
+    Length:          63
+    ReplacementText: ''
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          17002
+    Length:          11
+    ReplacementText: 'item_ct1.get_local_id(2)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          17223
+    Length:          0
+    ReplacementText: ', item_ct1'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          17244
+    Length:          39
+    ReplacementText: 'sycl::reduce_over_group(item_ct1.get_sub_group(), (FULL_MASK & (0x1 << item_ct1.get_sub_group().get_local_linear_id())) && thread_active ? (0x1 << item_ct1.get_sub_group().get_local_linear_id()) : 0, sycl::ext::oneapi::plus<>())'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          17422
+    Length:          0
+    ReplacementText: ', item_ct1'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          17927
+    Length:          21
+    ReplacementText: 'dpct::device_vector'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          17999
+    Length:          21
+    ReplacementText: 'dpct::device_vector'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          18479
+    Length:          197
+    ReplacementText: "{\n    dpct::has_capability_or_fail(dpct::get_default_queue().get_device(), {sycl::aspect::fp64});\n    dpct::get_default_queue().submit(\n      [&](sycl::handler &cgh) {\n        sycl::local_accessor<DatasetT, 0> s_X_acc_ct1(cgh);\n        sycl::local_accessor<PathElement<dpct_placeholder/*Fix the type mannually*/>, 1> s_elements_acc_ct1(sycl::range<1>(kBlockThreads), cgh);\n\n        auto path_elements_data_get_ct2 = path_elements.data().get();\n        auto bin_segments_data_get_ct3 = bin_segments.data().get();\n\n        cgh.parallel_for(\n          sycl::nd_range<3>(sycl::range<3>(1, 1, grid_size) * sycl::range<3>(1, 1, kBlockThreads), sycl::range<3>(1, 1, kBlockThreads)), \n          [=](sycl::nd_item<3> item_ct1) [[intel::reqd_sub_group_size(32)]] {\n            ShapKernel<DatasetT, kBlockThreads, kRowsPerWarp>(X, bins_per_row, path_elements_data_get_ct2, bin_segments_data_get_ct3, num_groups, phis, item_ct1, s_X_acc_ct1, (PathElement<dpct_placeholder/*Fix the type mannually*/> *)s_elements_acc_ct1.get_pointer());\n          });\n      });\n  }"
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: true
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          18676
+    Length:          1
+    ReplacementText: ''
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          18752
+    Length:          11
+    ReplacementText: ''
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          20040
+    Length:          11
+    ReplacementText: ''
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          20217
+    Length:          0
+    ReplacementText: ",\n    const sycl::nd_item<3> &item_ct1"
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          20352
+    Length:          11
+    ReplacementText: 'item_ct1.get_local_id(2)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          20462
+    Length:          11
+    ReplacementText: 'item_ct1.get_local_id(2)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          20613
+    Length:          11
+    ReplacementText: ''
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          20629
+    Length:          52
+    ReplacementText: ''
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          20946
+    Length:          0
+    ReplacementText: ",\n                           const sycl::nd_item<3> &item_ct1, DatasetT &s_X,\n                           PathElement<SplitConditionT> *s_elements"
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          21024
+    Length:          24
+    ReplacementText: ''
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          21062
+    Length:          63
+    ReplacementText: ''
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          21174
+    Length:          11
+    ReplacementText: 'item_ct1.get_local_id(2)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          21394
+    Length:          0
+    ReplacementText: ', item_ct1'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          21415
+    Length:          39
+    ReplacementText: 'sycl::reduce_over_group(item_ct1.get_sub_group(), (FULL_MASK & (0x1 << item_ct1.get_sub_group().get_local_linear_id())) && thread_active ? (0x1 << item_ct1.get_sub_group().get_local_linear_id()) : 0, sycl::ext::oneapi::plus<>())'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          21553
+    Length:          0
+    ReplacementText: ', item_ct1'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          22085
+    Length:          11
+    ReplacementText: 'item_ct1.get_local_id(2)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          22271
+    Length:          0
+    ReplacementText: ', item_ct1'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          23138
+    Length:          21
+    ReplacementText: 'dpct::device_vector'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          23210
+    Length:          21
+    ReplacementText: 'dpct::device_vector'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          23689
+    Length:          209
+    ReplacementText: "{\n    dpct::has_capability_or_fail(dpct::get_default_queue().get_device(), {sycl::aspect::fp64});\n    dpct::get_default_queue().submit(\n      [&](sycl::handler &cgh) {\n        sycl::local_accessor<DatasetT, 0> s_X_acc_ct1(cgh);\n        sycl::local_accessor<PathElement<dpct_placeholder/*Fix the type mannually*/>, 1> s_elements_acc_ct1(sycl::range<1>(kBlockThreads), cgh);\n\n        auto path_elements_data_get_ct2 = path_elements.data().get();\n        auto bin_segments_data_get_ct3 = bin_segments.data().get();\n\n        cgh.parallel_for(\n          sycl::nd_range<3>(sycl::range<3>(1, 1, grid_size) * sycl::range<3>(1, 1, kBlockThreads), sycl::range<3>(1, 1, kBlockThreads)), \n          [=](sycl::nd_item<3> item_ct1) [[intel::reqd_sub_group_size(32)]] {\n            ShapInteractionsKernel<DatasetT, kBlockThreads, kRowsPerWarp>(X, bins_per_row, path_elements_data_get_ct2, bin_segments_data_get_ct3, num_groups, phis, item_ct1, s_X_acc_ct1, (PathElement<dpct_placeholder/*Fix the type mannually*/> *)s_elements_acc_ct1.get_pointer());\n          });\n      });\n  }"
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: true
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          23898
+    Length:          1
+    ReplacementText: ''
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          24008
+    Length:          11
+    ReplacementText: ''
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          24024
+    Length:          52
+    ReplacementText: ''
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          24299
+    Length:          0
+    ReplacementText: ", const sycl::nd_item<3> &item_ct1,\n        DatasetT &s_X, PathElement<SplitConditionT> *s_elements"
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          24377
+    Length:          24
+    ReplacementText: ''
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          24408
+    Length:          11
+    ReplacementText: 'item_ct1.get_local_id(2)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          24447
+    Length:          15
+    ReplacementText: "/*\n  DPCT1065:2: Consider replacing sycl::nd_item::barrier() with sycl::nd_item::barrier(sycl::access::fence_space::local_space) for better performance if there is no access to global memory.\n  */\n  item_ct1.barrier()"
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          24466
+    Length:          63
+    ReplacementText: ''
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          24578
+    Length:          11
+    ReplacementText: 'item_ct1.get_local_id(2)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          24798
+    Length:          0
+    ReplacementText: ', item_ct1'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          24819
+    Length:          39
+    ReplacementText: 'sycl::reduce_over_group(item_ct1.get_sub_group(), (FULL_MASK & (0x1 << item_ct1.get_sub_group().get_local_linear_id())) && thread_active ? (0x1 << item_ct1.get_sub_group().get_local_linear_id()) : 0, sycl::ext::oneapi::plus<>())'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          24957
+    Length:          0
+    ReplacementText: ', item_ct1'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          25157
+    Length:          11
+    ReplacementText: 'item_ct1.get_local_id(2)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          26164
+    Length:          0
+    ReplacementText: ', item_ct1'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          26741
+    Length:          21
+    ReplacementText: 'dpct::device_vector'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          26813
+    Length:          21
+    ReplacementText: 'dpct::device_vector'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          27292
+    Length:          215
+    ReplacementText: "{\n    dpct::has_capability_or_fail(dpct::get_default_queue().get_device(), {sycl::aspect::fp64});\n    dpct::get_default_queue().submit(\n      [&](sycl::handler &cgh) {\n        sycl::local_accessor<DatasetT, 0> s_X_acc_ct1(cgh);\n        sycl::local_accessor<PathElement<dpct_placeholder/*Fix the type mannually*/>, 1> s_elements_acc_ct1(sycl::range<1>(kBlockThreads), cgh);\n\n        auto path_elements_data_get_ct2 = path_elements.data().get();\n        auto bin_segments_data_get_ct3 = bin_segments.data().get();\n\n        cgh.parallel_for(\n          sycl::nd_range<3>(sycl::range<3>(1, 1, grid_size) * sycl::range<3>(1, 1, kBlockThreads), sycl::range<3>(1, 1, kBlockThreads)), \n          [=](sycl::nd_item<3> item_ct1) [[intel::reqd_sub_group_size(32)]] {\n            ShapTaylorInteractionsKernel<DatasetT, kBlockThreads, kRowsPerWarp>(X, bins_per_row, path_elements_data_get_ct2, bin_segments_data_get_ct3, num_groups, phis, item_ct1, s_X_acc_ct1, (PathElement<dpct_placeholder/*Fix the type mannually*/> *)s_elements_acc_ct1.get_pointer());\n          });\n      });\n  }"
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: true
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          27507
+    Length:          1
+    ReplacementText: ''
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          27520
+    Length:          9
+    ReplacementText: ''
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          27529
+    Length:          11
+    ReplacementText: ''
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          27726
+    Length:          9
+    ReplacementText: ''
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          27735
+    Length:          11
+    ReplacementText: ''
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          27812
+    Length:          50
+    ReplacementText: 'sycl::exp(sycl::lgamma(s + 1) - sycl::lgamma(n + 1) + sycl::lgamma(n - s))'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          27972
+    Length:          11
+    ReplacementText: ''
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          27988
+    Length:          52
+    ReplacementText: ''
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          28312
+    Length:          0
+    ReplacementText: ", const sycl::nd_item<3> &item_ct1,\n                             sycl::local_accessor<float, 2> s_W,\n                             PathElement<SplitConditionT> *s_elements"
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          28344
+    Length:          29
+    ReplacementText: ''
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          28389
+    Length:          11
+    ReplacementText: 'item_ct1.get_local_id(2)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          28578
+    Length:          15
+    ReplacementText: "/*\n  DPCT1065:3: Consider replacing sycl::nd_item::barrier() with sycl::nd_item::barrier(sycl::access::fence_space::local_space) for better performance if there is no access to global memory.\n  */\n  item_ct1.barrier()"
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          28598
+    Length:          63
+    ReplacementText: ''
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          28709
+    Length:          11
+    ReplacementText: 'item_ct1.get_local_id(2)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          28928
+    Length:          0
+    ReplacementText: ', item_ct1'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          28950
+    Length:          39
+    ReplacementText: 'sycl::reduce_over_group(item_ct1.get_sub_group(), (FULL_MASK & (0x1 << item_ct1.get_sub_group().get_local_linear_id())) && thread_active ? (0x1 << item_ct1.get_sub_group().get_local_linear_id()) : 0, sycl::ext::oneapi::plus<>())'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          29087
+    Length:          0
+    ReplacementText: ', item_ct1'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          29565
+    Length:          28
+    ReplacementText: 'sycl::popcount(x_ballot & ~r_ballot)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          29614
+    Length:          27
+    ReplacementText: 'sycl::popcount(x_ballot ^ r_ballot)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          30607
+    Length:          21
+    ReplacementText: 'dpct::device_vector'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          30679
+    Length:          21
+    ReplacementText: 'dpct::device_vector'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          31158
+    Length:          214
+    ReplacementText: "{\n    dpct::has_capability_or_fail(dpct::get_default_queue().get_device(), {sycl::aspect::fp64});\n    dpct::get_default_queue().submit(\n      [&](sycl::handler &cgh) {\n        sycl::local_accessor<float, 2> s_W_acc_ct1(sycl::range<2>(33, 33), cgh);\n        sycl::local_accessor<PathElement<dpct_placeholder/*Fix the type mannually*/>, 1> s_elements_acc_ct1(sycl::range<1>(kBlockThreads), cgh);\n\n        auto path_elements_data_get_ct3 = path_elements.data().get();\n        auto bin_segments_data_get_ct4 = bin_segments.data().get();\n\n        cgh.parallel_for(\n          sycl::nd_range<3>(sycl::range<3>(1, 1, grid_size) * sycl::range<3>(1, 1, kBlockThreads), sycl::range<3>(1, 1, kBlockThreads)), \n          [=](sycl::nd_item<3> item_ct1) [[intel::reqd_sub_group_size(32)]] {\n            ShapInterventionalKernel<DatasetT, kBlockThreads, kRowsPerWarp>(X, R, bins_per_row, path_elements_data_get_ct3, bin_segments_data_get_ct4, num_groups, phis, item_ct1, s_W_acc_ct1, (PathElement<dpct_placeholder/*Fix the type mannually*/> *)s_elements_acc_ct1.get_pointer());\n          });\n      });\n  }"
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: true
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          31372
+    Length:          1
+    ReplacementText: ''
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          31580
+    Length:          0
+    ReplacementText: "\n    dpct::device_ext &dev_ct1 = dpct::get_current_device();\n    sycl::queue &q_ct1 = dev_ct1.default_queue();"
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          31627
+    Length:          0
+    ReplacementText: "      /*\n      DPCT1107:15: Migration for this overload of thrust::reduce is not supported.\n      */\n"
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          31999
+    Length:          257
+    ReplacementText: "oneapi::dpl::for_each_n(oneapi::dpl::execution::make_device_policy(q_ct1), counting, paths.size(), [=] (size_t idx) {\n    auto path_idx = d_paths[idx].path_idx;\n    dpct::atomic_fetch_add<sycl::access::address_space::generic_space>(reinterpret_cast<unsigned long long*>(d_bin_segments) +  // NOLINT\n                  d_bin_map[path_idx], 1);\n  }     d_bin_map[path_idx], 1);\n  })"
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          32260
+    Length:          140
+    ReplacementText: 'std::exclusive_scan(oneapi::dpl::execution::make_device_policy(q_ct1), thrust::cuda::par(alloc), bin_segments->begin(), bin_segments->end(), (decltype(bin_segments->end())::value_type)bin_segments->begin())'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          32480
+    Length:          11
+    ReplacementText: ''
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          32491
+    Length:          12
+    ReplacementText: 'std::pair'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          32650
+    Length:          11
+    ReplacementText: 'dpct::err0'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          32669
+    Length:          0
+    ReplacementText: "  /*\n  DPCT1000:17: Error handling if-stmt was detected but could not be rewritten.\n  */\n"
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          32682
+    Length:          11
+    ReplacementText: '0'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          32697
+    Length:          0
+    ReplacementText: "    /*\n    DPCT1001:16: The statement could not be removed.\n    */\n"
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          32707
+    Length:          50
+    ReplacementText: 'std::system_error(err, std::generic_category())'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          33112
+    Length:          0
+    ReplacementText: "\n    dpct::device_ext &dev_ct1 = dpct::get_current_device();\n    sycl::queue &q_ct1 = dev_ct1.default_queue();"
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          33279
+    Length:          10
+    ReplacementText: ''
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          33770
+    Length:          12
+    ReplacementText: 'std::pair'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          33824
+    Length:          90
+    ReplacementText: 'oneapi::dpl::make_transform_iterator(device_paths->begin(), DeduplicateKeyTransformOp())'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          34077
+    Length:          10
+    ReplacementText: ''
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          34931
+    Length:          10
+    ReplacementText: 'DPCT_CHECK_ERROR(q_ct1.memcpy'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          35024
+    Length:          24
+    ReplacementText: ''
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          35049
+    Length:          0
+    ReplacementText: '.wait())'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          35111
+    Length:          28
+    ReplacementText: 'DPCT_CHECK_ERROR(sycl::free(h_num_runs_out, q_ct1)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          35139
+    Length:          0
+    ReplacementText: ')'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          35478
+    Length:          10
+    ReplacementText: ''
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          39992
+    Length:          169
+    ReplacementText: "oneapi::dpl::for_each_n(oneapi::dpl::execution::make_device_policy(dpct::get_default_queue()), counting, device_paths.size(), [=] (size_t idx) {\n    auto path_idx = d_paths[idx].path_idx;\n    dpct::atomic_fetch_add<sycl::access::address_space::generic_space>(d_lengths + path_idx, 1ull);\n  }generic_space>(d_lengths + path_idx, 1ull);\n  })"
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          40191
+    Length:          11
+    ReplacementText: ''
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          40368
+    Length:          11
+    ReplacementText: ''
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          40830
+    Length:          0
+    ReplacementText: "      /*\n      DPCT1107:18: Migration for this overload of thrust::any_of is not supported.\n      */\n"
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          41196
+    Length:          0
+    ReplacementText: "      /*\n      DPCT1107:19: Migration for this overload of thrust::any_of is not supported.\n      */\n"
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          42642
+    Length:          11
+    ReplacementText: ''
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          42812
+    Length:          11
+    ReplacementText: ''
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          42975
+    Length:          11
+    ReplacementText: ''
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          43417
+    Length:          0
+    ReplacementText: "\n    dpct::device_ext &dev_ct1 = dpct::get_current_device();\n    sycl::queue &q_ct1 = dev_ct1.default_queue();"
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          43442
+    Length:          21
+    ReplacementText: 'dpct::device_vector'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          43761
+    Length:          10
+    ReplacementText: ''
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          44219
+    Length:          125
+    ReplacementText: 'oneapi::dpl::make_transform_iterator(sorted_paths.begin(), PathIdxTransformOp())'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          44413
+    Length:          396
+    ReplacementText: "oneapi::dpl::reduce_by_segment(oneapi::dpl::execution::make_device_policy(q_ct1), path_key, path_key + sorted_paths.size(), sorted_paths.begin(), make_discard_iterator(), combined.begin(), thrust::equal_to<size_t>(), [=] (PathElement<SplitConditionT> a,\n                     const PathElement<SplitConditionT>& b) {\n        a.zero_fraction *= b.zero_fraction;\n        return a;\n      })"
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          44943
+    Length:          21
+    ReplacementText: 'dpct::device_vector'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          45139
+    Length:          72
+    ReplacementText: 'oneapi::dpl::make_transform_iterator(combined.begin(), GroupIdxTransformOp())'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          45235
+    Length:          68
+    ReplacementText: 'oneapi::dpl::make_transform_iterator(combined.begin(), BiasTransformOp())'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          45323
+    Length:          205
+    ReplacementText: 'oneapi::dpl::reduce_by_segment(oneapi::dpl::execution::make_device_policy(q_ct1), group_key, group_key + num_paths, values, keys_out.begin(), values_out.begin())'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          45780
+    Length:          114
+    ReplacementText: "oneapi::dpl::for_each_n(oneapi::dpl::execution::seq, counting, n, [=] (size_t idx) {\n    d_bias[d_keys_out[idx]] = d_values_out[idx];\n  })"
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          48024
+    Length:          0
+    ReplacementText: "\n    dpct::device_ext &dev_ct1 = dpct::get_current_device();\n    sycl::queue &q_ct1 = dev_ct1.default_queue();"
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          49079
+    Length:          456
+    ReplacementText: "oneapi::dpl::for_each_n(oneapi::dpl::execution::make_device_policy(q_ct1), thrust::make_counting_iterator(0llu), X.NumRows() * num_groups, [=] (size_t idx) {\n                       size_t group = idx % num_groups;\n                       size_t row_idx = idx / num_groups;\n                       d_temp_phi[IndexPhi(row_idx, num_groups, group,\n                                           X.NumCols(), X.NumCols())] +=\n                           d_bias[group];\n                     })"
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          49861
+    Length:          58
+    ReplacementText: 'std::copy(oneapi::dpl::execution::make_device_policy(q_ct1), temp_phi.begin(), temp_phi.end(), phis_begin)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          52449
+    Length:          0
+    ReplacementText: "\n    dpct::device_ext &dev_ct1 = dpct::get_current_device();\n    sycl::queue &q_ct1 = dev_ct1.default_queue();"
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          53555
+    Length:          395
+    ReplacementText: "oneapi::dpl::for_each_n(oneapi::dpl::execution::make_device_policy(q_ct1), thrust::make_counting_iterator(0llu), X.NumRows() * num_groups, [=] (size_t idx) {\n        size_t group = idx % num_groups;\n        size_t row_idx = idx / num_groups;\n        d_temp_phi[IndexPhiInteractions(row_idx, num_groups, group, X.NumCols(),\n                                        X.NumCols(), X.NumCols())] +=\n            d_bias[group];\n      })"
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          54300
+    Length:          58
+    ReplacementText: 'std::copy(oneapi::dpl::execution::make_device_policy(q_ct1), temp_phi.begin(), temp_phi.end(), phis_begin)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          56973
+    Length:          0
+    ReplacementText: "\n    dpct::device_ext &dev_ct1 = dpct::get_current_device();\n    sycl::queue &q_ct1 = dev_ct1.default_queue();"
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          58269
+    Length:          395
+    ReplacementText: "oneapi::dpl::for_each_n(oneapi::dpl::execution::make_device_policy(q_ct1), thrust::make_counting_iterator(0llu), X.NumRows() * num_groups, [=] (size_t idx) {\n        size_t group = idx % num_groups;\n        size_t row_idx = idx / num_groups;\n        d_temp_phi[IndexPhiInteractions(row_idx, num_groups, group, X.NumCols(),\n                                        X.NumCols(), X.NumCols())] +=\n            d_bias[group];\n      })"
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          59066
+    Length:          58
+    ReplacementText: 'std::copy(oneapi::dpl::execution::make_device_policy(q_ct1), temp_phi.begin(), temp_phi.end(), phis_begin)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Offset:          62671
+    Length:          58
+    ReplacementText: 'std::copy(oneapi::dpl::execution::make_device_policy(dpct::get_default_queue()), temp_phi.begin(), temp_phi.end(), phis_begin)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+MainSourceFilesDigest:
+  - MainSourceFile:  '/home/user293/shap/shap/cext/gpu_treeshap.h'
+    Digest:          b91e76d64f30b0604b4aa5bc31c1bfe7
+DpctVersion:     2023.2.0
+MainHelperFileName: dpct
+USMLevel:        ''
+FeatureMap:
+  atomic.hpp:
+    atomic_fetch_add:
+      IsCalled:        true
+      CallerSrcFiles:
+        - '/home/user293/shap/shap/cext/gpu_treeshap.h'
+      SubFeatureMap:   {}
+  device.hpp:
+    get_current_device:
+      IsCalled:        true
+      CallerSrcFiles:
+        - '/home/user293/shap/shap/cext/_cext_gpu.cu'
+        - '/home/user293/shap/shap/cext/gpu_treeshap.h'
+      SubFeatureMap:   {}
+    get_default_queue:
+      IsCalled:        true
+      CallerSrcFiles:
+        - '/home/user293/shap/shap/cext/_cext_gpu.cu'
+        - '/home/user293/shap/shap/cext/gpu_treeshap.h'
+      SubFeatureMap:   {}
+    has_capability_or_fail:
+      IsCalled:        true
+      CallerSrcFiles:
+        - '/home/user293/shap/shap/cext/gpu_treeshap.h'
+      SubFeatureMap:   {}
+  dpct.hpp:
+    check_error_code:
+      IsCalled:        true
+      CallerSrcFiles:
+        - '/home/user293/shap/shap/cext/gpu_treeshap.h'
+      SubFeatureMap:   {}
+    dpct_align_and_inline:
+      IsCalled:        true
+      CallerSrcFiles:
+        - '/home/user293/shap/shap/cext/gpu_treeshap.h'
+      SubFeatureMap:   {}
+    dpct_compatibility_temp:
+      IsCalled:        true
+      CallerSrcFiles:
+        - '/home/user293/shap/shap/cext/gpu_treeshap.h'
+      SubFeatureMap:   {}
+  dpl_utils.hpp:
+    non_local_include_dependency:
+      IsCalled:        true
+      CallerSrcFiles:
+        - '/home/user293/shap/shap/cext/gpu_treeshap.h'
+      SubFeatureMap:   {}
+  math.hpp:
+    min_max:
+      IsCalled:        true
+      CallerSrcFiles:
+        - '/home/user293/shap/shap/cext/gpu_treeshap.h'
+      SubFeatureMap:   {}
+  memory.hpp:
+    memcpy_direction:
+      IsCalled:        true
+      CallerSrcFiles:
+        - '/home/user293/shap/shap/cext/gpu_treeshap.h'
+      SubFeatureMap:   {}
+  util.hpp:
+    err_types:
+      IsCalled:        true
+      CallerSrcFiles:
+        - '/home/user293/shap/shap/cext/gpu_treeshap.h'
+      SubFeatureMap:   {}
+    ffs:
+      IsCalled:        true
+      CallerSrcFiles:
+        - '/home/user293/shap/shap/cext/gpu_treeshap.h'
+      SubFeatureMap:   {}
+    select_from_sub_group:
+      IsCalled:        true
+      CallerSrcFiles:
+        - '/home/user293/shap/shap/cext/gpu_treeshap.h'
+      SubFeatureMap:   {}
+  vector.h:
+    device_vector:
+      IsCalled:        true
+      CallerSrcFiles:
+        - '/home/user293/shap/shap/cext/gpu_treeshap.h'
+      SubFeatureMap:   {}
+CompileTargets:  {}
+OptionMap:
+  AnalysisScopePath:
+    Value:           '/home/user293/shap/shap/cext'
+    Specified:       false
+  AsyncHandler:
+    Value:           'false'
+    Specified:       false
+  CommentsEnabled:
+    Value:           'false'
+    Specified:       false
+  CompilationsDir:
+    Value:           ''
+    Specified:       false
+  CtadEnabled:
+    Value:           'false'
+    Specified:       false
+  CustomHelperFileName:
+    Value:           dpct
+    Specified:       false
+  EnablepProfiling:
+    Value:           'false'
+    Specified:       false
+  ExperimentalFlag:
+    Value:           '0'
+    Specified:       false
+  ExplicitClNamespace:
+    Value:           'false'
+    Specified:       false
+  ExplicitNamespace:
+    Value:           '20'
+    Specified:       false
+  ExtensionDDFlag:
+    Value:           '0'
+    Specified:       false
+  ExtensionDEFlag:
+    Value:           '4294967295'
+    Specified:       false
+  NDRangeDim:
+    Value:           '3'
+    Specified:       false
+  NoDRYPattern:
+    Value:           'false'
+    Specified:       false
+  OptimizeMigration:
+    Value:           'false'
+    Specified:       false
+  ProcessAll:
+    Value:           'false'
+    Specified:       false
+  RuleFile:
+    Value:           ''
+    Specified:       false
+  SyclNamedLambda:
+    Value:           'false'
+    Specified:       false
+  UsmLevel:
+    Value:           '1'
+    Specified:       false
+...
