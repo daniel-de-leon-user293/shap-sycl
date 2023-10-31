@@ -1,548 +1,535 @@
-In file included from _cext_gpu.dp.cpp:7:
-./gpu_treeshap.h:58:9: warning: explicit comparison with NaN in fast floating point mode [-Wtautological-constant-compare]
+In file included from dpct_output/_cext_gpu.dp.cpp:7:
+dpct_output/gpu_treeshap.h:58:9: warning: explicit comparison with NaN in fast floating point mode [-Wtautological-constant-compare]
     if (isnan(x)) {
         ^~~~~~~~
-./gpu_treeshap.h:579:23: error: use of undeclared identifier 'dpct_placeholder'; did you mean 'std::is_placeholder'?
+dpct_output/gpu_treeshap.h:579:23: error: use of undeclared identifier 'dpct_placeholder'; did you mean 'std::is_placeholder'?
           PathElement<dpct_placeholder /*Fix the type mannually*/>, 1>
                       ^~~~~~~~~~~~~~~~
                       std::is_placeholder
 /usr/lib/gcc/x86_64-linux-gnu/11/../../../../include/c++/11/functional:204:12: note: 'std::is_placeholder' declared here
     struct is_placeholder
            ^
-In file included from _cext_gpu.dp.cpp:7:
-./gpu_treeshap.h:579:23: error: use of undeclared identifier 'dpct_placeholder'
+In file included from dpct_output/_cext_gpu.dp.cpp:7:
+dpct_output/gpu_treeshap.h:579:23: error: use of undeclared identifier 'dpct_placeholder'
           PathElement<dpct_placeholder /*Fix the type mannually*/>, 1>
                       ^
-./gpu_treeshap.h:594:30: error: use of undeclared identifier 'dpct_placeholder'; did you mean 'std::is_placeholder'?
+dpct_output/gpu_treeshap.h:594:30: error: use of undeclared identifier 'dpct_placeholder'; did you mean 'std::is_placeholder'?
                 (PathElement<dpct_placeholder /*Fix the type mannually*/> *)
                              ^~~~~~~~~~~~~~~~
                              std::is_placeholder
 /usr/lib/gcc/x86_64-linux-gnu/11/../../../../include/c++/11/functional:204:12: note: 'std::is_placeholder' declared here
     struct is_placeholder
            ^
-In file included from _cext_gpu.dp.cpp:7:
-./gpu_treeshap.h:594:30: error: use of undeclared identifier 'dpct_placeholder'
+In file included from dpct_output/_cext_gpu.dp.cpp:7:
+dpct_output/gpu_treeshap.h:594:30: error: use of undeclared identifier 'dpct_placeholder'
                 (PathElement<dpct_placeholder /*Fix the type mannually*/> *)
                              ^
-./gpu_treeshap.h:736:23: error: use of undeclared identifier 'dpct_placeholder'; did you mean 'std::is_placeholder'?
+dpct_output/gpu_treeshap.h:736:23: error: use of undeclared identifier 'dpct_placeholder'; did you mean 'std::is_placeholder'?
           PathElement<dpct_placeholder /*Fix the type mannually*/>, 1>
                       ^~~~~~~~~~~~~~~~
                       std::is_placeholder
 /usr/lib/gcc/x86_64-linux-gnu/11/../../../../include/c++/11/functional:204:12: note: 'std::is_placeholder' declared here
     struct is_placeholder
            ^
-In file included from _cext_gpu.dp.cpp:7:
-./gpu_treeshap.h:736:23: error: use of undeclared identifier 'dpct_placeholder'
+In file included from dpct_output/_cext_gpu.dp.cpp:7:
+dpct_output/gpu_treeshap.h:736:23: error: use of undeclared identifier 'dpct_placeholder'
           PathElement<dpct_placeholder /*Fix the type mannually*/>, 1>
                       ^
-./gpu_treeshap.h:751:30: error: use of undeclared identifier 'dpct_placeholder'; did you mean 'std::is_placeholder'?
+dpct_output/gpu_treeshap.h:751:30: error: use of undeclared identifier 'dpct_placeholder'; did you mean 'std::is_placeholder'?
                 (PathElement<dpct_placeholder /*Fix the type mannually*/> *)
                              ^~~~~~~~~~~~~~~~
                              std::is_placeholder
 /usr/lib/gcc/x86_64-linux-gnu/11/../../../../include/c++/11/functional:204:12: note: 'std::is_placeholder' declared here
     struct is_placeholder
            ^
-In file included from _cext_gpu.dp.cpp:7:
-./gpu_treeshap.h:751:30: error: use of undeclared identifier 'dpct_placeholder'
+In file included from dpct_output/_cext_gpu.dp.cpp:7:
+dpct_output/gpu_treeshap.h:751:30: error: use of undeclared identifier 'dpct_placeholder'
                 (PathElement<dpct_placeholder /*Fix the type mannually*/> *)
                              ^
-./gpu_treeshap.h:808:47: error: use of undeclared identifier 'thrust'
+dpct_output/gpu_treeshap.h:808:47: error: use of undeclared identifier 'thrust'
           labelled_group.reduce(reduce_input, thrust::multiplies<float>());
                                               ^
-./gpu_treeshap.h:808:71: error: expected '(' for function-style cast or type construction
+dpct_output/gpu_treeshap.h:808:71: error: expected '(' for function-style cast or type construction
           labelled_group.reduce(reduce_input, thrust::multiplies<float>());
                                                                  ~~~~~^
-./gpu_treeshap.h:808:73: error: expected expression
+dpct_output/gpu_treeshap.h:808:73: error: expected expression
           labelled_group.reduce(reduce_input, thrust::multiplies<float>());
                                                                         ^
-./gpu_treeshap.h:859:23: error: use of undeclared identifier 'dpct_placeholder'; did you mean 'std::is_placeholder'?
+dpct_output/gpu_treeshap.h:859:23: error: use of undeclared identifier 'dpct_placeholder'; did you mean 'std::is_placeholder'?
           PathElement<dpct_placeholder /*Fix the type mannually*/>, 1>
                       ^~~~~~~~~~~~~~~~
                       std::is_placeholder
 /usr/lib/gcc/x86_64-linux-gnu/11/../../../../include/c++/11/functional:204:12: note: 'std::is_placeholder' declared here
     struct is_placeholder
            ^
-In file included from _cext_gpu.dp.cpp:7:
-./gpu_treeshap.h:859:23: error: use of undeclared identifier 'dpct_placeholder'
+In file included from dpct_output/_cext_gpu.dp.cpp:7:
+dpct_output/gpu_treeshap.h:859:23: error: use of undeclared identifier 'dpct_placeholder'
           PathElement<dpct_placeholder /*Fix the type mannually*/>, 1>
                       ^
-./gpu_treeshap.h:874:30: error: use of undeclared identifier 'dpct_placeholder'; did you mean 'std::is_placeholder'?
+dpct_output/gpu_treeshap.h:874:30: error: use of undeclared identifier 'dpct_placeholder'; did you mean 'std::is_placeholder'?
                 (PathElement<dpct_placeholder /*Fix the type mannually*/> *)
                              ^~~~~~~~~~~~~~~~
                              std::is_placeholder
 /usr/lib/gcc/x86_64-linux-gnu/11/../../../../include/c++/11/functional:204:12: note: 'std::is_placeholder' declared here
     struct is_placeholder
            ^
-In file included from _cext_gpu.dp.cpp:7:
-./gpu_treeshap.h:874:30: error: use of undeclared identifier 'dpct_placeholder'
+In file included from dpct_output/_cext_gpu.dp.cpp:7:
+dpct_output/gpu_treeshap.h:874:30: error: use of undeclared identifier 'dpct_placeholder'
                 (PathElement<dpct_placeholder /*Fix the type mannually*/> *)
                              ^
-./gpu_treeshap.h:1006:23: error: use of undeclared identifier 'dpct_placeholder'; did you mean 'std::is_placeholder'?
+dpct_output/gpu_treeshap.h:1006:23: error: use of undeclared identifier 'dpct_placeholder'; did you mean 'std::is_placeholder'?
           PathElement<dpct_placeholder /*Fix the type mannually*/>, 1>
                       ^~~~~~~~~~~~~~~~
                       std::is_placeholder
 /usr/lib/gcc/x86_64-linux-gnu/11/../../../../include/c++/11/functional:204:12: note: 'std::is_placeholder' declared here
     struct is_placeholder
            ^
-In file included from _cext_gpu.dp.cpp:7:
-./gpu_treeshap.h:1006:23: error: use of undeclared identifier 'dpct_placeholder'
+In file included from dpct_output/_cext_gpu.dp.cpp:7:
+dpct_output/gpu_treeshap.h:1006:23: error: use of undeclared identifier 'dpct_placeholder'
           PathElement<dpct_placeholder /*Fix the type mannually*/>, 1>
                       ^
-./gpu_treeshap.h:1021:30: error: use of undeclared identifier 'dpct_placeholder'; did you mean 'std::is_placeholder'?
+dpct_output/gpu_treeshap.h:1021:30: error: use of undeclared identifier 'dpct_placeholder'; did you mean 'std::is_placeholder'?
                 (PathElement<dpct_placeholder /*Fix the type mannually*/> *)
                              ^~~~~~~~~~~~~~~~
                              std::is_placeholder
 /usr/lib/gcc/x86_64-linux-gnu/11/../../../../include/c++/11/functional:204:12: note: 'std::is_placeholder' declared here
     struct is_placeholder
            ^
-In file included from _cext_gpu.dp.cpp:7:
-./gpu_treeshap.h:1021:30: error: use of undeclared identifier 'dpct_placeholder'
+In file included from dpct_output/_cext_gpu.dp.cpp:7:
+dpct_output/gpu_treeshap.h:1021:30: error: use of undeclared identifier 'dpct_placeholder'
                 (PathElement<dpct_placeholder /*Fix the type mannually*/> *)
                              ^
-./gpu_treeshap.h:1039:7: error: use of undeclared identifier 'thrust'
+dpct_output/gpu_treeshap.h:1039:7: error: use of undeclared identifier 'thrust'
       thrust::reduce(thrust::cuda::par(alloc), bin_map.begin(), bin_map.end(),
       ^
-./gpu_treeshap.h:1039:22: error: use of undeclared identifier 'thrust'
+dpct_output/gpu_treeshap.h:1039:22: error: use of undeclared identifier 'thrust'
       thrust::reduce(thrust::cuda::par(alloc), bin_map.begin(), bin_map.end(),
                      ^
-./gpu_treeshap.h:1040:33: error: use of undeclared identifier 'thrust'
+dpct_output/gpu_treeshap.h:1040:33: error: use of undeclared identifier 'thrust'
                      size_t(0), thrust::maximum<size_t>()) +
                                 ^
-./gpu_treeshap.h:1040:49: error: unexpected type name 'size_t': expected expression
+dpct_output/gpu_treeshap.h:1040:49: error: unexpected type name 'size_t': expected expression
                      size_t(0), thrust::maximum<size_t>()) +
                                                 ^
-./gpu_treeshap.h:1040:57: error: expected expression
+dpct_output/gpu_treeshap.h:1040:57: error: expected expression
                      size_t(0), thrust::maximum<size_t>()) +
                                                         ^
-./gpu_treeshap.h:1043:19: error: use of undeclared identifier 'thrust'
+dpct_output/gpu_treeshap.h:1043:19: error: use of undeclared identifier 'thrust'
   auto counting = thrust::make_counting_iterator(0llu);
                   ^
-./gpu_treeshap.h:1058:7: error: use of undeclared identifier 'thrust'
+dpct_output/gpu_treeshap.h:1058:7: error: use of undeclared identifier 'thrust'
       thrust::cuda::par(alloc), bin_segments->begin(), bin_segments->end(),
       ^
-./gpu_treeshap.h:1082:32: error: use of undeclared identifier 'thrust'
+dpct_output/gpu_treeshap.h:1082:32: error: use of undeclared identifier 'thrust'
 class DiscardOverload : public thrust::discard_iterator<Return> {
                                ^
-./gpu_treeshap.h:1082:40: error: unknown template name 'discard_iterator'
+dpct_output/gpu_treeshap.h:1082:40: error: unknown template name 'discard_iterator'
 class DiscardOverload : public thrust::discard_iterator<Return> {
                                        ^
-./gpu_treeshap.h:1095:3: error: use of undeclared identifier 'thrust'
+dpct_output/gpu_treeshap.h:1095:3: error: use of undeclared identifier 'thrust'
   thrust::sort(thrust::cuda::par(alloc), device_paths->begin(),
   ^
-./gpu_treeshap.h:1095:16: error: use of undeclared identifier 'thrust'
+dpct_output/gpu_treeshap.h:1095:16: error: use of undeclared identifier 'thrust'
   thrust::sort(thrust::cuda::par(alloc), device_paths->begin(),
                ^
-./gpu_treeshap.h:1095:34: error: unknown type name 'alloc'
+dpct_output/gpu_treeshap.h:1095:34: error: unknown type name 'alloc'
   thrust::sort(thrust::cuda::par(alloc), device_paths->begin(),
                                  ^
-./gpu_treeshap.h:1095:40: error: expected ')'
+dpct_output/gpu_treeshap.h:1095:40: error: expected ')'
   thrust::sort(thrust::cuda::par(alloc), device_paths->begin(),
                                        ^
-./gpu_treeshap.h:1095:15: note: to match this '('
+dpct_output/gpu_treeshap.h:1095:15: note: to match this '('
   thrust::sort(thrust::cuda::par(alloc), device_paths->begin(),
               ^
-./gpu_treeshap.h:1113:3: error: use of undeclared identifier 'thrust'
+dpct_output/gpu_treeshap.h:1113:3: error: use of undeclared identifier 'thrust'
   thrust::device_vector<size_t> d_num_runs_out(1);
   ^
-./gpu_treeshap.h:1113:25: error: unexpected type name 'size_t': expected expression
+dpct_output/gpu_treeshap.h:1113:25: error: unexpected type name 'size_t': expected expression
   thrust::device_vector<size_t> d_num_runs_out(1);
                         ^
-./gpu_treeshap.h:1113:33: error: use of undeclared identifier 'd_num_runs_out'
+dpct_output/gpu_treeshap.h:1113:33: error: use of undeclared identifier 'd_num_runs_out'
   thrust::device_vector<size_t> d_num_runs_out(1);
                                 ^
-./gpu_treeshap.h:1115:13: error: use of undeclared identifier 'cudaMallocHost'
+dpct_output/gpu_treeshap.h:1115:13: error: use of undeclared identifier 'cudaMallocHost'
   CheckCuda(cudaMallocHost(&h_num_runs_out, sizeof(size_t)));
             ^
-./gpu_treeshap.h:1125:13: error: use of undeclared identifier 'cub'
+dpct_output/gpu_treeshap.h:1125:13: error: use of undeclared identifier 'cub'
   CheckCuda(cub::DeviceReduce::ReduceByKey(
             ^
-./gpu_treeshap.h:1128:7: error: use of undeclared identifier 'd_num_runs_out'
+dpct_output/gpu_treeshap.h:1128:7: error: use of undeclared identifier 'd_num_runs_out'
       d_num_runs_out.begin(), combine, device_paths->size()));
       ^
-./gpu_treeshap.h:1131:13: error: use of undeclared identifier 'cub'
+dpct_output/gpu_treeshap.h:1131:13: error: use of undeclared identifier 'cub'
   CheckCuda(cub::DeviceReduce::ReduceByKey(
             ^
-./gpu_treeshap.h:1134:7: error: use of undeclared identifier 'd_num_runs_out'
+dpct_output/gpu_treeshap.h:1134:7: error: use of undeclared identifier 'd_num_runs_out'
       d_num_runs_out.begin(), combine, device_paths->size()));
       ^
-./gpu_treeshap.h:1137:36: error: use of undeclared identifier 'd_num_runs_out'
+dpct_output/gpu_treeshap.h:1137:36: error: use of undeclared identifier 'd_num_runs_out'
       q_ct1.memcpy(h_num_runs_out, d_num_runs_out.data().get(), sizeof(size_t))
                                    ^
-./gpu_treeshap.h:1148:3: error: use of undeclared identifier 'thrust'
+dpct_output/gpu_treeshap.h:1148:3: error: use of undeclared identifier 'thrust'
   thrust::sort(thrust::cuda::par(alloc), paths->begin(), paths->end(),
   ^
-./gpu_treeshap.h:1148:16: error: use of undeclared identifier 'thrust'
+dpct_output/gpu_treeshap.h:1148:16: error: use of undeclared identifier 'thrust'
   thrust::sort(thrust::cuda::par(alloc), paths->begin(), paths->end(),
                ^
-./gpu_treeshap.h:1148:34: error: unknown type name 'alloc'
+dpct_output/gpu_treeshap.h:1148:34: error: unknown type name 'alloc'
   thrust::sort(thrust::cuda::par(alloc), paths->begin(), paths->end(),
                                  ^
-./gpu_treeshap.h:1148:40: error: expected ')'
+dpct_output/gpu_treeshap.h:1148:40: error: expected ')'
   thrust::sort(thrust::cuda::par(alloc), paths->begin(), paths->end(),
                                        ^
-./gpu_treeshap.h:1148:15: note: to match this '('
+dpct_output/gpu_treeshap.h:1148:15: note: to match this '('
   thrust::sort(thrust::cuda::par(alloc), paths->begin(), paths->end(),
               ^
-./gpu_treeshap.h:1181:3: error: use of undeclared identifier 'thrust'
+dpct_output/gpu_treeshap.h:1181:3: error: use of undeclared identifier 'thrust'
   thrust::host_vector<int> counts_host(counts);
   ^
-./gpu_treeshap.h:1181:26: error: expected '(' for function-style cast or type construction
+dpct_output/gpu_treeshap.h:1181:26: error: expected '(' for function-style cast or type construction
   thrust::host_vector<int> counts_host(counts);
                       ~~~^
-./gpu_treeshap.h:1182:32: error: use of undeclared identifier 'counts_host'
+dpct_output/gpu_treeshap.h:1182:32: error: use of undeclared identifier 'counts_host'
   std::vector<kv> path_lengths(counts_host.size());
                                ^
-./gpu_treeshap.h:1183:27: error: use of undeclared identifier 'counts_host'
+dpct_output/gpu_treeshap.h:1183:27: error: use of undeclared identifier 'counts_host'
   for (auto i = 0ull; i < counts_host.size(); i++) {
                           ^
-./gpu_treeshap.h:1184:27: error: use of undeclared identifier 'counts_host'
+dpct_output/gpu_treeshap.h:1184:27: error: use of undeclared identifier 'counts_host'
     path_lengths[i] = {i, counts_host[i]};
                           ^
-./gpu_treeshap.h:1194:31: error: use of undeclared identifier 'counts_host'
+dpct_output/gpu_treeshap.h:1194:31: error: use of undeclared identifier 'counts_host'
   std::vector<size_t> bin_map(counts_host.size());
                               ^
-./gpu_treeshap.h:1222:3: error: use of undeclared identifier 'thrust'
+dpct_output/gpu_treeshap.h:1222:3: error: use of undeclared identifier 'thrust'
   thrust::host_vector<int> counts_host(counts);
   ^
-./gpu_treeshap.h:1222:26: error: expected '(' for function-style cast or type construction
+dpct_output/gpu_treeshap.h:1222:26: error: expected '(' for function-style cast or type construction
   thrust::host_vector<int> counts_host(counts);
                       ~~~^
-./gpu_treeshap.h:1223:32: error: use of undeclared identifier 'counts_host'
+dpct_output/gpu_treeshap.h:1223:32: error: use of undeclared identifier 'counts_host'
   std::vector<kv> path_lengths(counts_host.size());
                                ^
-./gpu_treeshap.h:1224:27: error: use of undeclared identifier 'counts_host'
+dpct_output/gpu_treeshap.h:1224:27: error: use of undeclared identifier 'counts_host'
   for (auto i = 0ull; i < counts_host.size(); i++) {
                           ^
-./gpu_treeshap.h:1225:27: error: use of undeclared identifier 'counts_host'
+dpct_output/gpu_treeshap.h:1225:27: error: use of undeclared identifier 'counts_host'
     path_lengths[i] = {i, counts_host[i]};
                           ^
-./gpu_treeshap.h:1234:31: error: use of undeclared identifier 'counts_host'
+dpct_output/gpu_treeshap.h:1234:31: error: use of undeclared identifier 'counts_host'
   std::vector<size_t> bin_map(counts_host.size());
                               ^
-./gpu_treeshap.h:1256:3: error: use of undeclared identifier 'thrust'
+dpct_output/gpu_treeshap.h:1256:3: error: use of undeclared identifier 'thrust'
   thrust::host_vector<int> counts_host(counts);
   ^
-./gpu_treeshap.h:1256:26: error: expected '(' for function-style cast or type construction
+dpct_output/gpu_treeshap.h:1256:26: error: expected '(' for function-style cast or type construction
   thrust::host_vector<int> counts_host(counts);
                       ~~~^
-./gpu_treeshap.h:1257:31: error: use of undeclared identifier 'counts_host'
+dpct_output/gpu_treeshap.h:1257:31: error: use of undeclared identifier 'counts_host'
   std::vector<size_t> bin_map(counts_host.size());
                               ^
-./gpu_treeshap.h:1260:27: error: use of undeclared identifier 'counts_host'
+dpct_output/gpu_treeshap.h:1260:27: error: use of undeclared identifier 'counts_host'
   for (auto i = 0ull; i < counts_host.size(); i++) {
                           ^
-./gpu_treeshap.h:1261:20: error: use of undeclared identifier 'counts_host'
+dpct_output/gpu_treeshap.h:1261:20: error: use of undeclared identifier 'counts_host'
     int new_size = counts_host[i];
                    ^
-./gpu_treeshap.h:1282:19: error: use of undeclared identifier 'thrust'
+dpct_output/gpu_treeshap.h:1282:19: error: use of undeclared identifier 'thrust'
   auto counting = thrust::make_counting_iterator(0llu);
                   ^
-./gpu_treeshap.h:1317:7: error: use of undeclared identifier 'thrust'
+dpct_output/gpu_treeshap.h:1317:7: error: use of undeclared identifier 'thrust'
       thrust::any_of(thrust::cuda::par(alloc), path_lengths.begin(),
       ^
-./gpu_treeshap.h:1317:22: error: use of undeclared identifier 'thrust'
+dpct_output/gpu_treeshap.h:1317:22: error: use of undeclared identifier 'thrust'
       thrust::any_of(thrust::cuda::par(alloc), path_lengths.begin(),
                      ^
-./gpu_treeshap.h:1325:19: error: use of undeclared identifier 'thrust'
+dpct_output/gpu_treeshap.h:1325:19: error: use of undeclared identifier 'thrust'
   auto counting = thrust::counting_iterator<size_t>(0);
                   ^
-./gpu_treeshap.h:1325:45: error: unexpected type name 'size_t': expected expression
+dpct_output/gpu_treeshap.h:1325:45: error: unexpected type name 'size_t': expected expression
   auto counting = thrust::counting_iterator<size_t>(0);
                                             ^
-./gpu_treeshap.h:1331:7: error: use of undeclared identifier 'thrust'
+dpct_output/gpu_treeshap.h:1331:7: error: use of undeclared identifier 'thrust'
       thrust::any_of(thrust::cuda::par(alloc), counting + 1,
       ^
-./gpu_treeshap.h:1331:22: error: use of undeclared identifier 'thrust'
+dpct_output/gpu_treeshap.h:1331:22: error: use of undeclared identifier 'thrust'
       thrust::any_of(thrust::cuda::par(alloc), counting + 1,
                      ^
-./gpu_treeshap.h:1393:3: error: use of undeclared identifier 'thrust'
+dpct_output/gpu_treeshap.h:1393:3: error: use of undeclared identifier 'thrust'
   thrust::sort(thrust::cuda::par(alloc), sorted_paths.begin(),
   ^
-./gpu_treeshap.h:1393:16: error: use of undeclared identifier 'thrust'
+dpct_output/gpu_treeshap.h:1393:16: error: use of undeclared identifier 'thrust'
   thrust::sort(thrust::cuda::par(alloc), sorted_paths.begin(),
                ^
-./gpu_treeshap.h:1393:34: error: unknown type name 'alloc'
+dpct_output/gpu_treeshap.h:1393:34: error: unknown type name 'alloc'
   thrust::sort(thrust::cuda::par(alloc), sorted_paths.begin(),
                                  ^
-./gpu_treeshap.h:1393:40: error: expected ')'
+dpct_output/gpu_treeshap.h:1393:40: error: expected ')'
   thrust::sort(thrust::cuda::par(alloc), sorted_paths.begin(),
                                        ^
-./gpu_treeshap.h:1393:15: note: to match this '('
+dpct_output/gpu_treeshap.h:1393:15: note: to match this '('
   thrust::sort(thrust::cuda::par(alloc), sorted_paths.begin(),
               ^
-./gpu_treeshap.h:1412:7: error: use of undeclared identifier 'make_discard_iterator'
+dpct_output/gpu_treeshap.h:1412:7: error: use of undeclared identifier 'make_discard_iterator'
       make_discard_iterator(), combined.begin(), thrust::equal_to<size_t>(),
       ^
-./gpu_treeshap.h:1412:50: error: use of undeclared identifier 'thrust'
+dpct_output/gpu_treeshap.h:1412:50: error: use of undeclared identifier 'thrust'
       make_discard_iterator(), combined.begin(), thrust::equal_to<size_t>(),
                                                  ^
-./gpu_treeshap.h:1412:67: error: unexpected type name 'size_t': expected expression
+dpct_output/gpu_treeshap.h:1412:67: error: unexpected type name 'size_t': expected expression
       make_discard_iterator(), combined.begin(), thrust::equal_to<size_t>(),
                                                                   ^
-./gpu_treeshap.h:1412:75: error: expected expression
+dpct_output/gpu_treeshap.h:1412:75: error: expected expression
       make_discard_iterator(), combined.begin(), thrust::equal_to<size_t>(),
                                                                           ^
-./gpu_treeshap.h:1435:19: error: use of undeclared identifier 'thrust'
+dpct_output/gpu_treeshap.h:1435:19: error: use of undeclared identifier 'thrust'
   auto counting = thrust::make_counting_iterator(0llu);
                   ^
-./gpu_treeshap.h:1476:39: error: use of undeclared identifier 'thrust'
+dpct_output/gpu_treeshap.h:1476:39: error: use of undeclared identifier 'thrust'
 template <typename DeviceAllocatorT = thrust::device_allocator<int>,
                                       ^
-./gpu_treeshap.h:1509:27: error: use of undeclared identifier 'thrust'
+dpct_output/gpu_treeshap.h:1509:27: error: use of undeclared identifier 'thrust'
                           thrust::make_counting_iterator(0llu),
                           ^
-./gpu_treeshap.h:1564:39: error: use of undeclared identifier 'thrust'
+dpct_output/gpu_treeshap.h:1564:39: error: use of undeclared identifier 'thrust'
 template <typename DeviceAllocatorT = thrust::device_allocator<int>,
                                       ^
-./gpu_treeshap.h:1597:27: error: use of undeclared identifier 'thrust'
+dpct_output/gpu_treeshap.h:1597:27: error: use of undeclared identifier 'thrust'
                           thrust::make_counting_iterator(0llu),
                           ^
-./gpu_treeshap.h:1652:39: error: use of undeclared identifier 'thrust'
+dpct_output/gpu_treeshap.h:1652:39: error: use of undeclared identifier 'thrust'
 template <typename DeviceAllocatorT = thrust::device_allocator<int>,
                                       ^
-./gpu_treeshap.h:1691:27: error: use of undeclared identifier 'thrust'
+dpct_output/gpu_treeshap.h:1691:27: error: use of undeclared identifier 'thrust'
                           thrust::make_counting_iterator(0llu),
                           ^
-./gpu_treeshap.h:1743:39: error: use of undeclared identifier 'thrust'
+dpct_output/gpu_treeshap.h:1743:39: error: use of undeclared identifier 'thrust'
 template <typename DeviceAllocatorT = thrust::device_allocator<int>,
                                       ^
-In file included from _cext_gpu.dp.cpp:8:
-./tree_shap.h:1101:9: error: use of undeclared identifier 'PySys_WriteStderr'
-        PySys_WriteStderr(
-        ^
-./tree_shap.h:1111:9: error: unknown type name 'PyObject'
-        PyObject *pyStderr = PySys_GetObject("stderr");
-        ^
-./tree_shap.h:1111:30: error: use of undeclared identifier 'PySys_GetObject'
-        PyObject *pyStderr = PySys_GetObject("stderr");
-                             ^
-./tree_shap.h:1113:13: error: unknown type name 'PyObject'
-            PyObject *result = PyObject_CallMethod(pyStderr, "flush", NULL);
-            ^
-_cext_gpu.dp.cpp:31:9: warning: explicit comparison with NaN in fast floating point mode [-Wtautological-constant-compare]
+dpct_output/_cext_gpu.dp.cpp:31:9: warning: explicit comparison with NaN in fast floating point mode [-Wtautological-constant-compare]
     if (isnan(x)) {
         ^~~~~~~~
-_cext_gpu.dp.cpp:123:3: error: use of undeclared identifier 'thrust'
+dpct_output/_cext_gpu.dp.cpp:123:3: error: use of undeclared identifier 'thrust'
   thrust::device_vector<tfloat> data;
   ^
-_cext_gpu.dp.cpp:124:3: error: use of undeclared identifier 'thrust'
+dpct_output/_cext_gpu.dp.cpp:124:3: error: use of undeclared identifier 'thrust'
   thrust::device_vector<bool> missing;
   ^
-_cext_gpu.dp.cpp:134:14: error: use of undeclared identifier 'thrust'
+dpct_output/_cext_gpu.dp.cpp:134:14: error: use of undeclared identifier 'thrust'
       data = thrust::device_vector<tfloat>(
              ^
-_cext_gpu.dp.cpp:134:36: error: unexpected type name 'tfloat': expected expression
+dpct_output/_cext_gpu.dp.cpp:134:36: error: unexpected type name 'tfloat': expected expression
       data = thrust::device_vector<tfloat>(
                                    ^
-_cext_gpu.dp.cpp:136:17: error: use of undeclared identifier 'thrust'
+dpct_output/_cext_gpu.dp.cpp:136:17: error: use of undeclared identifier 'thrust'
       missing = thrust::device_vector<bool>(host_data.R_missing,
                 ^
-_cext_gpu.dp.cpp:136:43: error: expected '(' for function-style cast or type construction
+dpct_output/_cext_gpu.dp.cpp:136:43: error: expected '(' for function-style cast or type construction
       missing = thrust::device_vector<bool>(host_data.R_missing,
                                       ~~~~^
-_cext_gpu.dp.cpp:142:14: error: use of undeclared identifier 'thrust'
+dpct_output/_cext_gpu.dp.cpp:142:14: error: use of undeclared identifier 'thrust'
       data = thrust::device_vector<tfloat>(
              ^
-_cext_gpu.dp.cpp:142:36: error: unexpected type name 'tfloat': expected expression
+dpct_output/_cext_gpu.dp.cpp:142:36: error: unexpected type name 'tfloat': expected expression
       data = thrust::device_vector<tfloat>(
                                    ^
-_cext_gpu.dp.cpp:144:17: error: use of undeclared identifier 'thrust'
+dpct_output/_cext_gpu.dp.cpp:144:17: error: use of undeclared identifier 'thrust'
       missing = thrust::device_vector<bool>(host_data.X_missing,
                 ^
-_cext_gpu.dp.cpp:144:43: error: expected '(' for function-style cast or type construction
+dpct_output/_cext_gpu.dp.cpp:144:43: error: expected '(' for function-style cast or type construction
       missing = thrust::device_vector<bool>(host_data.X_missing,
                                       ~~~~^
-_cext_gpu.dp.cpp:135:21: warning: left operand of comma operator has no effect [-Wunused-value]
+dpct_output/_cext_gpu.dp.cpp:135:21: warning: left operand of comma operator has no effect [-Wunused-value]
           host_data.R, host_data.R + host_data.num_R * host_data.M);
           ~~~~~~~~~ ^
-_cext_gpu.dp.cpp:136:55: warning: left operand of comma operator has no effect [-Wunused-value]
+dpct_output/_cext_gpu.dp.cpp:136:55: warning: left operand of comma operator has no effect [-Wunused-value]
       missing = thrust::device_vector<bool>(host_data.R_missing,
                                             ~~~~~~~~~ ^~~~~~~~~
-_cext_gpu.dp.cpp:143:21: warning: left operand of comma operator has no effect [-Wunused-value]
+dpct_output/_cext_gpu.dp.cpp:143:21: warning: left operand of comma operator has no effect [-Wunused-value]
           host_data.X, host_data.X + host_data.num_X * host_data.M);
           ~~~~~~~~~ ^
-_cext_gpu.dp.cpp:144:55: warning: left operand of comma operator has no effect [-Wunused-value]
+dpct_output/_cext_gpu.dp.cpp:144:55: warning: left operand of comma operator has no effect [-Wunused-value]
       missing = thrust::device_vector<bool>(host_data.X_missing,
                                             ~~~~~~~~~ ^~~~~~~~~
-_cext_gpu.dp.cpp:189:3: error: use of undeclared identifier 'thrust'
+dpct_output/_cext_gpu.dp.cpp:189:3: error: use of undeclared identifier 'thrust'
   thrust::device_vector<float> phis((X.NumCols() + 1) * X.NumRows() *
   ^
-_cext_gpu.dp.cpp:189:30: error: expected '(' for function-style cast or type construction
+dpct_output/_cext_gpu.dp.cpp:189:30: error: expected '(' for function-style cast or type construction
   thrust::device_vector<float> phis((X.NumCols() + 1) * X.NumRows() *
                         ~~~~~^
-_cext_gpu.dp.cpp:189:32: error: use of undeclared identifier 'phis'
+dpct_output/_cext_gpu.dp.cpp:189:32: error: use of undeclared identifier 'phis'
   thrust::device_vector<float> phis((X.NumCols() + 1) * X.NumRows() *
                                ^
-_cext_gpu.dp.cpp:192:29: error: use of undeclared identifier 'phis'
+dpct_output/_cext_gpu.dp.cpp:192:29: error: use of undeclared identifier 'phis'
                             phis.begin(), phis.end());
                             ^
-_cext_gpu.dp.cpp:192:43: error: use of undeclared identifier 'phis'
+dpct_output/_cext_gpu.dp.cpp:192:43: error: use of undeclared identifier 'phis'
                             phis.begin(), phis.end());
                                           ^
-_cext_gpu.dp.cpp:194:3: error: use of undeclared identifier 'thrust'
+dpct_output/_cext_gpu.dp.cpp:194:3: error: use of undeclared identifier 'thrust'
   thrust::device_vector<double> base_offset(
   ^
-_cext_gpu.dp.cpp:194:31: error: expected '(' for function-style cast or type construction
+dpct_output/_cext_gpu.dp.cpp:194:31: error: expected '(' for function-style cast or type construction
   thrust::device_vector<double> base_offset(
                         ~~~~~~^
-_cext_gpu.dp.cpp:194:33: error: use of undeclared identifier 'base_offset'
+dpct_output/_cext_gpu.dp.cpp:194:33: error: use of undeclared identifier 'base_offset'
   thrust::device_vector<double> base_offset(
                                 ^
-_cext_gpu.dp.cpp:196:19: error: use of undeclared identifier 'thrust'
+dpct_output/_cext_gpu.dp.cpp:196:19: error: use of undeclared identifier 'thrust'
   auto counting = thrust::make_counting_iterator(size_t(0));
                   ^
-_cext_gpu.dp.cpp:197:17: error: use of undeclared identifier 'phis'
+dpct_output/_cext_gpu.dp.cpp:197:17: error: use of undeclared identifier 'phis'
   auto d_phis = phis.data().get();
                 ^
-_cext_gpu.dp.cpp:198:24: error: use of undeclared identifier 'base_offset'
+dpct_output/_cext_gpu.dp.cpp:198:24: error: use of undeclared identifier 'base_offset'
   auto d_base_offset = base_offset.data().get();
                        ^
-_cext_gpu.dp.cpp:210:3: error: use of undeclared identifier 'thrust'
+dpct_output/_cext_gpu.dp.cpp:210:3: error: use of undeclared identifier 'thrust'
   thrust::device_vector<float> transposed_phis(phis.size());
   ^
-_cext_gpu.dp.cpp:210:30: error: expected '(' for function-style cast or type construction
+dpct_output/_cext_gpu.dp.cpp:210:30: error: expected '(' for function-style cast or type construction
   thrust::device_vector<float> transposed_phis(phis.size());
                         ~~~~~^
-_cext_gpu.dp.cpp:210:48: error: use of undeclared identifier 'phis'
+dpct_output/_cext_gpu.dp.cpp:210:48: error: use of undeclared identifier 'phis'
   thrust::device_vector<float> transposed_phis(phis.size());
                                                ^
-_cext_gpu.dp.cpp:211:28: error: use of undeclared identifier 'transposed_phis'
+dpct_output/_cext_gpu.dp.cpp:211:28: error: use of undeclared identifier 'transposed_phis'
   auto d_transposed_phis = transposed_phis.data();
                            ^
-_cext_gpu.dp.cpp:214:18: error: use of undeclared identifier 'phis'
+dpct_output/_cext_gpu.dp.cpp:214:18: error: use of undeclared identifier 'phis'
       counting + phis.size(), [=](size_t idx) {
                  ^
-_cext_gpu.dp.cpp:226:13: error: use of undeclared identifier 'transposed_phis'
+dpct_output/_cext_gpu.dp.cpp:226:13: error: use of undeclared identifier 'transposed_phis'
             transposed_phis.begin(), transposed_phis.end(), out_contribs);
             ^
-_cext_gpu.dp.cpp:226:38: error: use of undeclared identifier 'transposed_phis'
+dpct_output/_cext_gpu.dp.cpp:226:38: error: use of undeclared identifier 'transposed_phis'
             transposed_phis.begin(), transposed_phis.end(), out_contribs);
                                      ^
-_cext_gpu.dp.cpp:243:3: error: use of undeclared identifier 'thrust'
+dpct_output/_cext_gpu.dp.cpp:243:3: error: use of undeclared identifier 'thrust'
   thrust::device_vector<float> phis((X.NumCols() + 1) * X.NumRows() *
   ^
-_cext_gpu.dp.cpp:243:30: error: expected '(' for function-style cast or type construction
+dpct_output/_cext_gpu.dp.cpp:243:30: error: expected '(' for function-style cast or type construction
   thrust::device_vector<float> phis((X.NumCols() + 1) * X.NumRows() *
                         ~~~~~^
-_cext_gpu.dp.cpp:243:32: error: use of undeclared identifier 'phis'
+dpct_output/_cext_gpu.dp.cpp:243:32: error: use of undeclared identifier 'phis'
   thrust::device_vector<float> phis((X.NumCols() + 1) * X.NumRows() *
                                ^
-_cext_gpu.dp.cpp:246:62: error: use of undeclared identifier 'phis'
+dpct_output/_cext_gpu.dp.cpp:246:62: error: use of undeclared identifier 'phis'
                                           trees.num_outputs, phis.begin(),
                                                              ^
-_cext_gpu.dp.cpp:247:43: error: use of undeclared identifier 'phis'
+dpct_output/_cext_gpu.dp.cpp:247:43: error: use of undeclared identifier 'phis'
                                           phis.end());
                                           ^
-_cext_gpu.dp.cpp:249:3: error: use of undeclared identifier 'thrust'
+dpct_output/_cext_gpu.dp.cpp:249:3: error: use of undeclared identifier 'thrust'
   thrust::device_vector<double> base_offset(
   ^
-_cext_gpu.dp.cpp:249:31: error: expected '(' for function-style cast or type construction
+dpct_output/_cext_gpu.dp.cpp:249:31: error: expected '(' for function-style cast or type construction
   thrust::device_vector<double> base_offset(
                         ~~~~~~^
-_cext_gpu.dp.cpp:249:33: error: use of undeclared identifier 'base_offset'
+dpct_output/_cext_gpu.dp.cpp:249:33: error: use of undeclared identifier 'base_offset'
   thrust::device_vector<double> base_offset(
                                 ^
-_cext_gpu.dp.cpp:251:19: error: use of undeclared identifier 'thrust'
+dpct_output/_cext_gpu.dp.cpp:251:19: error: use of undeclared identifier 'thrust'
   auto counting = thrust::make_counting_iterator(size_t(0));
                   ^
-_cext_gpu.dp.cpp:252:17: error: use of undeclared identifier 'phis'
+dpct_output/_cext_gpu.dp.cpp:252:17: error: use of undeclared identifier 'phis'
   auto d_phis = phis.data().get();
                 ^
-_cext_gpu.dp.cpp:253:24: error: use of undeclared identifier 'base_offset'
+dpct_output/_cext_gpu.dp.cpp:253:24: error: use of undeclared identifier 'base_offset'
   auto d_base_offset = base_offset.data().get();
                        ^
-_cext_gpu.dp.cpp:265:3: error: use of undeclared identifier 'thrust'
+dpct_output/_cext_gpu.dp.cpp:265:3: error: use of undeclared identifier 'thrust'
   thrust::device_vector<float> transposed_phis(phis.size());
   ^
-_cext_gpu.dp.cpp:265:30: error: expected '(' for function-style cast or type construction
+dpct_output/_cext_gpu.dp.cpp:265:30: error: expected '(' for function-style cast or type construction
   thrust::device_vector<float> transposed_phis(phis.size());
                         ~~~~~^
-_cext_gpu.dp.cpp:265:48: error: use of undeclared identifier 'phis'
+dpct_output/_cext_gpu.dp.cpp:265:48: error: use of undeclared identifier 'phis'
   thrust::device_vector<float> transposed_phis(phis.size());
                                                ^
-_cext_gpu.dp.cpp:266:28: error: use of undeclared identifier 'transposed_phis'
+dpct_output/_cext_gpu.dp.cpp:266:28: error: use of undeclared identifier 'transposed_phis'
   auto d_transposed_phis = transposed_phis.data();
                            ^
-_cext_gpu.dp.cpp:269:18: error: use of undeclared identifier 'phis'
+dpct_output/_cext_gpu.dp.cpp:269:18: error: use of undeclared identifier 'phis'
       counting + phis.size(), [=](size_t idx) {
                  ^
-_cext_gpu.dp.cpp:281:13: error: use of undeclared identifier 'transposed_phis'
+dpct_output/_cext_gpu.dp.cpp:281:13: error: use of undeclared identifier 'transposed_phis'
             transposed_phis.begin(), transposed_phis.end(), out_contribs);
             ^
-_cext_gpu.dp.cpp:281:38: error: use of undeclared identifier 'transposed_phis'
+dpct_output/_cext_gpu.dp.cpp:281:38: error: use of undeclared identifier 'transposed_phis'
             transposed_phis.begin(), transposed_phis.end(), out_contribs);
                                      ^
-_cext_gpu.dp.cpp:294:3: error: use of undeclared identifier 'thrust'
+dpct_output/_cext_gpu.dp.cpp:294:3: error: use of undeclared identifier 'thrust'
   thrust::device_vector<float> phis((X.NumCols() + 1) * (X.NumCols() + 1) *
   ^
-_cext_gpu.dp.cpp:294:30: error: expected '(' for function-style cast or type construction
+dpct_output/_cext_gpu.dp.cpp:294:30: error: expected '(' for function-style cast or type construction
   thrust::device_vector<float> phis((X.NumCols() + 1) * (X.NumCols() + 1) *
                         ~~~~~^
-_cext_gpu.dp.cpp:294:32: error: use of undeclared identifier 'phis'
+dpct_output/_cext_gpu.dp.cpp:294:32: error: use of undeclared identifier 'phis'
   thrust::device_vector<float> phis((X.NumCols() + 1) * (X.NumCols() + 1) *
                                ^
-_cext_gpu.dp.cpp:297:60: error: use of undeclared identifier 'phis'
+dpct_output/_cext_gpu.dp.cpp:297:60: error: use of undeclared identifier 'phis'
                                         trees.num_outputs, phis.begin(),
                                                            ^
-_cext_gpu.dp.cpp:298:41: error: use of undeclared identifier 'phis'
+dpct_output/_cext_gpu.dp.cpp:298:41: error: use of undeclared identifier 'phis'
                                         phis.end());
                                         ^
-_cext_gpu.dp.cpp:300:3: error: use of undeclared identifier 'thrust'
+dpct_output/_cext_gpu.dp.cpp:300:3: error: use of undeclared identifier 'thrust'
   thrust::device_vector<double> base_offset(
   ^
-_cext_gpu.dp.cpp:300:31: error: expected '(' for function-style cast or type construction
+dpct_output/_cext_gpu.dp.cpp:300:31: error: expected '(' for function-style cast or type construction
   thrust::device_vector<double> base_offset(
                         ~~~~~~^
-_cext_gpu.dp.cpp:300:33: error: use of undeclared identifier 'base_offset'
+dpct_output/_cext_gpu.dp.cpp:300:33: error: use of undeclared identifier 'base_offset'
   thrust::device_vector<double> base_offset(
                                 ^
-_cext_gpu.dp.cpp:302:19: error: use of undeclared identifier 'thrust'
+dpct_output/_cext_gpu.dp.cpp:302:19: error: use of undeclared identifier 'thrust'
   auto counting = thrust::make_counting_iterator(size_t(0));
                   ^
-_cext_gpu.dp.cpp:303:17: error: use of undeclared identifier 'phis'
+dpct_output/_cext_gpu.dp.cpp:303:17: error: use of undeclared identifier 'phis'
   auto d_phis = phis.data().get();
                 ^
-_cext_gpu.dp.cpp:304:24: error: use of undeclared identifier 'base_offset'
+dpct_output/_cext_gpu.dp.cpp:304:24: error: use of undeclared identifier 'base_offset'
   auto d_base_offset = base_offset.data().get();
                        ^
-_cext_gpu.dp.cpp:316:3: error: use of undeclared identifier 'thrust'
+dpct_output/_cext_gpu.dp.cpp:316:3: error: use of undeclared identifier 'thrust'
   thrust::device_vector<float> transposed_phis(phis.size());
   ^
-_cext_gpu.dp.cpp:316:30: error: expected '(' for function-style cast or type construction
+dpct_output/_cext_gpu.dp.cpp:316:30: error: expected '(' for function-style cast or type construction
   thrust::device_vector<float> transposed_phis(phis.size());
                         ~~~~~^
-_cext_gpu.dp.cpp:316:48: error: use of undeclared identifier 'phis'
+dpct_output/_cext_gpu.dp.cpp:316:48: error: use of undeclared identifier 'phis'
   thrust::device_vector<float> transposed_phis(phis.size());
                                                ^
-_cext_gpu.dp.cpp:317:28: error: use of undeclared identifier 'transposed_phis'
+dpct_output/_cext_gpu.dp.cpp:317:28: error: use of undeclared identifier 'transposed_phis'
   auto d_transposed_phis = transposed_phis.data();
                            ^
-_cext_gpu.dp.cpp:320:18: error: use of undeclared identifier 'phis'
+dpct_output/_cext_gpu.dp.cpp:320:18: error: use of undeclared identifier 'phis'
       counting + phis.size(), [=](size_t idx) {
                  ^
-_cext_gpu.dp.cpp:334:13: error: use of undeclared identifier 'transposed_phis'
+dpct_output/_cext_gpu.dp.cpp:334:13: error: use of undeclared identifier 'transposed_phis'
             transposed_phis.begin(), transposed_phis.end(), out_contribs);
             ^
-_cext_gpu.dp.cpp:334:38: error: use of undeclared identifier 'transposed_phis'
+dpct_output/_cext_gpu.dp.cpp:334:38: error: use of undeclared identifier 'transposed_phis'
             transposed_phis.begin(), transposed_phis.end(), out_contribs);
                                      ^
-In file included from _cext_gpu.dp.cpp:7:
-./gpu_treeshap.h:226:12: error: use of undeclared identifier '__shfl_sync'
+In file included from dpct_output/_cext_gpu.dp.cpp:7:
+dpct_output/gpu_treeshap.h:226:12: error: use of undeclared identifier '__shfl_sync'
     return __shfl_sync(mask_, val, src + dpct::ffs<int>(mask_) - 1);
            ^
-./gpu_treeshap.h:327:23: note: in instantiation of function template specialization 'gpu_treeshap::detail::ContiguousGroup::shfl<unsigned long>' requested here
+dpct_output/gpu_treeshap.h:327:23: note: in instantiation of function template specialization 'gpu_treeshap::detail::ContiguousGroup::shfl<unsigned long>' requested here
     uint64_t res = g_.shfl(*reinterpret_cast<uint64_t*>(&zero_one_fraction_),
                       ^
-./gpu_treeshap.h:230:12: error: use of undeclared identifier '__shfl_up_sync'
+dpct_output/gpu_treeshap.h:230:12: error: use of undeclared identifier '__shfl_up_sync'
     return __shfl_up_sync(mask_, val, delta);
            ^
-./gpu_treeshap.h:331:29: note: in instantiation of function template specialization 'gpu_treeshap::detail::ContiguousGroup::shfl_up<float>' requested here
+dpct_output/gpu_treeshap.h:331:29: note: in instantiation of function template specialization 'gpu_treeshap::detail::ContiguousGroup::shfl_up<float>' requested here
     float left_pweight = g_.shfl_up(pweight_, 1);
                             ^
-./gpu_treeshap.h:226:12: error: use of undeclared identifier '__shfl_sync'
+dpct_output/gpu_treeshap.h:226:12: error: use of undeclared identifier '__shfl_sync'
     return __shfl_sync(mask_, val, src + dpct::ffs<int>(mask_) - 1);
            ^
-./gpu_treeshap.h:359:33: note: in instantiation of function template specialization 'gpu_treeshap::detail::ContiguousGroup::shfl<float>' requested here
+dpct_output/gpu_treeshap.h:359:33: note: in instantiation of function template specialization 'gpu_treeshap::detail::ContiguousGroup::shfl<float>' requested here
     float next_one_portion = g_.shfl(pweight_, unique_depth_);
                                 ^
-6 warnings and 156 errors generated.
+6 warnings and 152 errors generated.
