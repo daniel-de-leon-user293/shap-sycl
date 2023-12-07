@@ -17,14 +17,15 @@
 #pragma once
 #include <oneapi/dpl/execution>
 #include <oneapi/dpl/algorithm>
+#define DPCT_COMPAT_RT_VERSION 12010
 #include <sycl/sycl.hpp>
 #include <dpct/dpct.hpp>
 #include <dpct/dpl_utils.hpp>
-#if (SYCL_LANGUAGE_VERSION >= 202000)
+#if (DPCT_COMPAT_RT_VERSION >= 11000)
 #else
 // Hack to get cub device reduce on older toolkits
-//#include <thrust/system/cuda/detail/cub/device/device_reduce.cuh>
-//using namespace thrust::cuda_cub;
+#include <thrust/system/cuda/detail/cub/device/device_reduce.cuh>
+using namespace thrust::cuda_cub;
 #endif
 #include <algorithm>
 #include <functional>
@@ -222,12 +223,25 @@ class ContiguousGroup {
     return sycl::popcount(mask_ & lanemask32_lt());
   }
   template <typename T>
-  T shfl(T val, uint32_t src) const {
-    return __shfl_sync(mask_, val, src + dpct::ffs<int>(mask_) - 1);
+  T shfl(T val, uint32_t src, const sycl::nd_item<3> &item_ct1) const {
+    /*
+    DPCT1023:1: The SYCL sub-group does not support mask options for
+    dpct::select_from_sub_group. You can specify
+    "--use-experimental-features=masked-sub-group-operation" to use the
+    experimental helper function to migrate __shfl_sync.
+    */
+    return dpct::select_from_sub_group(item_ct1.get_sub_group(), val,
+                                       src + dpct::ffs<int>(mask_) - 1);
   }
   template <typename T>
-  T shfl_up(T val, uint32_t delta) const {
-    return __shfl_up_sync(mask_, val, delta);
+  T shfl_up(T val, uint32_t delta, const sycl::nd_item<3> &item_ct1) const {
+    /*
+    DPCT1023:2: The SYCL sub-group does not support mask options for
+    dpct::shift_sub_group_right. You can specify
+    "--use-experimental-features=masked-sub-group-operation" to use the
+    experimental helper function to migrate __shfl_up_sync.
+    */
+    return dpct::shift_sub_group_right(item_ct1.get_sub_group(), val, delta);
   }
   uint32_t ballot(int predicate, const sycl::nd_item<3> &item_ct1) const {
     return sycl::reduce_over_group(
@@ -262,38 +276,23 @@ inline ContiguousGroup active_labeled_partition(uint32_t mask,
                                                            int label,
                                                            const sycl::nd_item<3> &item_ct1) {
 #if DPCT_COMPATIBILITY_TEMP >= 700
-  uint32_t subgroup_mask = __match_any_sync(mask, label);
+  uint32_t subgroup_mask =
+      dpct::match_any_over_sub_group(item_ct1.get_sub_group(), mask, label);
 #else
   uint32_t subgroup_mask = 0;
   for (int i = 0; i < 32;) {
-    /*
-    DPCT1023:1: The SYCL sub-group does not support mask options for
-    dpct::select_from_sub_group. You can specify
-    "--use-experimental-features=masked-sub-group-operation" to use the
-    experimental helper function to migrate __shfl_sync.
-    */
-    int current_label =
-        dpct::select_from_sub_group(item_ct1.get_sub_group(), label, i);
-    uint32_t ballot = sycl::reduce_over_group(
-        item_ct1.get_sub_group(),
-        (mask & (0x1 << item_ct1.get_sub_group().get_local_linear_id())) &&
-                label == current_label
-            ? (0x1 << item_ct1.get_sub_group().get_local_linear_id())
-            : 0,
-        sycl::ext::oneapi::plus<>());
+    int current_label = __shfl_sync(mask, label, i);
+    uint32_t ballot = __ballot_sync(mask, label == current_label);
     if (label == current_label) {
       subgroup_mask = ballot;
     }
     uint32_t completed_mask =
-        (1 << (32 - sycl::clz((int)ballot))) - 1; // Threads that have finished
+        (1 << (32 - __clz(ballot))) - 1;  // Threads that have finished
     // Find the start of the next group, mask off completed threads from active
     // threads Then use ffs - 1 to find the position of the next group
-    int next_i = dpct::ffs<int>(mask & ~completed_mask) - 1;
+    int next_i = __ffs(mask & ~completed_mask) - 1;
     if (next_i == -1) break;  // -1 indicates all finished
-    /*
-    DPCT1007:4: Migration of __assert_fail is not supported.
-    */
-    assert(next_i > i); // Prevent infinite loops when the constraints not met
+    assert(next_i > i);  // Prevent infinite loops when the constraints not met
     i = next_i;
   }
 #endif
@@ -320,18 +319,18 @@ class GroupPath {
 
   // Cooperatively extend the path with a group of threads
   // Each thread maintains pweight for its path element in register
-  void Extend() {
+  void Extend(const sycl::nd_item<3> &item_ct1) {
     unique_depth_++;
 
     // Broadcast the zero and one fraction from the newly added path element
     // Combine 2 shuffle operations into 64 bit word
     const size_t rank = g_.thread_rank();
     const float inv_unique_depth = 1.0f / static_cast<float>(unique_depth_ + 1);
-    uint64_t res = g_.shfl(*reinterpret_cast<uint64_t*>(&zero_one_fraction_),
-                           unique_depth_);
+    uint64_t res = g_.shfl(*reinterpret_cast<uint64_t *>(&zero_one_fraction_),
+                           unique_depth_, item_ct1);
     const float new_zero_fraction = reinterpret_cast<float*>(&res)[0];
     const float new_one_fraction = reinterpret_cast<float*>(&res)[1];
-    float left_pweight = g_.shfl_up(pweight_, 1);
+    float left_pweight = g_.shfl_up(pweight_, 1, item_ct1);
 
     // pweight of threads with rank < unique_depth_ is 0
     // We use max(x,0) to avoid using a branch
@@ -358,13 +357,13 @@ class GroupPath {
   }
 
   // Each thread unwinds the path for its feature and returns the sum
-  float UnwoundPathSum() {
-    float next_one_portion = g_.shfl(pweight_, unique_depth_);
+  float UnwoundPathSum(const sycl::nd_item<3> &item_ct1) {
+    float next_one_portion = g_.shfl(pweight_, unique_depth_, item_ct1);
     float total = 0.0f;
     const float zero_frac_div_unique_depth =
         zero_one_fraction_[0] / static_cast<float>(unique_depth_ + 1);
     for (int i = unique_depth_ - 1; i >= 0; i--) {
-      float ith_pweight = g_.shfl(pweight_, i);
+      float ith_pweight = g_.shfl(pweight_, i, item_ct1);
       float precomputed =
           /*
           DPCT1013:10: The rounding mode could not be specified and the
@@ -380,7 +379,7 @@ class GroupPath {
           Verify the correctness. SYCL math built-in function rounding mode is
           aligned with OpenCL C 1.2 standard.
           */
-          next_one_portion * (unique_depth_ + 1) / (i + 1);
+          next_one_portion * unique_depth_ + 1 / (i + 1);
       /*
       DPCT1013:12: The rounding mode could not be specified and the generated
       code may have different accuracy than the original code. Verify the
@@ -421,22 +420,24 @@ class TaylorGroupPath : GroupPath {
       : GroupPath(g, zero_fraction, one_fraction) {}
 
   // Extend the path is normal, all reweighting can happen in UnwoundPathSum
-  void Extend() { GroupPath::Extend(); }
+  void Extend(const sycl::nd_item<3> &item_ct1) {
+      GroupPath::Extend(item_ct1);
+  }
 
   // Each thread unwinds the path for its feature and returns the sum
   // We use a different permutation weighting for Taylor interactions
   // As if the total number of features was one larger
-  float UnwoundPathSum() {
+  float UnwoundPathSum(const sycl::nd_item<3> &item_ct1) {
     float one_fraction = zero_one_fraction_[1];
     float zero_fraction = zero_one_fraction_[0];
-    float next_one_portion = g_.shfl(pweight_, unique_depth_) /
+    float next_one_portion = g_.shfl(pweight_, unique_depth_, item_ct1) /
                              static_cast<float>(unique_depth_ + 2);
 
     float total = 0.0f;
     for (int i = unique_depth_ - 1; i >= 0; i--) {
-      float ith_pweight =
-          g_.shfl(pweight_, i) * (static_cast<float>(unique_depth_ - i + 1) /
-                                  static_cast<float>(unique_depth_ + 2));
+      float ith_pweight = g_.shfl(pweight_, i, item_ct1) *
+                          (static_cast<float>(unique_depth_ - i + 1) /
+                           static_cast<float>(unique_depth_ + 2));
       if (one_fraction > 0.0f) {
         const float tmp =
             next_one_portion * (unique_depth_ + 2) / ((i + 1) * one_fraction);
@@ -460,7 +461,8 @@ class TaylorGroupPath : GroupPath {
 template <typename DatasetT, typename SplitConditionT>
 float ComputePhi(const PathElement<SplitConditionT>& e,
                             size_t row_idx, const DatasetT& X,
-                            const ContiguousGroup& group, float zero_fraction) {
+                            const ContiguousGroup& group, float zero_fraction,
+                            const sycl::nd_item<3> &item_ct1) {
   float one_fraction =
       e.EvaluateSplit(X, row_idx);
   GroupPath path(group, zero_fraction, one_fraction);
@@ -469,10 +471,10 @@ float ComputePhi(const PathElement<SplitConditionT>& e,
   // Extend the path
   for (auto unique_depth = 1ull; unique_depth < unique_path_length;
        unique_depth++) {
-    path.Extend();
+    path.Extend(item_ct1);
   }
 
-  float sum = path.UnwoundPathSum();
+  float sum = path.UnwoundPathSum(item_ct1);
   return sum * (one_fraction - zero_fraction) * e.v;
 }
 
@@ -547,7 +549,8 @@ void
   auto labelled_group = active_labeled_partition(mask, e.path_idx, item_ct1);
 
   for (int64_t row_idx = start_row; row_idx < end_row; row_idx++) {
-    float phi = ComputePhi(e, row_idx, X, labelled_group, zero_fraction);
+    float phi =
+        ComputePhi(e, row_idx, X, labelled_group, zero_fraction, item_ct1);
 
     if (!e.IsRoot()) {
       atomicAddDouble(&phis[IndexPhi(row_idx, num_groups, e.group, X.NumCols(),
@@ -574,9 +577,9 @@ void ComputeShap(
   const uint32_t grid_size = DivRoundUp(warps_needed, warps_per_block);
 
   {
-    dpct::has_capability_or_fail(dpct::get_default_queue().get_device(),
+    dpct::has_capability_or_fail(dpct::get_in_order_queue().get_device(),
                                  {sycl::aspect::fp64});
-    dpct::get_default_queue().submit([&](sycl::handler &cgh) {
+    dpct::get_in_order_queue().submit([&](sycl::handler &cgh) {
       sycl::local_accessor<DatasetT, 0> s_X_acc_ct1(cgh);
       sycl::local_accessor<
           PathElement<SplitConditionT>, 1>
@@ -605,7 +608,8 @@ template <typename PathT, typename DatasetT, typename SplitConditionT>
 float ComputePhiCondition(const PathElement<SplitConditionT>& e,
                                      size_t row_idx, const DatasetT& X,
                                      const ContiguousGroup& group,
-                                     int64_t condition_feature) {
+                                     int64_t condition_feature,
+                                     const sycl::nd_item<3> &item_ct1) {
   float one_fraction = e.EvaluateSplit(X, row_idx);
   PathT path(group, e.zero_fraction, one_fraction);
   size_t unique_path_length = group.size();
@@ -615,18 +619,18 @@ float ComputePhiCondition(const PathElement<SplitConditionT>& e,
   // Extend the path
   for (auto i = 1ull; i < unique_path_length; i++) {
     bool is_condition_feature =
-        group.shfl(e.feature_idx, i) == condition_feature;
-    float o_i = group.shfl(one_fraction, i);
-    float z_i = group.shfl(e.zero_fraction, i);
+        group.shfl(e.feature_idx, i, item_ct1) == condition_feature;
+    float o_i = group.shfl(one_fraction, i, item_ct1);
+    float z_i = group.shfl(e.zero_fraction, i, item_ct1);
 
     if (is_condition_feature) {
       condition_on_fraction = o_i;
       condition_off_fraction = z_i;
     } else {
-      path.Extend();
+      path.Extend(item_ct1);
     }
   }
-  float sum = path.UnwoundPathSum();
+  float sum = path.UnwoundPathSum(item_ct1);
   if (e.feature_idx == condition_feature) {
     return 0.0f;
   }
@@ -682,7 +686,8 @@ void
   auto labelled_group = active_labeled_partition(mask, e->path_idx, item_ct1);
 
   for (int64_t row_idx = start_row; row_idx < end_row; row_idx++) {
-    float phi = ComputePhi(*e, row_idx, X, labelled_group, e->zero_fraction);
+    float phi =
+        ComputePhi(*e, row_idx, X, labelled_group, e->zero_fraction, item_ct1);
     if (!e->IsRoot()) {
       auto phi_offset =
           IndexPhiInteractions(row_idx, num_groups, e->group, X.NumCols(),
@@ -694,11 +699,11 @@ void
          condition_rank++) {
       e = &s_elements[item_ct1.get_local_id(2)];
       int64_t condition_feature =
-          labelled_group.shfl(e->feature_idx, condition_rank);
+          labelled_group.shfl(e->feature_idx, condition_rank, item_ct1);
       SwapConditionedElement(&e, s_elements, condition_rank, labelled_group,
                              item_ct1);
       float x = ComputePhiCondition<GroupPath>(*e, row_idx, X, labelled_group,
-                                               condition_feature);
+                                               condition_feature, item_ct1);
       if (!e->IsRoot()) {
         auto phi_offset =
             IndexPhiInteractions(row_idx, num_groups, e->group, X.NumCols(),
@@ -731,12 +736,12 @@ void ComputeShapInteractions(
   const uint32_t grid_size = DivRoundUp(warps_needed, warps_per_block);
 
   {
-    dpct::has_capability_or_fail(dpct::get_default_queue().get_device(),
+    dpct::has_capability_or_fail(dpct::get_in_order_queue().get_device(),
                                  {sycl::aspect::fp64});
-    dpct::get_default_queue().submit([&](sycl::handler &cgh) {
+    dpct::get_in_order_queue().submit([&](sycl::handler &cgh) {
       sycl::local_accessor<DatasetT, 0> s_X_acc_ct1(cgh);
       sycl::local_accessor<
-          PathElement<SplitConditionT>, 1>
+          PathElement<SplitConditionT>
           s_elements_acc_ct1(sycl::range<1>(kBlockThreads), cgh);
 
       auto path_elements_data_get_ct2 = path_elements.data().get();
@@ -773,7 +778,7 @@ void
     s_X = X;
   }
   /*
-  DPCT1065:2: Consider replacing sycl::nd_item::barrier() with
+  DPCT1065:15: Consider replacing sycl::nd_item::barrier() with
   sycl::nd_item::barrier(sycl::access::fence_space::local_space) for better
   performance if there is no access to global memory.
   */
@@ -808,7 +813,7 @@ void
               ? 1.0f
               : e->zero_fraction;
       float reduce =
-          labelled_group.reduce(reduce_input, thrust::multiplies<float>());
+          labelled_group.reduce(reduce_input, std::multiplies<float>());
       if (labelled_group.thread_rank() == condition_rank) {
         float one_fraction = e->split_condition.EvaluateSplit(
             X.GetElement(row_idx, e->feature_idx));
@@ -826,7 +831,7 @@ void
                              item_ct1);
 
       float x = ComputePhiCondition<TaylorGroupPath>(
-          *e, row_idx, X, labelled_group, condition_feature);
+          *e, row_idx, X, labelled_group, condition_feature, item_ct1);
       if (!e->IsRoot()) {
         auto phi_offset =
             IndexPhiInteractions(row_idx, num_groups, e->group, X.NumCols(),
@@ -854,9 +859,9 @@ void ComputeShapTaylorInteractions(
   const uint32_t grid_size = DivRoundUp(warps_needed, warps_per_block);
 
   {
-    dpct::has_capability_or_fail(dpct::get_default_queue().get_device(),
+    dpct::has_capability_or_fail(dpct::get_in_order_queue().get_device(),
                                  {sycl::aspect::fp64});
-    dpct::get_default_queue().submit([&](sycl::handler &cgh) {
+    dpct::get_in_order_queue().submit([&](sycl::handler &cgh) {
       sycl::local_accessor<DatasetT, 0> s_X_acc_ct1(cgh);
       sycl::local_accessor<
           PathElement<SplitConditionT>, 1>
@@ -919,7 +924,7 @@ void
   }
 
   /*
-  DPCT1065:3: Consider replacing sycl::nd_item::barrier() with
+  DPCT1065:16: Consider replacing sycl::nd_item::barrier() with
   sycl::nd_item::barrier(sycl::access::fence_space::local_space) for better
   performance if there is no access to global memory.
   */
@@ -947,12 +952,15 @@ void
   for (int64_t x_idx = start_row; x_idx < end_row; x_idx++) {
     float result = 0.0f;
     bool x_cond = e.EvaluateSplit(X, x_idx);
-    uint32_t x_ballot = labelled_group.ballot(x_cond);
+    uint32_t x_ballot = labelled_group.ballot(x_cond, item_ct1);
     for (int64_t r_idx = 0; r_idx < R.NumRows(); r_idx++) {
       bool r_cond = e.EvaluateSplit(R, r_idx);
-      uint32_t r_ballot = labelled_group.ballot(r_cond);
+      uint32_t r_ballot = labelled_group.ballot(r_cond, item_ct1);
+      /*
+      DPCT1007:17: Migration of __assert_fail is not supported.
+      */
       assert(!e.IsRoot() ||
-             (x_cond == r_cond));  // These should be the same for the root
+             (x_cond == r_cond)); // These should be the same for the root
       uint32_t s = sycl::popcount(x_ballot & ~r_ballot);
       uint32_t n = sycl::popcount(x_ballot ^ r_ballot);
       float tmp = 0.0f;
@@ -967,7 +975,7 @@ void
         tmp += 1.0f;
       }
       // If neither foreground or background go down this path, ignore this path
-      bool reached_leaf = !labelled_group.ballot(!x_cond && !r_cond);
+      bool reached_leaf = !labelled_group.ballot(!x_cond && !r_cond, item_ct1);
       tmp *= reached_leaf;
       result += tmp;
     }
@@ -1001,9 +1009,9 @@ void ComputeShapInterventional(
   const uint32_t grid_size = DivRoundUp(warps_needed, warps_per_block);
 
   {
-    dpct::has_capability_or_fail(dpct::get_default_queue().get_device(),
+    dpct::has_capability_or_fail(dpct::get_in_order_queue().get_device(),
                                  {sycl::aspect::fp64});
-    dpct::get_default_queue().submit([&](sycl::handler &cgh) {
+    dpct::get_in_order_queue().submit([&](sycl::handler &cgh) {
       sycl::local_accessor<float, 2> s_W_acc_ct1(sycl::range<2>(33, 33), cgh);
       sycl::local_accessor<
           PathElement<SplitConditionT>, 1>
@@ -1032,18 +1040,18 @@ template <typename PathVectorT, typename SizeVectorT, typename DeviceAllocatorT>
 void GetBinSegments(const PathVectorT &paths, const SizeVectorT &bin_map,
                     SizeVectorT *bin_segments) {
     dpct::device_ext &dev_ct1 = dpct::get_current_device();
-    sycl::queue &q_ct1 = dev_ct1.default_queue();
+    sycl::queue &q_ct1 = dev_ct1.in_order_queue();
   DeviceAllocatorT alloc;
   size_t num_bins =
       /*
-      DPCT1107:15: Migration for this overload of thrust::reduce is not
+      DPCT1107:18: Migration for this overload of thrust::reduce is not
       supported.
       */
       thrust::reduce(thrust::cuda::par(alloc), bin_map.begin(), bin_map.end(),
-                     size_t(0), thrust::maximum<size_t>()) +
+                     size_t(0), oneapi::dpl::maximum<size_t>()) +
       1;
   bin_segments->resize(num_bins + 1, 0);
-  auto counting = thrust::make_counting_iterator(0llu);
+  auto counting = dpct::make_counting_iterator(0llu);
   auto d_paths = paths.data().get();
   auto d_bin_segments = bin_segments->data().get();
   auto d_bin_map = bin_map.data();
@@ -1071,11 +1079,11 @@ struct DeduplicateKeyTransformOp {
 
 inline void CheckCuda(dpct::err0 err) {
   /*
-  DPCT1000:17: Error handling if-stmt was detected but could not be rewritten.
+  DPCT1000:20: Error handling if-stmt was detected but could not be rewritten.
   */
   if (err != 0) {
     /*
-    DPCT1001:16: The statement could not be removed.
+    DPCT1001:19: The statement could not be removed.
     */
     throw std::system_error(err, std::generic_category());
   }
@@ -1092,7 +1100,7 @@ template <typename PathVectorT, typename DeviceAllocatorT,
 void DeduplicatePaths(PathVectorT *device_paths,
                       PathVectorT *deduplicated_paths) {
     dpct::device_ext &dev_ct1 = dpct::get_current_device();
-    sycl::queue &q_ct1 = dev_ct1.default_queue();
+    sycl::queue &q_ct1 = dev_ct1.in_order_queue();
   DeviceAllocatorT alloc;
   // Sort by feature
   thrust::sort(thrust::cuda::par(alloc), device_paths->begin(),
@@ -1113,9 +1121,10 @@ void DeduplicatePaths(PathVectorT *device_paths,
   auto key_transform = oneapi::dpl::make_transform_iterator(
       device_paths->begin(), DeduplicateKeyTransformOp());
 
-  thrust::device_vector<size_t> d_num_runs_out(1);
+  dpct::device_vector<size_t> d_num_runs_out(1);
   size_t* h_num_runs_out;
-  CheckCuda(cudaMallocHost(&h_num_runs_out, sizeof(size_t)));
+  CheckCuda(
+      DPCT_CHECK_ERROR(h_num_runs_out = sycl::malloc_host<size_t>(1, q_ct1)));
 
   auto combine = [] (PathElement<SplitConditionT> a,
                                PathElement<SplitConditionT> b) {
@@ -1125,16 +1134,29 @@ void DeduplicatePaths(PathVectorT *device_paths,
     return a;
   };  // NOLINT
   size_t temp_size = 0;
-  CheckCuda(cub::DeviceReduce::ReduceByKey(
-      nullptr, temp_size, key_transform, DiscardOverload<Pair>(),
-      device_paths->begin(), deduplicated_paths->begin(),
-      d_num_runs_out.begin(), combine, device_paths->size()));
+  /*
+  DPCT1027:3: The call to cub::DeviceReduce::ReduceByKey was replaced with 0
+  because this call is redundant in SYCL.
+  */
+  CheckCuda(0);
   using TempAlloc = RebindVector<char, DeviceAllocatorT>;
   TempAlloc tmp(temp_size);
-  CheckCuda(cub::DeviceReduce::ReduceByKey(
-      tmp.data().get(), temp_size, key_transform, DiscardOverload<Pair>(),
-      device_paths->begin(), deduplicated_paths->begin(),
-      d_num_runs_out.begin(), combine, device_paths->size()));
+  CheckCuda(
+      q_ct1
+          .fill(d_num_runs_out.begin(),
+                std::distance(
+                    DiscardOverload<Pair>(),
+                    oneapi::dpl::reduce_by_key(
+                        oneapi::dpl::execution::device_policy(q_ct1),
+                        key_transform, key_transform + device_paths->size(),
+                        device_paths->begin(), DiscardOverload<Pair>(),
+                        deduplicated_paths->begin(),
+                        std::equal_to<typename std::iterator_traits<
+                            decltype(key_transform)>::value_type>(),
+                        combine)
+                        .first),
+                1)
+          .wait());
 
   CheckCuda(DPCT_CHECK_ERROR(
       q_ct1.memcpy(h_num_runs_out, d_num_runs_out.data().get(), sizeof(size_t))
@@ -1181,7 +1203,7 @@ struct BFDCompare {
 template <typename IntVectorT>
 std::vector<size_t> BFDBinPacking(const IntVectorT& counts,
                                   int bin_limit = 32) {
-  thrust::host_vector<int> counts_host(counts);
+  std::vector<int> counts_host(counts);
   std::vector<kv> path_lengths(counts_host.size());
   for (auto i = 0ull; i < counts_host.size(); i++) {
     path_lengths[i] = {i, counts_host[i]};
@@ -1222,7 +1244,7 @@ std::vector<size_t> BFDBinPacking(const IntVectorT& counts,
 template <typename IntVectorT>
 std::vector<size_t> FFDBinPacking(const IntVectorT& counts,
                                   int bin_limit = 32) {
-  thrust::host_vector<int> counts_host(counts);
+  std::vector<int> counts_host(counts);
   std::vector<kv> path_lengths(counts_host.size());
   for (auto i = 0ull; i < counts_host.size(); i++) {
     path_lengths[i] = {i, counts_host[i]};
@@ -1256,7 +1278,7 @@ std::vector<size_t> FFDBinPacking(const IntVectorT& counts,
 // O(n) implementation
 template <typename IntVectorT>
 std::vector<size_t> NFBinPacking(const IntVectorT& counts, int bin_limit = 32) {
-  thrust::host_vector<int> counts_host(counts);
+  std::vector<int> counts_host(counts);
   std::vector<size_t> bin_map(counts_host.size());
   size_t current_bin = 0;
   int current_capacity = bin_limit;
@@ -1282,10 +1304,10 @@ void GetPathLengths(const PathVectorT& device_paths,
       static_cast<PathElement<SplitConditionT>>(device_paths.back()).path_idx +
           1,
       0);
-  auto counting = thrust::make_counting_iterator(0llu);
+  auto counting = dpct::make_counting_iterator(0llu);
   auto d_paths = device_paths.data().get();
   auto d_lengths = path_lengths->data().get();
-  oneapi::dpl::for_each_n(oneapi::dpl::execution::make_device_policy(dpct::get_default_queue()), counting, device_paths.size(), [=] (size_t idx) {
+  oneapi::dpl::for_each_n(oneapi::dpl::execution::make_device_policy(dpct::get_in_order_queue()), counting, device_paths.size(), [=] (size_t idx) {
     auto path_idx = d_paths[idx].path_idx;
     dpct::atomic_fetch_add<sycl::access::address_space::generic_space>(
         d_lengths + path_idx, 1ull);
@@ -1314,7 +1336,7 @@ void ValidatePaths(const PathVectorT& device_paths,
   PathTooLongOp too_long_op;
   auto invalid_length =
       /*
-      DPCT1107:18: Migration for this overload of thrust::any_of is not
+      DPCT1107:21: Migration for this overload of thrust::any_of is not
       supported.
       */
       thrust::any_of(thrust::cuda::par(alloc), path_lengths.begin(),
@@ -1325,14 +1347,10 @@ void ValidatePaths(const PathVectorT& device_paths,
   }
 
   IncorrectVOp<SplitConditionT> incorrect_v_op{device_paths.data().get()};
-  auto counting = thrust::counting_iterator<size_t>(0);
-  auto incorrect_v =
-      /*
-      DPCT1107:19: Migration for this overload of thrust::any_of is not
-      supported.
-      */
-      thrust::any_of(thrust::cuda::par(alloc), counting + 1,
-                     counting + device_paths.size(), incorrect_v_op);
+  auto counting = oneapi::dpl::counting_iterator<size_t>(0);
+  auto incorrect_v = oneapi::dpl::any_of(
+      oneapi::dpl::execution::make_device_policy(dpct::get_in_order_queue()),
+      counting + 1, counting + device_paths.size(), incorrect_v_op);
 
   if (incorrect_v) {
     throw std::invalid_argument(
@@ -1387,7 +1405,7 @@ template <typename PathVectorT, typename DoubleVectorT,
           typename DeviceAllocatorT, typename SplitConditionT>
 void ComputeBias(const PathVectorT &device_paths, DoubleVectorT *bias) {
     dpct::device_ext &dev_ct1 = dpct::get_current_device();
-    sycl::queue &q_ct1 = dev_ct1.default_queue();
+    sycl::queue &q_ct1 = dev_ct1.in_order_queue();
   using double_vector = dpct::device_vector<
       double, typename DeviceAllocatorT::template rebind<double>::other>;
   PathVectorT sorted_paths(device_paths);
@@ -1412,7 +1430,8 @@ void ComputeBias(const PathVectorT &device_paths, DoubleVectorT *bias) {
   auto combined_out = oneapi::dpl::reduce_by_segment(
       oneapi::dpl::execution::make_device_policy(q_ct1), path_key,
       path_key + sorted_paths.size(), sorted_paths.begin(),
-      make_discard_iterator(), combined.begin(), thrust::equal_to<size_t>(),
+      oneapi::dpl::discard_iterator(), combined.begin(),
+      oneapi::dpl::equal_to<size_t>(),
       [=](PathElement<SplitConditionT> a,
           const PathElement<SplitConditionT> &b) {
         a.zero_fraction *= b.zero_fraction;
@@ -1435,7 +1454,7 @@ void ComputeBias(const PathVectorT &device_paths, DoubleVectorT *bias) {
 
   // Write result
   size_t n = out_itr.first - keys_out.begin();
-  auto counting = thrust::make_counting_iterator(0llu);
+  auto counting = dpct::make_counting_iterator(0llu);
   auto d_keys_out = keys_out.data().get();
   auto d_values_out = values_out.data().get();
   auto d_bias = bias->data().get();
@@ -1482,7 +1501,7 @@ void GPUTreeShap(DatasetT X, PathIteratorT begin, PathIteratorT end,
                  size_t num_groups, PhiIteratorT phis_begin,
                  PhiIteratorT phis_end) {
     dpct::device_ext &dev_ct1 = dpct::get_current_device();
-    sycl::queue &q_ct1 = dev_ct1.default_queue();
+    sycl::queue &q_ct1 = dev_ct1.in_order_queue();
   if (X.NumRows() == 0 || X.NumCols() == 0 || end - begin <= 0) return;
 
   if (size_t(phis_end - phis_begin) <
@@ -1509,7 +1528,7 @@ void GPUTreeShap(DatasetT X, PathIteratorT begin, PathIteratorT end,
   auto d_bias = bias.data().get();
   auto d_temp_phi = temp_phi.data().get();
   oneapi::dpl::for_each_n(oneapi::dpl::execution::make_device_policy(q_ct1),
-                          thrust::make_counting_iterator(0llu),
+                          dpct::make_counting_iterator(0llu),
                           X.NumRows() * num_groups, [=](size_t idx) {
                        size_t group = idx % num_groups;
                        size_t row_idx = idx / num_groups;
@@ -1570,7 +1589,7 @@ void GPUTreeShapInteractions(DatasetT X, PathIteratorT begin, PathIteratorT end,
                              size_t num_groups, PhiIteratorT phis_begin,
                              PhiIteratorT phis_end) {
     dpct::device_ext &dev_ct1 = dpct::get_current_device();
-    sycl::queue &q_ct1 = dev_ct1.default_queue();
+    sycl::queue &q_ct1 = dev_ct1.in_order_queue();
   if (X.NumRows() == 0 || X.NumCols() == 0 || end - begin <= 0) return;
   if (size_t(phis_end - phis_begin) <
       X.NumRows() * (X.NumCols() + 1) * (X.NumCols() + 1) * num_groups) {
@@ -1597,7 +1616,7 @@ void GPUTreeShapInteractions(DatasetT X, PathIteratorT begin, PathIteratorT end,
   auto d_bias = bias.data().get();
   auto d_temp_phi = temp_phi.data().get();
   oneapi::dpl::for_each_n(oneapi::dpl::execution::make_device_policy(q_ct1),
-                          thrust::make_counting_iterator(0llu),
+                          dpct::make_counting_iterator(0llu),
                           X.NumRows() * num_groups, [=](size_t idx) {
         size_t group = idx % num_groups;
         size_t row_idx = idx / num_groups;
@@ -1659,7 +1678,7 @@ void GPUTreeShapTaylorInteractions(DatasetT X, PathIteratorT begin,
                                    PhiIteratorT phis_begin,
                                    PhiIteratorT phis_end) {
     dpct::device_ext &dev_ct1 = dpct::get_current_device();
-    sycl::queue &q_ct1 = dev_ct1.default_queue();
+    sycl::queue &q_ct1 = dev_ct1.in_order_queue();
   using phis_type = typename std::iterator_traits<PhiIteratorT>::value_type;
   static_assert(std::is_floating_point<phis_type>::value,
                 "Phis type must be floating point");
@@ -1691,7 +1710,7 @@ void GPUTreeShapTaylorInteractions(DatasetT X, PathIteratorT begin,
   auto d_bias = bias.data().get();
   auto d_temp_phi = temp_phi.data().get();
   oneapi::dpl::for_each_n(oneapi::dpl::execution::make_device_policy(q_ct1),
-                          thrust::make_counting_iterator(0llu),
+                          dpct::make_counting_iterator(0llu),
                           X.NumRows() * num_groups, [=](size_t idx) {
         size_t group = idx % num_groups;
         size_t row_idx = idx / num_groups;
@@ -1776,7 +1795,7 @@ void GPUTreeShapInterventional(DatasetT X, DatasetT R, PathIteratorT begin,
                                     deduplicated_paths, num_groups,
                                     temp_phi.data().get());
   std::copy(
-      oneapi::dpl::execution::make_device_policy(dpct::get_default_queue()),
+      oneapi::dpl::execution::make_device_policy(dpct::get_in_order_queue()),
       temp_phi.begin(), temp_phi.end(), phis_begin);
 }
 }  // namespace gpu_treeshap

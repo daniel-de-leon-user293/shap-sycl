@@ -1,8 +1,8 @@
 ---
-MainSourceFile:  MainSrcFiles_placehold
+MainSourceFile:  ''
 Replacements:
   - FilePath:        '/home/user293/shap/shap/cext/_cext_gpu.cu'
-    Offset:          0
+    Offset:          23
     Length:          0
     ReplacementText: "#include <oneapi/dpl/execution>\n#include <oneapi/dpl/algorithm>\n#include <sycl/sycl.hpp>\n#include <dpct/dpct.hpp>\n"
     ConstantFlag:    ''
@@ -11,7 +11,7 @@ Replacements:
     NewHostVarName:  ''
     BlockLevelFormatFlag: false
   - FilePath:        '/home/user293/shap/shap/cext/_cext_gpu.cu'
-    Offset:          69
+    Offset:          71
     Length:          0
     ReplacementText: "\n#include <cmath>\n"
     ConstantFlag:    ''
@@ -20,16 +20,16 @@ Replacements:
     NewHostVarName:  ''
     BlockLevelFormatFlag: false
   - FilePath:        '/home/user293/shap/shap/cext/_cext_gpu.cu'
-    Offset:          771
+    Offset:          773
     Length:          9
-    ReplacementText: ''
+    ReplacementText: 'SYCL_EXTERNAL '
     ConstantFlag:    ''
     ConstantOffset:  0
     InitStr:         ''
     NewHostVarName:  ''
     BlockLevelFormatFlag: false
   - FilePath:        '/home/user293/shap/shap/cext/_cext_gpu.cu'
-    Offset:          780
+    Offset:          782
     Length:          11
     ReplacementText: ''
     ConstantFlag:    ''
@@ -38,7 +38,7 @@ Replacements:
     NewHostVarName:  ''
     BlockLevelFormatFlag: false
   - FilePath:        '/home/user293/shap/shap/cext/_cext_gpu.cu'
-    Offset:          849
+    Offset:          851
     Length:          8
     ReplacementText: 'sycl::isnan(x)'
     ConstantFlag:    ''
@@ -47,16 +47,16 @@ Replacements:
     NewHostVarName:  ''
     BlockLevelFormatFlag: false
   - FilePath:        '/home/user293/shap/shap/cext/_cext_gpu.cu'
-    Offset:          1024
+    Offset:          1026
     Length:          9
-    ReplacementText: ''
+    ReplacementText: 'SYCL_EXTERNAL '
     ConstantFlag:    ''
     ConstantOffset:  0
     InitStr:         ''
     NewHostVarName:  ''
     BlockLevelFormatFlag: false
   - FilePath:        '/home/user293/shap/shap/cext/_cext_gpu.cu'
-    Offset:          1033
+    Offset:          1035
     Length:          11
     ReplacementText: ''
     ConstantFlag:    ''
@@ -65,43 +65,79 @@ Replacements:
     NewHostVarName:  ''
     BlockLevelFormatFlag: false
   - FilePath:        '/home/user293/shap/shap/cext/_cext_gpu.cu'
-    Offset:          1149
-    Length:          51
-    ReplacementText: 'std::max(feature_lower_bound, other.feature_lower_bound)'
+    Offset:          3906
+    Length:          21
+    ReplacementText: 'dpct::device_vector'
     ConstantFlag:    ''
     ConstantOffset:  0
     InitStr:         ''
     NewHostVarName:  ''
     BlockLevelFormatFlag: false
   - FilePath:        '/home/user293/shap/shap/cext/_cext_gpu.cu'
-    Offset:          1228
-    Length:          51
-    ReplacementText: 'std::min(feature_upper_bound, other.feature_upper_bound)'
+    Offset:          3944
+    Length:          21
+    ReplacementText: 'dpct::device_vector'
     ConstantFlag:    ''
     ConstantOffset:  0
     InitStr:         ''
     NewHostVarName:  ''
     BlockLevelFormatFlag: false
   - FilePath:        '/home/user293/shap/shap/cext/_cext_gpu.cu'
-    Offset:          5332
+    Offset:          4268
+    Length:          21
+    ReplacementText: 'dpct::device_vector'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/_cext_gpu.cu'
+    Offset:          4384
+    Length:          21
+    ReplacementText: 'dpct::device_vector'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/_cext_gpu.cu'
+    Offset:          4640
+    Length:          21
+    ReplacementText: 'dpct::device_vector'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/_cext_gpu.cu'
+    Offset:          4756
+    Length:          21
+    ReplacementText: 'dpct::device_vector'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/_cext_gpu.cu'
+    Offset:          5334
     Length:          11
-    ReplacementText: ''
+    ReplacementText: 'SYCL_EXTERNAL '
     ConstantFlag:    ''
     ConstantOffset:  0
     InitStr:         ''
     NewHostVarName:  ''
     BlockLevelFormatFlag: false
   - FilePath:        '/home/user293/shap/shap/cext/_cext_gpu.cu'
-    Offset:          5573
+    Offset:          5575
     Length:          9
-    ReplacementText: ''
+    ReplacementText: 'SYCL_EXTERNAL '
     ConstantFlag:    ''
     ConstantOffset:  0
     InitStr:         ''
     NewHostVarName:  ''
     BlockLevelFormatFlag: false
   - FilePath:        '/home/user293/shap/shap/cext/_cext_gpu.cu'
-    Offset:          5582
+    Offset:          5584
     Length:          11
     ReplacementText: ''
     ConstantFlag:    ''
@@ -110,16 +146,16 @@ Replacements:
     NewHostVarName:  ''
     BlockLevelFormatFlag: false
   - FilePath:        '/home/user293/shap/shap/cext/_cext_gpu.cu'
-    Offset:          5641
+    Offset:          5643
     Length:          9
-    ReplacementText: ''
+    ReplacementText: 'SYCL_EXTERNAL '
     ConstantFlag:    ''
     ConstantOffset:  0
     InitStr:         ''
     NewHostVarName:  ''
     BlockLevelFormatFlag: false
   - FilePath:        '/home/user293/shap/shap/cext/_cext_gpu.cu'
-    Offset:          5650
+    Offset:          5652
     Length:          11
     ReplacementText: ''
     ConstantFlag:    ''
@@ -128,108 +164,189 @@ Replacements:
     NewHostVarName:  ''
     BlockLevelFormatFlag: false
   - FilePath:        '/home/user293/shap/shap/cext/_cext_gpu.cu'
-    Offset:          6070
-    Length:          0
-    ReplacementText: "\n    dpct::device_ext &dev_ct1 = dpct::get_current_device();\n    sycl::queue &q_ct1 = dev_ct1.default_queue();"
+    Offset:          6249
+    Length:          21
+    ReplacementText: 'dpct::device_vector'
     ConstantFlag:    ''
     ConstantOffset:  0
     InitStr:         ''
     NewHostVarName:  ''
     BlockLevelFormatFlag: false
   - FilePath:        '/home/user293/shap/shap/cext/_cext_gpu.cu'
-    Offset:          6840
+    Offset:          6546
+    Length:          21
+    ReplacementText: 'dpct::device_vector'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/_cext_gpu.cu'
+    Offset:          6672
+    Length:          41
+    ReplacementText: 'dpct::make_counting_iterator(size_t(0))'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/_cext_gpu.cu'
+    Offset:          6842
     Length:          452
-    ReplacementText: "std::for_each(oneapi::dpl::execution::make_device_policy(q_ct1), counting, counting + X.NumRows() * trees.num_outputs, [=] (size_t idx) {\n                     size_t row_idx = idx / num_groups;\n                     size_t group = idx % num_groups;\n                     auto phi_idx = gpu_treeshap::IndexPhi(\n                         row_idx, num_groups, group, X.NumCols(), X.NumCols());\n                     d_phis[phi_idx] += d_base_offset[group];\n                   })"
+    ReplacementText: "std::for_each(oneapi::dpl::execution::seq, counting, counting + X.NumRows() * trees.num_outputs, [=] (size_t idx) {\n                     size_t row_idx = idx / num_groups;\n                     size_t group = idx % num_groups;\n                     auto phi_idx = gpu_treeshap::IndexPhi(\n                         row_idx, num_groups, group, X.NumCols(), X.NumCols());\n                     d_phis[phi_idx] += d_base_offset[group];\n                   })"
     ConstantFlag:    ''
     ConstantOffset:  0
     InitStr:         ''
     NewHostVarName:  ''
     BlockLevelFormatFlag: false
   - FilePath:        '/home/user293/shap/shap/cext/_cext_gpu.cu'
-    Offset:          7467
+    Offset:          7357
+    Length:          21
+    ReplacementText: 'dpct::device_vector'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/_cext_gpu.cu'
+    Offset:          7469
     Length:          646
-    ReplacementText: "std::for_each(oneapi::dpl::execution::make_device_policy(q_ct1), counting, counting + phis.size(), [=] (size_t idx) {\n        size_t old_shape[] = {X.NumRows(), num_groups, (X.NumCols() + 1)};\n        size_t old_idx[array_size(old_shape)];\n        gpu_treeshap::FlatIdxToTensorIdx(idx, old_shape, old_idx);\n        // Define new tensor format, switch num_groups axis to end\n        size_t new_shape[] = {X.NumRows(), (X.NumCols() + 1), num_groups};\n        size_t new_idx[] = {old_idx[0], old_idx[2], old_idx[1]};\n        size_t transposed_idx =\n            gpu_treeshap::TensorIdxToFlatIdx(new_shape, new_idx);\n        d_transposed_phis[transposed_idx] = d_phis[idx];\n      })"
+    ReplacementText: "std::for_each(oneapi::dpl::execution::seq, counting, counting + phis.size(), [=] (size_t idx) {\n        size_t old_shape[] = {X.NumRows(), num_groups, (X.NumCols() + 1)};\n        size_t old_idx[array_size(old_shape)];\n        gpu_treeshap::FlatIdxToTensorIdx(idx, old_shape, old_idx);\n        // Define new tensor format, switch num_groups axis to end\n        size_t new_shape[] = {X.NumRows(), (X.NumCols() + 1), num_groups};\n        size_t new_idx[] = {old_idx[0], old_idx[2], old_idx[1]};\n        size_t transposed_idx =\n            gpu_treeshap::TensorIdxToFlatIdx(new_shape, new_idx);\n        d_transposed_phis[transposed_idx] = d_phis[idx];\n      })"
     ConstantFlag:    ''
     ConstantOffset:  0
     InitStr:         ''
     NewHostVarName:  ''
     BlockLevelFormatFlag: false
   - FilePath:        '/home/user293/shap/shap/cext/_cext_gpu.cu'
-    Offset:          8117
+    Offset:          8119
     Length:          74
-    ReplacementText: 'std::copy(oneapi::dpl::execution::make_device_policy(q_ct1), transposed_phis.begin(), transposed_phis.end(), out_contribs)'
+    ReplacementText: 'std::copy(oneapi::dpl::execution::make_device_policy(dpct::get_in_order_queue()), transposed_phis.begin(), transposed_phis.end(), out_contribs)'
     ConstantFlag:    ''
     ConstantOffset:  0
     InitStr:         ''
     NewHostVarName:  ''
     BlockLevelFormatFlag: false
   - FilePath:        '/home/user293/shap/shap/cext/_cext_gpu.cu'
-    Offset:          8417
-    Length:          0
-    ReplacementText: "\n    dpct::device_ext &dev_ct1 = dpct::get_current_device();\n    sycl::queue &q_ct1 = dev_ct1.default_queue();"
+    Offset:          8761
+    Length:          21
+    ReplacementText: 'dpct::device_vector'
     ConstantFlag:    ''
     ConstantOffset:  0
     InitStr:         ''
     NewHostVarName:  ''
     BlockLevelFormatFlag: false
   - FilePath:        '/home/user293/shap/shap/cext/_cext_gpu.cu'
-    Offset:          9425
+    Offset:          9131
+    Length:          21
+    ReplacementText: 'dpct::device_vector'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/_cext_gpu.cu'
+    Offset:          9257
+    Length:          41
+    ReplacementText: 'dpct::make_counting_iterator(size_t(0))'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/_cext_gpu.cu'
+    Offset:          9427
     Length:          452
-    ReplacementText: "std::for_each(oneapi::dpl::execution::make_device_policy(q_ct1), counting, counting + X.NumRows() * trees.num_outputs, [=] (size_t idx) {\n                     size_t row_idx = idx / num_groups;\n                     size_t group = idx % num_groups;\n                     auto phi_idx = gpu_treeshap::IndexPhi(\n                         row_idx, num_groups, group, X.NumCols(), X.NumCols());\n                     d_phis[phi_idx] += d_base_offset[group];\n                   })"
+    ReplacementText: "std::for_each(oneapi::dpl::execution::seq, counting, counting + X.NumRows() * trees.num_outputs, [=] (size_t idx) {\n                     size_t row_idx = idx / num_groups;\n                     size_t group = idx % num_groups;\n                     auto phi_idx = gpu_treeshap::IndexPhi(\n                         row_idx, num_groups, group, X.NumCols(), X.NumCols());\n                     d_phis[phi_idx] += d_base_offset[group];\n                   })"
     ConstantFlag:    ''
     ConstantOffset:  0
     InitStr:         ''
     NewHostVarName:  ''
     BlockLevelFormatFlag: false
   - FilePath:        '/home/user293/shap/shap/cext/_cext_gpu.cu'
-    Offset:          10052
+    Offset:          9942
+    Length:          21
+    ReplacementText: 'dpct::device_vector'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/_cext_gpu.cu'
+    Offset:          10054
     Length:          646
-    ReplacementText: "std::for_each(oneapi::dpl::execution::make_device_policy(q_ct1), counting, counting + phis.size(), [=] (size_t idx) {\n        size_t old_shape[] = {X.NumRows(), num_groups, (X.NumCols() + 1)};\n        size_t old_idx[array_size(old_shape)];\n        gpu_treeshap::FlatIdxToTensorIdx(idx, old_shape, old_idx);\n        // Define new tensor format, switch num_groups axis to end\n        size_t new_shape[] = {X.NumRows(), (X.NumCols() + 1), num_groups};\n        size_t new_idx[] = {old_idx[0], old_idx[2], old_idx[1]};\n        size_t transposed_idx =\n            gpu_treeshap::TensorIdxToFlatIdx(new_shape, new_idx);\n        d_transposed_phis[transposed_idx] = d_phis[idx];\n      })"
+    ReplacementText: "std::for_each(oneapi::dpl::execution::seq, counting, counting + phis.size(), [=] (size_t idx) {\n        size_t old_shape[] = {X.NumRows(), num_groups, (X.NumCols() + 1)};\n        size_t old_idx[array_size(old_shape)];\n        gpu_treeshap::FlatIdxToTensorIdx(idx, old_shape, old_idx);\n        // Define new tensor format, switch num_groups axis to end\n        size_t new_shape[] = {X.NumRows(), (X.NumCols() + 1), num_groups};\n        size_t new_idx[] = {old_idx[0], old_idx[2], old_idx[1]};\n        size_t transposed_idx =\n            gpu_treeshap::TensorIdxToFlatIdx(new_shape, new_idx);\n        d_transposed_phis[transposed_idx] = d_phis[idx];\n      })"
     ConstantFlag:    ''
     ConstantOffset:  0
     InitStr:         ''
     NewHostVarName:  ''
     BlockLevelFormatFlag: false
   - FilePath:        '/home/user293/shap/shap/cext/_cext_gpu.cu'
-    Offset:          10702
+    Offset:          10704
     Length:          74
-    ReplacementText: 'std::copy(oneapi::dpl::execution::make_device_policy(q_ct1), transposed_phis.begin(), transposed_phis.end(), out_contribs)'
+    ReplacementText: 'std::copy(oneapi::dpl::execution::make_device_policy(dpct::get_in_order_queue()), transposed_phis.begin(), transposed_phis.end(), out_contribs)'
     ConstantFlag:    ''
     ConstantOffset:  0
     InitStr:         ''
     NewHostVarName:  ''
     BlockLevelFormatFlag: false
   - FilePath:        '/home/user293/shap/shap/cext/_cext_gpu.cu'
-    Offset:          10973
-    Length:          0
-    ReplacementText: "\n    dpct::device_ext &dev_ct1 = dpct::get_current_device();\n    sycl::queue &q_ct1 = dev_ct1.default_queue();"
+    Offset:          11152
+    Length:          21
+    ReplacementText: 'dpct::device_vector'
     ConstantFlag:    ''
     ConstantOffset:  0
     InitStr:         ''
     NewHostVarName:  ''
     BlockLevelFormatFlag: false
   - FilePath:        '/home/user293/shap/shap/cext/_cext_gpu.cu'
-    Offset:          11827
+    Offset:          11533
+    Length:          21
+    ReplacementText: 'dpct::device_vector'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/_cext_gpu.cu'
+    Offset:          11659
+    Length:          41
+    ReplacementText: 'dpct::make_counting_iterator(size_t(0))'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/_cext_gpu.cu'
+    Offset:          11829
     Length:          495
-    ReplacementText: "std::for_each(oneapi::dpl::execution::make_device_policy(q_ct1), counting, counting + X.NumRows() * num_groups, [=] (size_t idx) {\n                     size_t row_idx = idx / num_groups;\n                     size_t group = idx % num_groups;\n                     auto phi_idx = gpu_treeshap::IndexPhiInteractions(\n                         row_idx, num_groups, group, X.NumCols(), X.NumCols(),\n                         X.NumCols());\n                     d_phis[phi_idx] += d_base_offset[group];\n                   })"
+    ReplacementText: "std::for_each(oneapi::dpl::execution::seq, counting, counting + X.NumRows() * num_groups, [=] (size_t idx) {\n                     size_t row_idx = idx / num_groups;\n                     size_t group = idx % num_groups;\n                     auto phi_idx = gpu_treeshap::IndexPhiInteractions(\n                         row_idx, num_groups, group, X.NumCols(), X.NumCols(),\n                         X.NumCols());\n                     d_phis[phi_idx] += d_base_offset[group];\n                   })"
     ConstantFlag:    ''
     ConstantOffset:  0
     InitStr:         ''
     NewHostVarName:  ''
     BlockLevelFormatFlag: false
   - FilePath:        '/home/user293/shap/shap/cext/_cext_gpu.cu'
-    Offset:          12496
+    Offset:          12386
+    Length:          21
+    ReplacementText: 'dpct::device_vector'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/home/user293/shap/shap/cext/_cext_gpu.cu'
+    Offset:          12498
     Length:          756
-    ReplacementText: "std::for_each(oneapi::dpl::execution::make_device_policy(q_ct1), counting, counting + phis.size(), [=] (size_t idx) {\n        size_t old_shape[] = {X.NumRows(), num_groups, (X.NumCols() + 1),\n                              (X.NumCols() + 1)};\n        size_t old_idx[array_size(old_shape)];\n        gpu_treeshap::FlatIdxToTensorIdx(idx, old_shape, old_idx);\n        // Define new tensor format, switch num_groups axis to end\n        size_t new_shape[] = {X.NumRows(), (X.NumCols() + 1), (X.NumCols() + 1),\n                              num_groups};\n        size_t new_idx[] = {old_idx[0], old_idx[2], old_idx[3], old_idx[1]};\n        size_t transposed_idx =\n            gpu_treeshap::TensorIdxToFlatIdx(new_shape, new_idx);\n        d_transposed_phis[transposed_idx] = d_phis[idx];\n      })"
+    ReplacementText: "std::for_each(oneapi::dpl::execution::seq, counting, counting + phis.size(), [=] (size_t idx) {\n        size_t old_shape[] = {X.NumRows(), num_groups, (X.NumCols() + 1),\n                              (X.NumCols() + 1)};\n        size_t old_idx[array_size(old_shape)];\n        gpu_treeshap::FlatIdxToTensorIdx(idx, old_shape, old_idx);\n        // Define new tensor format, switch num_groups axis to end\n        size_t new_shape[] = {X.NumRows(), (X.NumCols() + 1), (X.NumCols() + 1),\n                              num_groups};\n        size_t new_idx[] = {old_idx[0], old_idx[2], old_idx[3], old_idx[1]};\n        size_t transposed_idx =\n            gpu_treeshap::TensorIdxToFlatIdx(new_shape, new_idx);\n        d_transposed_phis[transposed_idx] = d_phis[idx];\n      })"
     ConstantFlag:    ''
     ConstantOffset:  0
     InitStr:         ''
     NewHostVarName:  ''
     BlockLevelFormatFlag: false
   - FilePath:        '/home/user293/shap/shap/cext/_cext_gpu.cu'
-    Offset:          13256
+    Offset:          13258
     Length:          74
-    ReplacementText: 'std::copy(oneapi::dpl::execution::make_device_policy(q_ct1), transposed_phis.begin(), transposed_phis.end(), out_contribs)'
+    ReplacementText: 'std::copy(oneapi::dpl::execution::make_device_policy(dpct::get_in_order_queue()), transposed_phis.begin(), transposed_phis.end(), out_contribs)'
     ConstantFlag:    ''
     ConstantOffset:  0
     InitStr:         ''
@@ -237,298 +354,11 @@ Replacements:
     BlockLevelFormatFlag: false
 MainSourceFilesDigest:
   - MainSourceFile:  '/home/user293/shap/shap/cext/_cext_gpu.cu'
-    Digest:          a41e6d12db3d93530d07f4ed28eb4ca1
-DpctVersion:     2023.2.0
-MainHelperFileName: dpct
+    Digest:          2aa916177356da5e73ff670f4cff3ce6
+DpctVersion:     18.0.0
+MainHelperFileName: ''
 USMLevel:        ''
-FeatureMap:
-  atomic.hpp:
-    atomic_fetch_add:
-      IsCalled:        true
-      CallerSrcFiles:
-        - '/home/user293/shap/shap/cext/gpu_treeshap.h'
-      SubFeatureMap:   {}
-  device.hpp:
-    dev_mgr:
-      IsCalled:        true
-      CallerSrcFiles:
-        - '/home/user293/shap/shap/cext/_cext_gpu.cu'
-        - '/home/user293/shap/shap/cext/gpu_treeshap.h'
-      SubFeatureMap:
-        dev_mgr_1:
-          IsCalled:        true
-          CallerSrcFiles:
-            - '/home/user293/shap/shap/cext/_cext_gpu.cu'
-            - '/home/user293/shap/shap/cext/gpu_treeshap.h'
-          SubFeatureMap:   {}
-        dev_mgr_2:
-          IsCalled:        true
-          CallerSrcFiles:
-            - '/home/user293/shap/shap/cext/_cext_gpu.cu'
-            - '/home/user293/shap/shap/cext/gpu_treeshap.h'
-          SubFeatureMap:   {}
-        dev_mgr_3:
-          IsCalled:        true
-          CallerSrcFiles:
-            - '/home/user293/shap/shap/cext/_cext_gpu.cu'
-            - '/home/user293/shap/shap/cext/gpu_treeshap.h'
-          SubFeatureMap:   {}
-        dev_mgr_4:
-          IsCalled:        true
-          CallerSrcFiles:
-            - '/home/user293/shap/shap/cext/_cext_gpu.cu'
-            - '/home/user293/shap/shap/cext/gpu_treeshap.h'
-          SubFeatureMap:   {}
-        dev_mgr_check_id:
-          IsCalled:        true
-          CallerSrcFiles:
-            - '/home/user293/shap/shap/cext/_cext_gpu.cu'
-            - '/home/user293/shap/shap/cext/gpu_treeshap.h'
-          SubFeatureMap:   {}
-        dev_mgr_current_device:
-          IsCalled:        true
-          CallerSrcFiles:
-            - '/home/user293/shap/shap/cext/_cext_gpu.cu'
-            - '/home/user293/shap/shap/cext/gpu_treeshap.h'
-          SubFeatureMap:   {}
-        dev_mgr_current_device_id:
-          IsCalled:        true
-          CallerSrcFiles:
-            - '/home/user293/shap/shap/cext/_cext_gpu.cu'
-            - '/home/user293/shap/shap/cext/gpu_treeshap.h'
-          SubFeatureMap:   {}
-    device_ext:
-      IsCalled:        true
-      CallerSrcFiles:
-        - '/home/user293/shap/shap/cext/_cext_gpu.cu'
-        - '/home/user293/shap/shap/cext/gpu_treeshap.h'
-      SubFeatureMap:
-        device_ext_1:
-          IsCalled:        true
-          CallerSrcFiles:
-            - '/home/user293/shap/shap/cext/_cext_gpu.cu'
-            - '/home/user293/shap/shap/cext/gpu_treeshap.h'
-          SubFeatureMap:   {}
-        device_ext_2:
-          IsCalled:        true
-          CallerSrcFiles:
-            - '/home/user293/shap/shap/cext/_cext_gpu.cu'
-            - '/home/user293/shap/shap/cext/gpu_treeshap.h'
-          SubFeatureMap:   {}
-        device_ext_default_queue:
-          IsCalled:        true
-          CallerSrcFiles:
-            - '/home/user293/shap/shap/cext/_cext_gpu.cu'
-            - '/home/user293/shap/shap/cext/gpu_treeshap.h'
-          SubFeatureMap:   {}
-        device_ext_get_context:
-          IsCalled:        true
-          CallerSrcFiles:
-            - '/home/user293/shap/shap/cext/gpu_treeshap.h'
-          SubFeatureMap:   {}
-        device_ext_inorder_queue:
-          IsCalled:        true
-          CallerSrcFiles:
-            - '/home/user293/shap/shap/cext/_cext_gpu.cu'
-            - '/home/user293/shap/shap/cext/gpu_treeshap.h'
-          SubFeatureMap:   {}
-        device_ext_outoforder_queue:
-          IsCalled:        true
-          CallerSrcFiles:
-            - '/home/user293/shap/shap/cext/_cext_gpu.cu'
-            - '/home/user293/shap/shap/cext/gpu_treeshap.h'
-          SubFeatureMap:   {}
-    exception_handler:
-      IsCalled:        true
-      CallerSrcFiles:
-        - '/home/user293/shap/shap/cext/_cext_gpu.cu'
-        - '/home/user293/shap/shap/cext/gpu_treeshap.h'
-      SubFeatureMap:   {}
-    get_current_device:
-      IsCalled:        true
-      CallerSrcFiles:
-        - '/home/user293/shap/shap/cext/_cext_gpu.cu'
-        - '/home/user293/shap/shap/cext/gpu_treeshap.h'
-      SubFeatureMap:   {}
-    get_default_context:
-      IsCalled:        true
-      CallerSrcFiles:
-        - '/home/user293/shap/shap/cext/gpu_treeshap.h'
-      SubFeatureMap:   {}
-    get_default_queue:
-      IsCalled:        true
-      CallerSrcFiles:
-        - '/home/user293/shap/shap/cext/_cext_gpu.cu'
-        - '/home/user293/shap/shap/cext/gpu_treeshap.h'
-      SubFeatureMap:   {}
-    get_tid:
-      IsCalled:        true
-      CallerSrcFiles:
-        - '/home/user293/shap/shap/cext/_cext_gpu.cu'
-        - '/home/user293/shap/shap/cext/gpu_treeshap.h'
-      SubFeatureMap:   {}
-    has_capability_or_fail:
-      IsCalled:        true
-      CallerSrcFiles:
-        - '/home/user293/shap/shap/cext/gpu_treeshap.h'
-      SubFeatureMap:   {}
-  dpct.hpp:
-    check_error_code:
-      IsCalled:        true
-      CallerSrcFiles:
-        - '/home/user293/shap/shap/cext/gpu_treeshap.h'
-      SubFeatureMap:   {}
-    dpct_align_and_inline:
-      IsCalled:        true
-      CallerSrcFiles:
-        - '/home/user293/shap/shap/cext/gpu_treeshap.h'
-      SubFeatureMap:   {}
-    dpct_compatibility_temp:
-      IsCalled:        true
-      CallerSrcFiles:
-        - '/home/user293/shap/shap/cext/gpu_treeshap.h'
-      SubFeatureMap:   {}
-    error_code:
-      IsCalled:        true
-      CallerSrcFiles:
-        - '/home/user293/shap/shap/cext/gpu_treeshap.h'
-      SubFeatureMap:   {}
-    non_local_include_dependency:
-      IsCalled:        true
-      CallerSrcFiles:
-        - ''
-      SubFeatureMap:   {}
-  dpl_utils.hpp:
-    non_local_include_dependency:
-      IsCalled:        true
-      CallerSrcFiles:
-        - '/home/user293/shap/shap/cext/gpu_treeshap.h'
-      SubFeatureMap:   {}
-  math.hpp:
-    min_max:
-      IsCalled:        true
-      CallerSrcFiles:
-        - '/home/user293/shap/shap/cext/gpu_treeshap.h'
-      SubFeatureMap:   {}
-  memory.h:
-    _DPCT_LIBSYCL_VERSION:
-      IsCalled:        true
-      CallerSrcFiles:
-        - '/home/user293/shap/shap/cext/gpu_treeshap.h'
-      SubFeatureMap:   {}
-    __buffer_allocator:
-      IsCalled:        true
-      CallerSrcFiles:
-        - '/home/user293/shap/shap/cext/gpu_treeshap.h'
-      SubFeatureMap:   {}
-    device_iterator:
-      IsCalled:        true
-      CallerSrcFiles:
-        - '/home/user293/shap/shap/cext/gpu_treeshap.h'
-      SubFeatureMap:   {}
-    device_iterator_forward_decl_device_pointer:
-      IsCalled:        true
-      CallerSrcFiles:
-        - '/home/user293/shap/shap/cext/gpu_treeshap.h'
-      SubFeatureMap:   {}
-    device_pointer_forward_decl:
-      IsCalled:        true
-      CallerSrcFiles:
-        - '/home/user293/shap/shap/cext/gpu_treeshap.h'
-      SubFeatureMap:   {}
-    device_reference:
-      IsCalled:        true
-      CallerSrcFiles:
-        - '/home/user293/shap/shap/cext/gpu_treeshap.h'
-      SubFeatureMap:   {}
-    is_hetero_iterator:
-      IsCalled:        true
-      CallerSrcFiles:
-        - '/home/user293/shap/shap/cext/gpu_treeshap.h'
-      SubFeatureMap:   {}
-    make_allocatable:
-      IsCalled:        true
-      CallerSrcFiles:
-        - '/home/user293/shap/shap/cext/gpu_treeshap.h'
-      SubFeatureMap:   {}
-  memory.hpp:
-    mem_mgr:
-      IsCalled:        true
-      CallerSrcFiles:
-        - '/home/user293/shap/shap/cext/gpu_treeshap.h'
-      SubFeatureMap:
-        mem_mgr_1:
-          IsCalled:        true
-          CallerSrcFiles:
-            - '/home/user293/shap/shap/cext/gpu_treeshap.h'
-          SubFeatureMap:   {}
-        mem_mgr_2:
-          IsCalled:        true
-          CallerSrcFiles:
-            - '/home/user293/shap/shap/cext/gpu_treeshap.h'
-          SubFeatureMap:   {}
-        mem_mgr_get_map_iterator:
-          IsCalled:        true
-          CallerSrcFiles:
-            - '/home/user293/shap/shap/cext/gpu_treeshap.h'
-          SubFeatureMap:   {}
-        mem_mgr_mem_alloc:
-          IsCalled:        true
-          CallerSrcFiles:
-            - '/home/user293/shap/shap/cext/gpu_treeshap.h'
-          SubFeatureMap:   {}
-        mem_mgr_mem_free:
-          IsCalled:        true
-          CallerSrcFiles:
-            - '/home/user293/shap/shap/cext/gpu_treeshap.h'
-          SubFeatureMap:   {}
-        mem_mgr_translate_ptr:
-          IsCalled:        true
-          CallerSrcFiles:
-            - '/home/user293/shap/shap/cext/gpu_treeshap.h'
-          SubFeatureMap:   {}
-    memcpy_direction:
-      IsCalled:        true
-      CallerSrcFiles:
-        - '/home/user293/shap/shap/cext/gpu_treeshap.h'
-      SubFeatureMap:   {}
-    typedef_buffer_t:
-      IsCalled:        true
-      CallerSrcFiles:
-        - '/home/user293/shap/shap/cext/gpu_treeshap.h'
-      SubFeatureMap:   {}
-    typedef_byte_t:
-      IsCalled:        true
-      CallerSrcFiles:
-        - '/home/user293/shap/shap/cext/gpu_treeshap.h'
-      SubFeatureMap:   {}
-  util.hpp:
-    err_types:
-      IsCalled:        true
-      CallerSrcFiles:
-        - '/home/user293/shap/shap/cext/gpu_treeshap.h'
-      SubFeatureMap:   {}
-    ffs:
-      IsCalled:        true
-      CallerSrcFiles:
-        - '/home/user293/shap/shap/cext/gpu_treeshap.h'
-      SubFeatureMap:   {}
-    select_from_sub_group:
-      IsCalled:        true
-      CallerSrcFiles:
-        - '/home/user293/shap/shap/cext/gpu_treeshap.h'
-      SubFeatureMap:   {}
-  vector.h:
-    device_vector:
-      IsCalled:        true
-      CallerSrcFiles:
-        - '/home/user293/shap/shap/cext/gpu_treeshap.h'
-      SubFeatureMap:   {}
-    is_iterator:
-      IsCalled:        true
-      CallerSrcFiles:
-        - '/home/user293/shap/shap/cext/gpu_treeshap.h'
-      SubFeatureMap:   {}
+FeatureMap:      {}
 CompileTargets:  {}
 OptionMap:
   AnalysisScopePath:
@@ -545,9 +375,6 @@ OptionMap:
     Specified:       false
   CtadEnabled:
     Value:           'false'
-    Specified:       false
-  CustomHelperFileName:
-    Value:           dpct
     Specified:       false
   EnablepProfiling:
     Value:           'false'
@@ -567,12 +394,18 @@ OptionMap:
   ExtensionDEFlag:
     Value:           '4294967295'
     Specified:       false
+  HelperFuncPreferenceFlag:
+    Value:           '0'
+    Specified:       false
   NDRangeDim:
     Value:           '3'
     Specified:       false
   NoDRYPattern:
     Value:           'false'
     Specified:       false
+  NoUseGenericSpace:
+    Value:           ''
+    Specified:       true
   OptimizeMigration:
     Value:           'false'
     Specified:       false

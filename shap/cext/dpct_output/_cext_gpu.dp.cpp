@@ -1,9 +1,9 @@
+//#include <Python.h>
+
 #include <oneapi/dpl/execution>
 #include <oneapi/dpl/algorithm>
 #include <sycl/sycl.hpp>
 #include <dpct/dpct.hpp>
-//#include <Python.h>
-
 #include "gpu_treeshap.h"
 #include "tree_shap.h"
 #include <cmath>
@@ -27,7 +27,7 @@ struct ShapSplitCondition {
   bool is_missing_branch;
 
   // Does this instance flow down this path?
-  bool EvaluateSplit(float x) const {
+  SYCL_EXTERNAL bool EvaluateSplit(float x) const {
     // is nan
     if (sycl::isnan(x)) {
       return is_missing_branch;
@@ -36,12 +36,10 @@ struct ShapSplitCondition {
   }
 
   // Combine two split conditions on the same feature
-  void
-  Merge(const ShapSplitCondition &other) {  // Combine duplicate features
-    feature_lower_bound =
-        std::max(feature_lower_bound, other.feature_lower_bound);
-    feature_upper_bound =
-        std::min(feature_upper_bound, other.feature_upper_bound);
+  SYCL_EXTERNAL void
+  Merge(const ShapSplitCondition &other) { // Combine duplicate features
+    feature_lower_bound = max(feature_lower_bound, other.feature_lower_bound);
+    feature_upper_bound = min(feature_upper_bound, other.feature_upper_bound);
     is_missing_branch = is_missing_branch && other.is_missing_branch;
   }
 };
@@ -121,8 +119,8 @@ ExtractPaths(const TreeEnsemble &trees) {
 }
 
 class DeviceExplanationDataset {
-  thrust::device_vector<tfloat> data;
-  thrust::device_vector<bool> missing;
+  dpct::device_vector<tfloat> data;
+  dpct::device_vector<bool> missing;
   size_t num_features;
   size_t num_rows;
 
@@ -132,19 +130,19 @@ class DeviceExplanationDataset {
     num_features = host_data.M;
     if (background_dataset) {
       num_rows = host_data.num_R;
-      data = thrust::device_vector<tfloat>(
+      data = dpct::device_vector<tfloat>(
           host_data.R, host_data.R + host_data.num_R * host_data.M);
-      missing = thrust::device_vector<bool>(host_data.R_missing,
-                                            host_data.R_missing +
-                                                host_data.num_R * host_data.M);
+      missing = dpct::device_vector<bool>(host_data.R_missing,
+                                          host_data.R_missing +
+                                              host_data.num_R * host_data.M);
 
     } else {
       num_rows = host_data.num_X;
-      data = thrust::device_vector<tfloat>(
+      data = dpct::device_vector<tfloat>(
           host_data.X, host_data.X + host_data.num_X * host_data.M);
-      missing = thrust::device_vector<bool>(host_data.X_missing,
-                                            host_data.X_missing +
-                                                host_data.num_X * host_data.M);
+      missing = dpct::device_vector<bool>(host_data.X_missing,
+                                          host_data.X_missing +
+                                              host_data.num_X * host_data.M);
     }
   }
 
@@ -160,15 +158,15 @@ class DeviceExplanationDataset {
                         int num_cols)
         : data(data), missing(missing), num_rows(num_rows), num_cols(num_cols) {
     }
-    tfloat GetElement(size_t row_idx, size_t col_idx) const {
+    SYCL_EXTERNAL tfloat GetElement(size_t row_idx, size_t col_idx) const {
       auto idx = row_idx * num_cols + col_idx;
       if (missing[idx]) {
         return std::numeric_limits<tfloat>::quiet_NaN();
       }
       return data[idx];
     }
-    size_t NumRows() const { return num_rows; }
-    size_t NumCols() const { return num_cols; }
+    SYCL_EXTERNAL size_t NumRows() const { return num_rows; }
+    SYCL_EXTERNAL size_t NumCols() const { return num_cols; }
   };
 
   DenseDatasetWrapper GetDeviceAccessor() {
@@ -180,25 +178,23 @@ class DeviceExplanationDataset {
 inline void dense_tree_path_dependent_gpu(
     const TreeEnsemble &trees, const ExplanationDataset &data,
     tfloat *out_contribs, tfloat transform(const tfloat, const tfloat)) {
-    dpct::device_ext &dev_ct1 = dpct::get_current_device();
-    sycl::queue &q_ct1 = dev_ct1.default_queue();
   auto paths = ExtractPaths(trees);
   DeviceExplanationDataset device_data(data);
   DeviceExplanationDataset::DenseDatasetWrapper X =
       device_data.GetDeviceAccessor();
 
-  thrust::device_vector<float> phis((X.NumCols() + 1) * X.NumRows() *
-                                    trees.num_outputs);
+  dpct::device_vector<float> phis((X.NumCols() + 1) * X.NumRows() *
+                                  trees.num_outputs);
   gpu_treeshap::GPUTreeShap(X, paths.begin(), paths.end(), trees.num_outputs,
                             phis.begin(), phis.end());
   // Add the base offset term to bias
-  thrust::device_vector<double> base_offset(
+  dpct::device_vector<double> base_offset(
       trees.base_offset, trees.base_offset + trees.num_outputs);
-  auto counting = thrust::make_counting_iterator(size_t(0));
+  auto counting = dpct::make_counting_iterator(size_t(0));
   auto d_phis = phis.data().get();
   auto d_base_offset = base_offset.data().get();
   size_t num_groups = trees.num_outputs;
-  std::for_each(oneapi::dpl::execution::make_device_policy(q_ct1), counting,
+  std::for_each(oneapi::dpl::execution::seq, counting,
                 counting + X.NumRows() * trees.num_outputs, [=](size_t idx) {
                      size_t row_idx = idx / num_groups;
                      size_t group = idx % num_groups;
@@ -208,11 +204,11 @@ inline void dense_tree_path_dependent_gpu(
                 });
 
   // Shap uses a slightly different layout for multiclass
-  thrust::device_vector<float> transposed_phis(phis.size());
+  dpct::device_vector<float> transposed_phis(phis.size());
   auto d_transposed_phis = transposed_phis.data();
   std::for_each(
-      oneapi::dpl::execution::make_device_policy(q_ct1), counting,
-      counting + phis.size(), [=](size_t idx) {
+      oneapi::dpl::execution::seq, counting, counting + phis.size(),
+      [=](size_t idx) {
         size_t old_shape[] = {X.NumRows(), num_groups, (X.NumCols() + 1)};
         size_t old_idx[array_size(old_shape)];
         gpu_treeshap::FlatIdxToTensorIdx(idx, old_shape, old_idx);
@@ -223,16 +219,15 @@ inline void dense_tree_path_dependent_gpu(
             gpu_treeshap::TensorIdxToFlatIdx(new_shape, new_idx);
         d_transposed_phis[transposed_idx] = d_phis[idx];
       });
-  std::copy(oneapi::dpl::execution::make_device_policy(q_ct1),
-            transposed_phis.begin(), transposed_phis.end(), out_contribs);
+  std::copy(
+      oneapi::dpl::execution::make_device_policy(dpct::get_in_order_queue()),
+      transposed_phis.begin(), transposed_phis.end(), out_contribs);
 }
 
 inline void
 dense_tree_independent_gpu(const TreeEnsemble &trees,
                            const ExplanationDataset &data, tfloat *out_contribs,
                            tfloat transform(const tfloat, const tfloat)) {
-    dpct::device_ext &dev_ct1 = dpct::get_current_device();
-    sycl::queue &q_ct1 = dev_ct1.default_queue();
   auto paths = ExtractPaths(trees);
   DeviceExplanationDataset device_data(data);
   DeviceExplanationDataset::DenseDatasetWrapper X =
@@ -241,19 +236,19 @@ dense_tree_independent_gpu(const TreeEnsemble &trees,
   DeviceExplanationDataset::DenseDatasetWrapper R =
       background_device_data.GetDeviceAccessor();
 
-  thrust::device_vector<float> phis((X.NumCols() + 1) * X.NumRows() *
-                                    trees.num_outputs);
+  dpct::device_vector<float> phis((X.NumCols() + 1) * X.NumRows() *
+                                  trees.num_outputs);
   gpu_treeshap::GPUTreeShapInterventional(X, R, paths.begin(), paths.end(),
                                           trees.num_outputs, phis.begin(),
                                           phis.end());
   // Add the base offset term to bias
-  thrust::device_vector<double> base_offset(
+  dpct::device_vector<double> base_offset(
       trees.base_offset, trees.base_offset + trees.num_outputs);
-  auto counting = thrust::make_counting_iterator(size_t(0));
+  auto counting = dpct::make_counting_iterator(size_t(0));
   auto d_phis = phis.data().get();
   auto d_base_offset = base_offset.data().get();
   size_t num_groups = trees.num_outputs;
-  std::for_each(oneapi::dpl::execution::make_device_policy(q_ct1), counting,
+  std::for_each(oneapi::dpl::execution::seq, counting,
                 counting + X.NumRows() * trees.num_outputs, [=](size_t idx) {
                      size_t row_idx = idx / num_groups;
                      size_t group = idx % num_groups;
@@ -263,11 +258,11 @@ dense_tree_independent_gpu(const TreeEnsemble &trees,
                 });
 
   // Shap uses a slightly different layout for multiclass
-  thrust::device_vector<float> transposed_phis(phis.size());
+  dpct::device_vector<float> transposed_phis(phis.size());
   auto d_transposed_phis = transposed_phis.data();
   std::for_each(
-      oneapi::dpl::execution::make_device_policy(q_ct1), counting,
-      counting + phis.size(), [=](size_t idx) {
+      oneapi::dpl::execution::seq, counting, counting + phis.size(),
+      [=](size_t idx) {
         size_t old_shape[] = {X.NumRows(), num_groups, (X.NumCols() + 1)};
         size_t old_idx[array_size(old_shape)];
         gpu_treeshap::FlatIdxToTensorIdx(idx, old_shape, old_idx);
@@ -278,33 +273,32 @@ dense_tree_independent_gpu(const TreeEnsemble &trees,
             gpu_treeshap::TensorIdxToFlatIdx(new_shape, new_idx);
         d_transposed_phis[transposed_idx] = d_phis[idx];
       });
-  std::copy(oneapi::dpl::execution::make_device_policy(q_ct1),
-            transposed_phis.begin(), transposed_phis.end(), out_contribs);
+  std::copy(
+      oneapi::dpl::execution::make_device_policy(dpct::get_in_order_queue()),
+      transposed_phis.begin(), transposed_phis.end(), out_contribs);
 }
 
 inline void dense_tree_path_dependent_interactions_gpu(
     const TreeEnsemble &trees, const ExplanationDataset &data,
     tfloat *out_contribs, tfloat transform(const tfloat, const tfloat)) {
-    dpct::device_ext &dev_ct1 = dpct::get_current_device();
-    sycl::queue &q_ct1 = dev_ct1.default_queue();
   auto paths = ExtractPaths(trees);
   DeviceExplanationDataset device_data(data);
   DeviceExplanationDataset::DenseDatasetWrapper X =
       device_data.GetDeviceAccessor();
 
-  thrust::device_vector<float> phis((X.NumCols() + 1) * (X.NumCols() + 1) *
-                                    X.NumRows() * trees.num_outputs);
+  dpct::device_vector<float> phis((X.NumCols() + 1) * (X.NumCols() + 1) *
+                                  X.NumRows() * trees.num_outputs);
   gpu_treeshap::GPUTreeShapInteractions(X, paths.begin(), paths.end(),
                                         trees.num_outputs, phis.begin(),
                                         phis.end());
   // Add the base offset term to bias
-  thrust::device_vector<double> base_offset(
+  dpct::device_vector<double> base_offset(
       trees.base_offset, trees.base_offset + trees.num_outputs);
-  auto counting = thrust::make_counting_iterator(size_t(0));
+  auto counting = dpct::make_counting_iterator(size_t(0));
   auto d_phis = phis.data().get();
   auto d_base_offset = base_offset.data().get();
   size_t num_groups = trees.num_outputs;
-  std::for_each(oneapi::dpl::execution::make_device_policy(q_ct1), counting,
+  std::for_each(oneapi::dpl::execution::seq, counting,
                 counting + X.NumRows() * num_groups, [=](size_t idx) {
                      size_t row_idx = idx / num_groups;
                      size_t group = idx % num_groups;
@@ -314,11 +308,11 @@ inline void dense_tree_path_dependent_interactions_gpu(
                      d_phis[phi_idx] += d_base_offset[group];
                 });
   // Shap uses a slightly different layout for multiclass
-  thrust::device_vector<float> transposed_phis(phis.size());
+  dpct::device_vector<float> transposed_phis(phis.size());
   auto d_transposed_phis = transposed_phis.data();
   std::for_each(
-      oneapi::dpl::execution::make_device_policy(q_ct1), counting,
-      counting + phis.size(), [=](size_t idx) {
+      oneapi::dpl::execution::seq, counting, counting + phis.size(),
+      [=](size_t idx) {
         size_t old_shape[] = {X.NumRows(), num_groups, (X.NumCols() + 1),
                               (X.NumCols() + 1)};
         size_t old_idx[array_size(old_shape)];
@@ -331,8 +325,9 @@ inline void dense_tree_path_dependent_interactions_gpu(
             gpu_treeshap::TensorIdxToFlatIdx(new_shape, new_idx);
         d_transposed_phis[transposed_idx] = d_phis[idx];
       });
-  std::copy(oneapi::dpl::execution::make_device_policy(q_ct1),
-            transposed_phis.begin(), transposed_phis.end(), out_contribs);
+  std::copy(
+      oneapi::dpl::execution::make_device_policy(dpct::get_in_order_queue()),
+      transposed_phis.begin(), transposed_phis.end(), out_contribs);
 }
 
 void dense_tree_shap_gpu(const TreeEnsemble &trees,

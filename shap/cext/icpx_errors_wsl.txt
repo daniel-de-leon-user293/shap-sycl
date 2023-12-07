@@ -1,0 +1,159 @@
+In file included from dpct_output/_cext_gpu.dp.cpp:6:
+In file included from /home/user293/intel/oneapi/dpcpp-ct/2023.2.0/include/dpct/dpct.hpp:21:
+/home/user293/intel/oneapi/dpcpp-ct/2023.2.0/include/dpct/device.hpp:285:8: warning: 'set_max_work_item_sizes' is deprecated [-Wdeprecated-declarations]
+  prop.set_max_work_item_sizes(
+       ^
+/home/user293/intel/oneapi/dpcpp-ct/2023.2.0/include/dpct/device.hpp:180:5: note: 'set_max_work_item_sizes' has been explicitly marked deprecated here
+  [[deprecated]] void
+    ^
+In file included from dpct_output/_cext_gpu.dp.cpp:7:
+dpct_output/gpu_treeshap.h:744:39: error: expected '>'
+          PathElement<SplitConditionT>
+                                      ^
+dpct_output/gpu_treeshap.h:743:27: note: to match this '<'
+      sycl::local_accessor<
+                          ^
+dpct_output/gpu_treeshap.h:745:11: error: a type specifier is required for all declarations
+          s_elements_acc_ct1(sycl::range<1>(kBlockThreads), cgh);
+          ^
+dpct_output/gpu_treeshap.h:1050:7: error: use of undeclared identifier 'thrust'
+      thrust::reduce(thrust::cuda::par(alloc), bin_map.begin(), bin_map.end(),
+      ^
+dpct_output/gpu_treeshap.h:1050:22: error: use of undeclared identifier 'thrust'
+      thrust::reduce(thrust::cuda::par(alloc), bin_map.begin(), bin_map.end(),
+                     ^
+dpct_output/gpu_treeshap.h:1069:7: error: use of undeclared identifier 'thrust'
+      thrust::cuda::par(alloc), bin_segments->begin(), bin_segments->end(),
+      ^
+dpct_output/gpu_treeshap.h:1093:32: error: use of undeclared identifier 'thrust'
+class DiscardOverload : public thrust::discard_iterator<Return> {
+                               ^
+dpct_output/gpu_treeshap.h:1093:40: error: unknown template name 'discard_iterator'
+class DiscardOverload : public thrust::discard_iterator<Return> {
+                                       ^
+dpct_output/gpu_treeshap.h:1106:3: error: use of undeclared identifier 'thrust'
+  thrust::sort(thrust::cuda::par(alloc), device_paths->begin(),
+  ^
+dpct_output/gpu_treeshap.h:1106:16: error: use of undeclared identifier 'thrust'
+  thrust::sort(thrust::cuda::par(alloc), device_paths->begin(),
+               ^
+dpct_output/gpu_treeshap.h:1106:34: error: unknown type name 'alloc'
+  thrust::sort(thrust::cuda::par(alloc), device_paths->begin(),
+                                 ^
+dpct_output/gpu_treeshap.h:1106:40: error: expected ')'
+  thrust::sort(thrust::cuda::par(alloc), device_paths->begin(),
+                                       ^
+dpct_output/gpu_treeshap.h:1106:15: note: to match this '('
+  thrust::sort(thrust::cuda::par(alloc), device_paths->begin(),
+              ^
+dpct_output/gpu_treeshap.h:1162:57: error: member reference base type 'pointer' (aka 'unsigned long *') is not a structure or union
+      q_ct1.memcpy(h_num_runs_out, d_num_runs_out.data().get(), sizeof(size_t))
+                                   ~~~~~~~~~~~~~~~~~~~~~^~~~
+/home/user293/intel/oneapi/dpcpp-ct/2023.2.0/include/dpct/dpct.hpp:51:7: note: expanded from macro 'DPCT_CHECK_ERROR'
+      expr;                                                                    \
+      ^~~~
+In file included from dpct_output/_cext_gpu.dp.cpp:7:
+dpct_output/gpu_treeshap.h:1173:3: error: use of undeclared identifier 'thrust'
+  thrust::sort(thrust::cuda::par(alloc), paths->begin(), paths->end(),
+  ^
+dpct_output/gpu_treeshap.h:1173:16: error: use of undeclared identifier 'thrust'
+  thrust::sort(thrust::cuda::par(alloc), paths->begin(), paths->end(),
+               ^
+dpct_output/gpu_treeshap.h:1173:34: error: unknown type name 'alloc'
+  thrust::sort(thrust::cuda::par(alloc), paths->begin(), paths->end(),
+                                 ^
+dpct_output/gpu_treeshap.h:1173:40: error: expected ')'
+  thrust::sort(thrust::cuda::par(alloc), paths->begin(), paths->end(),
+                                       ^
+dpct_output/gpu_treeshap.h:1173:15: note: to match this '('
+  thrust::sort(thrust::cuda::par(alloc), paths->begin(), paths->end(),
+              ^
+dpct_output/gpu_treeshap.h:1342:7: error: use of undeclared identifier 'thrust'
+      thrust::any_of(thrust::cuda::par(alloc), path_lengths.begin(),
+      ^
+dpct_output/gpu_treeshap.h:1342:22: error: use of undeclared identifier 'thrust'
+      thrust::any_of(thrust::cuda::par(alloc), path_lengths.begin(),
+                     ^
+dpct_output/gpu_treeshap.h:1414:3: error: use of undeclared identifier 'thrust'
+  thrust::sort(thrust::cuda::par(alloc), sorted_paths.begin(),
+  ^
+dpct_output/gpu_treeshap.h:1414:16: error: use of undeclared identifier 'thrust'
+  thrust::sort(thrust::cuda::par(alloc), sorted_paths.begin(),
+               ^
+dpct_output/gpu_treeshap.h:1414:34: error: unknown type name 'alloc'
+  thrust::sort(thrust::cuda::par(alloc), sorted_paths.begin(),
+                                 ^
+dpct_output/gpu_treeshap.h:1414:40: error: expected ')'
+  thrust::sort(thrust::cuda::par(alloc), sorted_paths.begin(),
+                                       ^
+dpct_output/gpu_treeshap.h:1414:15: note: to match this '('
+  thrust::sort(thrust::cuda::par(alloc), sorted_paths.begin(),
+              ^
+dpct_output/gpu_treeshap.h:1498:39: error: use of undeclared identifier 'thrust'
+template <typename DeviceAllocatorT = thrust::device_allocator<int>,
+                                      ^
+dpct_output/gpu_treeshap.h:1586:39: error: use of undeclared identifier 'thrust'
+template <typename DeviceAllocatorT = thrust::device_allocator<int>,
+                                      ^
+dpct_output/gpu_treeshap.h:1674:39: error: use of undeclared identifier 'thrust'
+template <typename DeviceAllocatorT = thrust::device_allocator<int>,
+                                      ^
+dpct_output/gpu_treeshap.h:1765:39: error: use of undeclared identifier 'thrust'
+template <typename DeviceAllocatorT = thrust::device_allocator<int>,
+                                      ^
+In file included from dpct_output/_cext_gpu.dp.cpp:8:
+dpct_output/tree_shap.h:1099:9: error: use of undeclared identifier 'PySys_WriteStderr'
+        PySys_WriteStderr(
+        ^
+dpct_output/tree_shap.h:1109:9: error: unknown type name 'PyObject'
+        PyObject *pyStderr = PySys_GetObject("stderr");
+        ^
+dpct_output/tree_shap.h:1109:30: error: use of undeclared identifier 'PySys_GetObject'
+        PyObject *pyStderr = PySys_GetObject("stderr");
+                             ^
+dpct_output/tree_shap.h:1111:13: error: unknown type name 'PyObject'
+            PyObject *result = PyObject_CallMethod(pyStderr, "flush", NULL);
+            ^
+dpct_output/_cext_gpu.dp.cpp:173:43: error: member reference base type 'pointer' (aka 'double *') is not a structure or union
+    return DenseDatasetWrapper(data.data().get(), missing.data().get(),
+                               ~~~~~~~~~~~^~~~
+dpct_output/_cext_gpu.dp.cpp:173:65: error: member reference base type 'pointer' (aka 'bool *') is not a structure or union
+    return DenseDatasetWrapper(data.data().get(), missing.data().get(),
+                                                  ~~~~~~~~~~~~~~^~~~
+dpct_output/_cext_gpu.dp.cpp:188:3: error: no matching function for call to 'GPUTreeShap'
+  gpu_treeshap::GPUTreeShap(X, paths.begin(), paths.end(), trees.num_outputs,
+  ^~~~~~~~~~~~~~~~~~~~~~~~~
+dpct_output/gpu_treeshap.h:1500:6: note: candidate template ignored: couldn't infer template argument 'DeviceAllocatorT'
+void GPUTreeShap(DatasetT X, PathIteratorT begin, PathIteratorT end,
+     ^
+dpct_output/_cext_gpu.dp.cpp:194:28: error: member reference base type 'pointer' (aka 'float *') is not a structure or union
+  auto d_phis = phis.data().get();
+                ~~~~~~~~~~~^~~~
+dpct_output/_cext_gpu.dp.cpp:195:42: error: member reference base type 'pointer' (aka 'double *') is not a structure or union
+  auto d_base_offset = base_offset.data().get();
+                       ~~~~~~~~~~~~~~~~~~^~~~
+dpct_output/_cext_gpu.dp.cpp:241:3: error: no matching function for call to 'GPUTreeShapInterventional'
+  gpu_treeshap::GPUTreeShapInterventional(X, R, paths.begin(), paths.end(),
+  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+dpct_output/gpu_treeshap.h:1767:6: note: candidate template ignored: couldn't infer template argument 'DeviceAllocatorT'
+void GPUTreeShapInterventional(DatasetT X, DatasetT R, PathIteratorT begin,
+     ^
+dpct_output/_cext_gpu.dp.cpp:248:28: error: member reference base type 'pointer' (aka 'float *') is not a structure or union
+  auto d_phis = phis.data().get();
+                ~~~~~~~~~~~^~~~
+dpct_output/_cext_gpu.dp.cpp:249:42: error: member reference base type 'pointer' (aka 'double *') is not a structure or union
+  auto d_base_offset = base_offset.data().get();
+                       ~~~~~~~~~~~~~~~~~~^~~~
+dpct_output/_cext_gpu.dp.cpp:291:3: error: no matching function for call to 'GPUTreeShapInteractions'
+  gpu_treeshap::GPUTreeShapInteractions(X, paths.begin(), paths.end(),
+  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+dpct_output/gpu_treeshap.h:1588:6: note: candidate template ignored: couldn't infer template argument 'DeviceAllocatorT'
+void GPUTreeShapInteractions(DatasetT X, PathIteratorT begin, PathIteratorT end,
+     ^
+dpct_output/_cext_gpu.dp.cpp:298:28: error: member reference base type 'pointer' (aka 'float *') is not a structure or union
+  auto d_phis = phis.data().get();
+                ~~~~~~~~~~~^~~~
+dpct_output/_cext_gpu.dp.cpp:299:42: error: member reference base type 'pointer' (aka 'double *') is not a structure or union
+  auto d_base_offset = base_offset.data().get();
+                       ~~~~~~~~~~~~~~~~~~^~~~
+1 warning and 41 errors generated.
