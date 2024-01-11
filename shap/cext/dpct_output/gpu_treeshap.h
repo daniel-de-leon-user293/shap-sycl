@@ -1018,8 +1018,8 @@ void ComputeShapInterventional(
           PathElement<SplitConditionT>, 1>
           s_elements_acc_ct1(sycl::range<1>(kBlockThreads), cgh);
 
-      auto path_elements_data_get_ct3 = path_elements.data().get();
-      auto bin_segments_data_get_ct4 = bin_segments.data().get();
+      auto path_elements_data_get_ct3 = path_elements.data();
+      auto bin_segments_data_get_ct4 = bin_segments.data();
 
       cgh.parallel_for(
           sycl::nd_range<3>(sycl::range<3>(1, 1, grid_size) *
@@ -1054,7 +1054,7 @@ void GetBinSegments(const PathVectorT &paths, const SizeVectorT &bin_map,
   bin_segments->resize(num_bins + 1, 0);
   auto counting = dpct::make_counting_iterator(0llu);
   auto d_paths = paths.data();
-  auto d_bin_segments = bin_segments->data().get();
+  auto d_bin_segments = bin_segments->data();
   auto d_bin_map = bin_map.data();
   oneapi::dpl::for_each_n(
       oneapi::dpl::execution::make_device_policy(q_ct1), counting, paths.size(),
@@ -1322,7 +1322,7 @@ void GetPathLengths(const PathVectorT& device_paths,
       0);
   auto counting = dpct::make_counting_iterator(0llu);
   auto d_paths = device_paths.data();
-  auto d_lengths = path_lengths->data().get();
+  auto d_lengths = path_lengths->data();
   oneapi::dpl::for_each_n(oneapi::dpl::execution::make_device_policy(dpct::get_in_order_queue()), counting, device_paths.size(), [=] (size_t idx) {
     auto path_idx = d_paths[idx].path_idx;
     dpct::atomic_fetch_add<sycl::access::address_space::generic_space>(
@@ -1400,14 +1400,14 @@ void PreprocessPaths(PathVectorT* device_paths, PathVectorT* deduplicated_paths,
 
 struct PathIdxTransformOp {
   template <typename SplitConditionT>
-  size_t operator()(const PathElement<SplitConditionT>& e) {
+  size_t operator()(const PathElement<SplitConditionT>& e) const {
     return e.path_idx;
   }
 };
 
 struct GroupIdxTransformOp {
   template <typename SplitConditionT>
-  size_t operator()(const PathElement<SplitConditionT>& e) {
+  size_t operator()(const PathElement<SplitConditionT>& e) const {
     return e.group;
   }
 };
@@ -1475,9 +1475,9 @@ void ComputeBias(const PathVectorT &device_paths, DoubleVectorT *bias) {
   // Write result
   size_t n = out_itr.first - keys_out.begin();
   auto counting = dpct::make_counting_iterator(0llu);
-  auto d_keys_out = keys_out.data().get();
-  auto d_values_out = values_out.data().get();
-  auto d_bias = bias->data().get();
+  auto d_keys_out = keys_out.data();
+  auto d_values_out = values_out.data();
+  auto d_bias = bias->data();
   oneapi::dpl::for_each_n(oneapi::dpl::execution::seq, counting, n,
                           [=](size_t idx) {
     d_bias[d_keys_out[idx]] = d_values_out[idx];
