@@ -586,8 +586,8 @@ void ComputeShap(
           PathElement<SplitConditionT>, 1>
           s_elements_acc_ct1(sycl::range<1>(kBlockThreads), cgh);
 
-      auto path_elements_data_get_ct2 = path_elements.data().get();
-      auto bin_segments_data_get_ct3 = bin_segments.data().get();
+      auto path_elements_data_get_ct2 = path_elements.data();
+      auto bin_segments_data_get_ct3 = bin_segments.data();
 
       cgh.parallel_for(
           sycl::nd_range<3>(sycl::range<3>(1, 1, grid_size) *
@@ -745,8 +745,8 @@ void ComputeShapInteractions(
           PathElement<SplitConditionT>, 1>
           s_elements_acc_ct1(sycl::range<1>(kBlockThreads), cgh);
 
-      auto path_elements_data_get_ct2 = path_elements.data().get();
-      auto bin_segments_data_get_ct3 = bin_segments.data().get();
+      auto path_elements_data_get_ct2 = path_elements.data();
+      auto bin_segments_data_get_ct3 = bin_segments.data();
 
       cgh.parallel_for(
           sycl::nd_range<3>(sycl::range<3>(1, 1, grid_size) *
@@ -1053,7 +1053,7 @@ void GetBinSegments(const PathVectorT &paths, const SizeVectorT &bin_map,
 
   bin_segments->resize(num_bins + 1, 0);
   auto counting = dpct::make_counting_iterator(0llu);
-  auto d_paths = paths.data().get();
+  auto d_paths = paths.data();
   auto d_bin_segments = bin_segments->data().get();
   auto d_bin_map = bin_map.data();
   oneapi::dpl::for_each_n(
@@ -1321,7 +1321,7 @@ void GetPathLengths(const PathVectorT& device_paths,
           1,
       0);
   auto counting = dpct::make_counting_iterator(0llu);
-  auto d_paths = device_paths.data().get();
+  auto d_paths = device_paths.data();
   auto d_lengths = path_lengths->data().get();
   oneapi::dpl::for_each_n(oneapi::dpl::execution::make_device_policy(dpct::get_in_order_queue()), counting, device_paths.size(), [=] (size_t idx) {
     auto path_idx = d_paths[idx].path_idx;
@@ -1366,7 +1366,7 @@ void ValidatePaths(const PathVectorT& device_paths,
     throw std::invalid_argument("Tree depth must be < 32");
   }
 
-  IncorrectVOp<SplitConditionT> incorrect_v_op{device_paths.data().get()};
+  IncorrectVOp<SplitConditionT> incorrect_v_op{device_paths.data()};
   auto counting = oneapi::dpl::counting_iterator<size_t>(0);
   auto incorrect_v = oneapi::dpl::any_of(
       oneapi::dpl::execution::make_device_policy(dpct::get_in_order_queue()),
@@ -1546,8 +1546,8 @@ void GPUTreeShap(DatasetT X, PathIteratorT begin, PathIteratorT end,
   double_vector bias(num_groups, 0.0);
   detail::ComputeBias<path_vector, double_vector, DeviceAllocatorT,
                       split_condition>(device_paths, &bias);
-  auto d_bias = bias.data().get();
-  auto d_temp_phi = temp_phi.data().get();
+  auto d_bias = bias.data();
+  auto d_temp_phi = temp_phi.data();
   oneapi::dpl::for_each_n(oneapi::dpl::execution::make_device_policy(q_ct1),
                           dpct::make_counting_iterator(0llu),
                           X.NumRows() * num_groups, [=](size_t idx) {
@@ -1564,7 +1564,7 @@ void GPUTreeShap(DatasetT X, PathIteratorT begin, PathIteratorT end,
       &device_paths, &deduplicated_paths, &device_bin_segments);
 
   detail::ComputeShap(X, device_bin_segments, deduplicated_paths, num_groups,
-                      temp_phi.data().get());
+                      temp_phi.data());
   std::copy(oneapi::dpl::execution::make_device_policy(q_ct1), temp_phi.begin(),
             temp_phi.end(), phis_begin);
 }
@@ -1636,8 +1636,8 @@ void GPUTreeShapInteractions(DatasetT X, PathIteratorT begin, PathIteratorT end,
   double_vector bias(num_groups, 0.0);
   detail::ComputeBias<path_vector, double_vector, DeviceAllocatorT,
                       split_condition>(device_paths, &bias);
-  auto d_bias = bias.data().get();
-  auto d_temp_phi = temp_phi.data().get();
+  auto d_bias = bias.data();
+  auto d_temp_phi = temp_phi.data();
   oneapi::dpl::for_each_n(oneapi::dpl::execution::make_device_policy(q_ct1),
                           dpct::make_counting_iterator(0llu),
                           X.NumRows() * num_groups, [=](size_t idx) {
@@ -1654,7 +1654,7 @@ void GPUTreeShapInteractions(DatasetT X, PathIteratorT begin, PathIteratorT end,
       &device_paths, &deduplicated_paths, &device_bin_segments);
 
   detail::ComputeShapInteractions(X, device_bin_segments, deduplicated_paths,
-                                  num_groups, temp_phi.data().get());
+                                  num_groups, temp_phi.data());
   std::copy(oneapi::dpl::execution::make_device_policy(q_ct1), temp_phi.begin(),
             temp_phi.end(), phis_begin);
 }
@@ -1818,7 +1818,7 @@ void GPUTreeShapInterventional(DatasetT X, DatasetT R, PathIteratorT begin,
       &device_paths, &deduplicated_paths, &device_bin_segments);
   detail::ComputeShapInterventional(X, R, device_bin_segments,
                                     deduplicated_paths, num_groups,
-                                    temp_phi.data().get());
+                                    temp_phi.data());
   std::copy(
       oneapi::dpl::execution::make_device_policy(dpct::get_in_order_queue()),
       temp_phi.begin(), temp_phi.end(), phis_begin);
