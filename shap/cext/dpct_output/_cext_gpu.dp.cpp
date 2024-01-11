@@ -1,5 +1,3 @@
-//#include <Python.h>
-
 #include <oneapi/dpl/execution>
 #include <oneapi/dpl/algorithm>
 #include <sycl/sycl.hpp>
@@ -8,6 +6,7 @@
 #include "tree_shap.h"
 #include <cmath>
 
+#include <Python.h>
 const float inf = std::numeric_limits<tfloat>::infinity();
 
 struct ShapSplitCondition {
@@ -170,7 +169,7 @@ class DeviceExplanationDataset {
   };
 
   DenseDatasetWrapper GetDeviceAccessor() {
-    return DenseDatasetWrapper(data.data().get(), missing.data().get(),
+    return DenseDatasetWrapper(data.data(), missing.data(),
                                num_rows, num_features);
   }
 };
@@ -191,8 +190,8 @@ inline void dense_tree_path_dependent_gpu(
   dpct::device_vector<double> base_offset(
       trees.base_offset, trees.base_offset + trees.num_outputs);
   auto counting = dpct::make_counting_iterator(size_t(0));
-  auto d_phis = phis.data().get();
-  auto d_base_offset = base_offset.data().get();
+  auto d_phis = phis.data();
+  auto d_base_offset = base_offset.data();
   size_t num_groups = trees.num_outputs;
   std::for_each(oneapi::dpl::execution::seq, counting,
                 counting + X.NumRows() * trees.num_outputs, [=](size_t idx) {
@@ -245,8 +244,8 @@ dense_tree_independent_gpu(const TreeEnsemble &trees,
   dpct::device_vector<double> base_offset(
       trees.base_offset, trees.base_offset + trees.num_outputs);
   auto counting = dpct::make_counting_iterator(size_t(0));
-  auto d_phis = phis.data().get();
-  auto d_base_offset = base_offset.data().get();
+  auto d_phis = phis.data();
+  auto d_base_offset = base_offset.data();
   size_t num_groups = trees.num_outputs;
   std::for_each(oneapi::dpl::execution::seq, counting,
                 counting + X.NumRows() * trees.num_outputs, [=](size_t idx) {
@@ -295,8 +294,8 @@ inline void dense_tree_path_dependent_interactions_gpu(
   dpct::device_vector<double> base_offset(
       trees.base_offset, trees.base_offset + trees.num_outputs);
   auto counting = dpct::make_counting_iterator(size_t(0));
-  auto d_phis = phis.data().get();
-  auto d_base_offset = base_offset.data().get();
+  auto d_phis = phis.data();
+  auto d_base_offset = base_offset.data();
   size_t num_groups = trees.num_outputs;
   std::for_each(oneapi::dpl::execution::seq, counting,
                 counting + X.NumRows() * num_groups, [=](size_t idx) {

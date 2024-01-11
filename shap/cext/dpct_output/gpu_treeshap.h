@@ -34,6 +34,7 @@ using namespace thrust::cuda_cub;
 #include <utility>
 #include <vector>
 #include <cmath>
+#include <iostream>
 
 namespace gpu_treeshap {
 
@@ -741,7 +742,7 @@ void ComputeShapInteractions(
     dpct::get_in_order_queue().submit([&](sycl::handler &cgh) {
       sycl::local_accessor<DatasetT, 0> s_X_acc_ct1(cgh);
       sycl::local_accessor<
-          PathElement<SplitConditionT>
+          PathElement<SplitConditionT>, 1>
           s_elements_acc_ct1(sycl::range<1>(kBlockThreads), cgh);
 
       auto path_elements_data_get_ct2 = path_elements.data().get();
@@ -1047,9 +1048,9 @@ void GetBinSegments(const PathVectorT &paths, const SizeVectorT &bin_map,
       DPCT1107:18: Migration for this overload of thrust::reduce is not
       supported.
       */
-      thrust::reduce(thrust::cuda::par(alloc), bin_map.begin(), bin_map.end(),
-                     size_t(0), oneapi::dpl::maximum<size_t>()) +
-      1;
+      std::reduce(oneapi::dpl::execution::make_device_policy(q_ct1), bin_map.begin(), bin_map.end(), size_t(0), 
+          oneapi::dpl::maximum<int>()) + 1;
+
   bin_segments->resize(num_bins + 1, 0);
   auto counting = dpct::make_counting_iterator(0llu);
   auto d_paths = paths.data().get();
@@ -1066,8 +1067,8 @@ void GetBinSegments(const PathVectorT &paths, const SizeVectorT &bin_map,
   });
   std::exclusive_scan(
       oneapi::dpl::execution::make_device_policy(q_ct1),
-      thrust::cuda::par(alloc), bin_segments->begin(), bin_segments->end(),
-      (decltype(bin_segments->end())::value_type)bin_segments->begin());
+      bin_segments->begin(), bin_segments->end());//#,
+      //(decltype(bin_segments->end())::value_type)bin_segments->begin());
 }
 
 struct DeduplicateKeyTransformOp {
@@ -1076,21 +1077,33 @@ struct DeduplicateKeyTransformOp {
     return {e.path_idx, e.feature_idx};
   }
 };
-
-inline void CheckCuda(dpct::err0 err) {
+//inline void CheckCuda(dpct::err0 err) {
   /*
   DPCT1000:20: Error handling if-stmt was detected but could not be rewritten.
   */
-  if (err != 0) {
+//  if (err != 0) {
     /*
     DPCT1001:19: The statement could not be removed.
     */
-    throw std::system_error(err, std::generic_category());
+//    throw std::system_error(err, std::generic_category());
+//  }
+//}
+
+
+inline void CheckCuda(dpct::err0 err) {
+  try {
+    if (err != 0) {
+      throw std::system_error(err, std::generic_category());
+    }
   }
+    catch (const std::exception& e) {
+        // print the exception
+        std::cerr << "Exception "  << e.what() << std::endl;
+    }
 }
 
 template <typename Return>
-class DiscardOverload : public thrust::discard_iterator<Return> {
+class DiscardOverload : public oneapi::dpl::discard_iterator {
  public:
   using value_type = Return;  // NOLINT
 };
@@ -1103,7 +1116,7 @@ void DeduplicatePaths(PathVectorT *device_paths,
     sycl::queue &q_ct1 = dev_ct1.in_order_queue();
   DeviceAllocatorT alloc;
   // Sort by feature
-  thrust::sort(thrust::cuda::par(alloc), device_paths->begin(),
+  std::sort(oneapi::dpl::execution::make_device_policy(q_ct1), device_paths->begin(),
                device_paths->end(),
                [=] (const PathElement<SplitConditionT>& a,
                               const PathElement<SplitConditionT>& b) {
@@ -1159,7 +1172,7 @@ void DeduplicatePaths(PathVectorT *device_paths,
           .wait());
 
   CheckCuda(DPCT_CHECK_ERROR(
-      q_ct1.memcpy(h_num_runs_out, d_num_runs_out.data().get(), sizeof(size_t))
+      q_ct1.memcpy(h_num_runs_out, d_num_runs_out.data(), sizeof(size_t))
           .wait()));
   deduplicated_paths->resize(*h_num_runs_out);
   CheckCuda(DPCT_CHECK_ERROR(sycl::free(h_num_runs_out, q_ct1)));
@@ -1170,7 +1183,10 @@ template <typename PathVectorT, typename SplitConditionT, typename SizeVectorT,
 void SortPaths(PathVectorT* paths, const SizeVectorT& bin_map) {
   auto d_bin_map = bin_map.data();
   DeviceAllocatorT alloc;
-  thrust::sort(thrust::cuda::par(alloc), paths->begin(), paths->end(),
+  dpct::device_ext &dev_ct1 = dpct::get_current_device();
+  sycl::queue &q_ct1 = dev_ct1.in_order_queue();
+  //DeviceAllocatorT q_ct1;
+  std::sort(oneapi::dpl::execution::make_device_policy(q_ct1), paths->begin(), paths->end(),
                [=] (const PathElement<SplitConditionT>& a,
                               const PathElement<SplitConditionT>& b) {
                  size_t a_bin = d_bin_map[a.path_idx];
@@ -1334,12 +1350,16 @@ void ValidatePaths(const PathVectorT& device_paths,
                    const LengthVectorT& path_lengths) {
   DeviceAllocatorT alloc;
   PathTooLongOp too_long_op;
+
+  dpct::device_ext &dev_ct1 = dpct::get_current_device();
+  sycl::queue &q_ct1 = dev_ct1.in_order_queue();
+
   auto invalid_length =
       /*
       DPCT1107:21: Migration for this overload of thrust::any_of is not
       supported.
       */
-      thrust::any_of(thrust::cuda::par(alloc), path_lengths.begin(),
+      std::any_of(oneapi::dpl::execution::make_device_policy(q_ct1), path_lengths.begin(),
                      path_lengths.end(), too_long_op);
 
   if (invalid_length) {
@@ -1411,7 +1431,7 @@ void ComputeBias(const PathVectorT &device_paths, DoubleVectorT *bias) {
   PathVectorT sorted_paths(device_paths);
   DeviceAllocatorT alloc;
   // Make sure groups are contiguous
-  thrust::sort(thrust::cuda::par(alloc), sorted_paths.begin(),
+  std::sort(oneapi::dpl::execution::make_device_policy(q_ct1), sorted_paths.begin(),
                sorted_paths.end(),
                [=] (const PathElement<SplitConditionT>& a,
                               const PathElement<SplitConditionT>& b) {
@@ -1495,7 +1515,8 @@ void ComputeBias(const PathVectorT &device_paths, DoubleVectorT *bias) {
  * contributions per output class. \param phis_begin  Begin iterator for output
  * phis. \param phis_end    End iterator for output phis.
  */
-template <typename DeviceAllocatorT = thrust::device_allocator<int>,
+template <typename DeviceAllocatorT = dpct::deprecated::usm_device_allocator<int>,
+//template <typename DeviceAllocatorT = thrust::device_allocator<int>,
           typename DatasetT, typename PathIteratorT, typename PhiIteratorT>
 void GPUTreeShap(DatasetT X, PathIteratorT begin, PathIteratorT end,
                  size_t num_groups, PhiIteratorT phis_begin,
@@ -1583,7 +1604,9 @@ void GPUTreeShap(DatasetT X, PathIteratorT begin, PathIteratorT end,
  * \param phis_begin  Begin iterator for output phis.
  * \param phis_end    End iterator for output phis.
  */
-template <typename DeviceAllocatorT = thrust::device_allocator<int>,
+// switching usm here cause 29 more errors
+template <typename DeviceAllocatorT = dpct::deprecated::usm_device_allocator<int>,
+//template <typename DeviceAllocatorT = thrust::device_allocator<int>,
           typename DatasetT, typename PathIteratorT, typename PhiIteratorT>
 void GPUTreeShapInteractions(DatasetT X, PathIteratorT begin, PathIteratorT end,
                              size_t num_groups, PhiIteratorT phis_begin,
@@ -1671,7 +1694,8 @@ void GPUTreeShapInteractions(DatasetT X, PathIteratorT begin, PathIteratorT end,
  * \param phis_begin  Begin iterator for output phis.
  * \param phis_end    End iterator for output phis.
  */
-template <typename DeviceAllocatorT = thrust::device_allocator<int>,
+template <typename DeviceAllocatorT = dpct::deprecated::usm_device_allocator<int>,
+//template <typename DeviceAllocatorT = thrust::device_allocator<int>,
           typename DatasetT, typename PathIteratorT, typename PhiIteratorT>
 void GPUTreeShapTaylorInteractions(DatasetT X, PathIteratorT begin,
                                    PathIteratorT end, size_t num_groups,
@@ -1762,7 +1786,8 @@ void GPUTreeShapTaylorInteractions(DatasetT X, PathIteratorT begin,
  * \param phis_begin  Begin iterator for output phis.
  * \param phis_end    End iterator for output phis.
  */
-template <typename DeviceAllocatorT = thrust::device_allocator<int>,
+template <typename DeviceAllocatorT = dpct::deprecated::usm_device_allocator<int>,
+//template <typename DeviceAllocatorT = thrust::device_allocator<int>,
           typename DatasetT, typename PathIteratorT, typename PhiIteratorT>
 void GPUTreeShapInterventional(DatasetT X, DatasetT R, PathIteratorT begin,
                                PathIteratorT end, size_t num_groups,

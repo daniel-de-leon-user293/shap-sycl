@@ -4,7 +4,6 @@
  *
  * Scott Lundberg, 2018 (independent algorithm courtesy of Hugh Chen 2018)
  */
-
 #include <algorithm>
 #include <iostream>
 #include <fstream>
@@ -19,6 +18,7 @@
     #include <alloca.h>
 #endif
 using namespace std;
+#include <Python.h>
 
 typedef double tfloat;
 typedef tfloat (* transform_f)(const tfloat margin, const tfloat y);
