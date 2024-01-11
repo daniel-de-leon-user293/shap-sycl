@@ -1073,7 +1073,7 @@ void GetBinSegments(const PathVectorT &paths, const SizeVectorT &bin_map,
 
 struct DeduplicateKeyTransformOp {
   template <typename SplitConditionT>
-  std::pair<size_t, int64_t> operator()(const PathElement<SplitConditionT> &e) {
+  std::pair<size_t, int64_t> operator()(const PathElement<SplitConditionT> &e) const {
     return {e.path_idx, e.feature_idx};
   }
 };
@@ -1089,6 +1089,8 @@ struct DeduplicateKeyTransformOp {
 //  }
 //}
 
+/* commenting out until I figure out why this doesn't work
+
 
 inline void CheckCuda(dpct::err0 err) {
   try {
@@ -1101,6 +1103,8 @@ inline void CheckCuda(dpct::err0 err) {
         std::cerr << "Exception "  << e.what() << std::endl;
     }
 }
+*/
+
 
 template <typename Return>
 class DiscardOverload : public oneapi::dpl::discard_iterator {
@@ -1136,8 +1140,10 @@ void DeduplicatePaths(PathVectorT *device_paths,
 
   dpct::device_vector<size_t> d_num_runs_out(1);
   size_t* h_num_runs_out;
+  /*
   CheckCuda(
       DPCT_CHECK_ERROR(h_num_runs_out = sycl::malloc_host<size_t>(1, q_ct1)));
+  */
 
   auto combine = [] (PathElement<SplitConditionT> a,
                                PathElement<SplitConditionT> b) {
@@ -1151,9 +1157,12 @@ void DeduplicatePaths(PathVectorT *device_paths,
   DPCT1027:3: The call to cub::DeviceReduce::ReduceByKey was replaced with 0
   because this call is redundant in SYCL.
   */
+  /*
   CheckCuda(0);
+  */
   using TempAlloc = RebindVector<char, DeviceAllocatorT>;
   TempAlloc tmp(temp_size);
+  /*
   CheckCuda(
       q_ct1
           .fill(d_num_runs_out.begin(),
@@ -1176,6 +1185,7 @@ void DeduplicatePaths(PathVectorT *device_paths,
           .wait()));
   deduplicated_paths->resize(*h_num_runs_out);
   CheckCuda(DPCT_CHECK_ERROR(sycl::free(h_num_runs_out, q_ct1)));
+  */
 }
 
 template <typename PathVectorT, typename SplitConditionT, typename SizeVectorT,
@@ -1414,7 +1424,7 @@ struct GroupIdxTransformOp {
 
 struct BiasTransformOp {
   template <typename SplitConditionT>
-  double operator()(const PathElement<SplitConditionT>& e) {
+  double operator()(const PathElement<SplitConditionT>& e) const {
     return e.zero_fraction * e.v;
   }
 };
