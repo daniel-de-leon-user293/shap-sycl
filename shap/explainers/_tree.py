@@ -6,6 +6,7 @@ import warnings
 
 import numpy as np
 import pandas as pd
+import scipy.sparse
 import scipy.special
 from packaging import version
 
@@ -13,6 +14,7 @@ from .. import maskers
 from .._explanation import Explanation
 from ..utils import assert_import, record_import_error, safe_isinstance
 from ..utils._exceptions import (
+    DimensionError,
     ExplainerError,
     InvalidFeaturePerturbationError,
     InvalidMaskerError,
@@ -113,7 +115,7 @@ class TreeExplainer(Explainer):
         """
         if feature_names is not None:
             self.data_feature_names = feature_names
-        elif safe_isinstance(data, "pandas.core.frame.DataFrame"):
+        elif isinstance(data, pd.DataFrame):
             self.data_feature_names = list(data.columns)
 
         masker = data
@@ -149,7 +151,7 @@ class TreeExplainer(Explainer):
             raise InvalidFeaturePerturbationError("feature_perturbation = \"independent\" is not a valid option value, please use " \
                 "feature_perturbation = \"interventional\" instead. See GitHub issue #882.")
 
-        if safe_isinstance(data, "pandas.core.frame.DataFrame"):
+        if isinstance(data, pd.DataFrame):
             self.data = data.values
         elif isinstance(data, DenseData):
             self.data = data.data
@@ -158,9 +160,12 @@ class TreeExplainer(Explainer):
         if self.data is None:
             feature_perturbation = "tree_path_dependent"
             #warnings.warn("Setting feature_perturbation = \"tree_path_dependent\" because no background data was given.")
-        elif feature_perturbation == "interventional" and self.data.shape[0] > 1000:
-                warnings.warn("Passing "+str(self.data.shape[0]) + " background samples may lead to slow runtimes. Consider "
-                    "using shap.sample(data, 100) to create a smaller background data set.")
+        elif feature_perturbation == "interventional" and self.data.shape[0] > 1_000:
+            wmsg = (
+                f"Passing {self.data.shape[0]} background samples may lead to slow runtimes. Consider "
+                "using shap.sample(data, 100) to create a smaller background data set."
+            )
+            warnings.warn(wmsg)
         self.data_missing = None if self.data is None else pd.isna(self.data)
         self.feature_perturbation = feature_perturbation
         self.expected_value = None
@@ -182,14 +187,18 @@ class TreeExplainer(Explainer):
 
         if self.model.model_output != "raw":
             if self.model.objective is None and self.model.tree_output is None:
-                raise Exception("Model does not have a known objective or output type! When model_output is " \
-                                "not \"raw\" then we need to know the model's objective or link function.")
+                emsg = (
+                    "Model does not have a known objective or output type! When model_output is "
+                    "not \"raw\" then we need to know the model's objective or link function."
+                )
+                raise Exception(emsg)
 
-        # A bug in XGBoost fixed in v0.81 makes XGBClassifier fail to give margin outputs
-        if safe_isinstance(model, "xgboost.sklearn.XGBClassifier") and self.model.model_output != "raw":
+        # A change in the signature of `xgboost.Booster.predict()` method has been introduced in XGBoost v1.4:
+        # The introduced `iteration_range` parameter is used when obtaining SHAP (incl. interaction) values from XGBoost models.
+        if self.model.model_type == 'xgboost':
             import xgboost
-            if version.parse(xgboost.__version__) < version.parse('0.81'):
-                raise RuntimeError("A bug in XGBoost fixed in v0.81 makes XGBClassifier fail to give margin outputs! Please upgrade to XGBoost >= v0.81!")
+            if version.parse(xgboost.__version__) < version.parse('1.4'):
+                raise RuntimeError(f"SHAP requires XGBoost >= v1.4 , but found version {xgboost.__version__}. Please upgrade XGBoost!")
 
         # compute the expected value if we have a parsed tree for the cext
         if self.model.model_output == "log_loss":
@@ -225,7 +234,7 @@ class TreeExplainer(Explainer):
 
         start_time = time.time()
 
-        if safe_isinstance(X, "pandas.core.frame.DataFrame"):
+        if isinstance(X, pd.DataFrame):
             feature_names = list(X.columns)
         else:
             feature_names = getattr(self, "data_feature_names", None)
@@ -242,16 +251,36 @@ class TreeExplainer(Explainer):
         if hasattr(self.expected_value, "__len__") and len(self.expected_value) > 1:
             # `expected_value` is a list / array of numbers, length k, e.g. for multi-output scenarios
             # we repeat it N times along the first axis, so ev_tiled.shape == (N, k)
-            ev_tiled = np.tile(self.expected_value, (v.shape[0], 1))
+            if isinstance(v, list):
+                num_rows = v[0].shape[0]
+            else:
+                num_rows = v.shape[0]
+            ev_tiled = np.tile(self.expected_value, (num_rows, 1))
         else:
             # `expected_value` is a scalar / array of 1 number, so we simply repeat it for every row in `v`
             # ev_tiled.shape == (N,)
             ev_tiled = np.tile(self.expected_value, v.shape[0])
 
-        # cf. GH issue dsgibbons#66, this conversion to numpy array should be done AFTER
+        # cf. GH dsgibbons#66, this conversion to numpy array should be done AFTER
         # calculation of shap values
-        if safe_isinstance(X, "pandas.core.frame.DataFrame"):
+        if isinstance(X, pd.DataFrame):
             X = X.values
+        elif safe_isinstance(X, "xgboost.core.DMatrix"):
+            import xgboost
+
+            if version.parse(xgboost.__version__) < version.parse("1.7.0"):  # pragma: no cover
+                # cf. GH #3357
+                wmsg = (
+                    "`shap.Explanation` does not support `xgboost.DMatrix` objects for xgboost < 1.7, "
+                    "so the `data` attribute of the `Explanation` object will be set to None. If "
+                    "you require the `data` attribute (e.g. using `shap.plots`), then either "
+                    "update your xgboost to >=1.7.0 or explicitly set `Explanation.data = X`, where "
+                    "`X` is a numpy or scipy array."
+                )
+                warnings.warn(wmsg)
+                X = None
+            else:
+                X: scipy.sparse.csr_matrix = X.get_data()
 
         return Explanation(
             v,
@@ -269,9 +298,7 @@ class TreeExplainer(Explainer):
         if tree_limit < 0 or tree_limit > self.model.values.shape[0]:
             tree_limit = self.model.values.shape[0]
         # convert dataframes
-        if safe_isinstance(X, "pandas.core.series.Series"):
-            X = X.values
-        elif safe_isinstance(X, "pandas.core.frame.DataFrame"):
+        if isinstance(X, (pd.Series, pd.DataFrame)):
             X = X.values
         flat_output = False
         if len(X.shape) == 1:
@@ -284,21 +311,31 @@ class TreeExplainer(Explainer):
         assert len(X.shape) == 2, "Passed input data matrix X must have 1 or 2 dimensions!"
 
         if self.model.model_output == "log_loss":
-            assert y is not None, "Both samples and labels must be provided when model_output = " \
-                                  "\"log_loss\" (i.e. `explainer.shap_values(X, y)`)!"
-            assert X.shape[0] == len(
-                y), "The number of labels (%d) does not match the number of samples to explain (" \
-                    "%d)!" % (
-                        len(y), X.shape[0])
+            if y is None:
+                emsg = (
+                    "Both samples and labels must be provided when model_output = \"log_loss\" "
+                    "(i.e. `explainer.shap_values(X, y)`)!"
+                )
+                raise ExplainerError(emsg)
+            if X.shape[0] != len(y):
+                emsg = (
+                    f"The number of labels ({len(y)}) does not match the number of samples "
+                    f"to explain ({X.shape[0]})!"
+                )
+                raise DimensionError(emsg)
 
         if self.feature_perturbation == "tree_path_dependent":
-            assert self.model.fully_defined_weighting, "The background dataset you provided does " \
-                                                       "not cover all the leaves in the model, " \
-                                                       "so TreeExplainer cannot run with the " \
-                                                       "feature_perturbation=\"tree_path_dependent\" option! " \
-                                                       "Try providing a larger background " \
-                                                       "dataset, no background dataset, or using " \
-                                                       "feature_perturbation=\"interventional\"."
+            if not self.model.fully_defined_weighting:
+                emsg = (
+                    "The background dataset you provided does "
+                    "not cover all the leaves in the model, "
+                    "so TreeExplainer cannot run with the "
+                    "feature_perturbation=\"tree_path_dependent\" option! "
+                    "Try providing a larger background "
+                    "dataset, no background dataset, or using "
+                    "feature_perturbation=\"interventional\"."
+                )
+                raise ExplainerError(emsg)
 
         if check_additivity and self.model.model_type == "pyspark":
             warnings.warn(
@@ -903,7 +940,7 @@ class TreeEnsemble:
                 self.base_offset = model.init_.prior
                 self.tree_output = "log_odds"
             elif safe_isinstance(model.init_, "sklearn.dummy.DummyClassifier"):
-                self.base_offset = scipy.special.logit(model.init_.class_prior_[1])  # with two classes the trees only model the second class. # pylint: disable=no-member
+                self.base_offset = scipy.special.logit(model.init_.class_prior_[1])  # with two classes the trees only model the second class.
                 self.tree_output = "log_odds"
             else:
                 emsg = f"Unsupported init model type: {type(model.init_)}"
@@ -1275,9 +1312,7 @@ class TreeEnsemble:
             tree_limit = -1 if self.tree_limit is None else self.tree_limit
 
         # convert dataframes
-        if safe_isinstance(X, "pandas.core.series.Series"):
-            X = X.values
-        elif safe_isinstance(X, "pandas.core.frame.DataFrame"):
+        if isinstance(X, (pd.Series, pd.DataFrame)):
             X = X.values
         flat_output = False
         if len(X.shape) == 1:
@@ -1638,7 +1673,7 @@ class IsoTree(SingleTree):
         super().__init__(tree, normalize, scaling, data, data_missing)
         if safe_isinstance(tree, "sklearn.tree._tree.Tree"):
             from sklearn.ensemble._iforest import (
-                _average_path_length,  # pylint: disable=no-name-in-module
+                _average_path_length,
             )
 
             def _recalculate_value(tree, i , level):
@@ -1720,7 +1755,7 @@ class XGBTreeModelLoader:
         import xgboost
         if version.parse(xgboost.__version__).major >= 1:
             if self.name_obj in ["binary:logistic", "reg:logistic"]:
-                self.base_score = scipy.special.logit(self.base_score) # pylint: disable=no-member
+                self.base_score = scipy.special.logit(self.base_score)
 
         assert self.name_gbm == "gbtree", "Only the 'gbtree' model type is supported, not '%s'!" % self.name_gbm
 
@@ -1806,14 +1841,14 @@ class XGBTreeModelLoader:
                 else:
                     self.values[i,j] = self.node_info[i][j]
 
-            l = len(self.node_cleft[i])
+            k = len(self.node_cleft[i])
             trees.append(SingleTree({
                 "children_left": self.node_cleft[i],
                 "children_right": self.node_cright[i],
-                "children_default": self.children_default[i,:l],
-                "feature": self.features[i,:l],
-                "threshold": self.thresholds[i,:l],
-                "value": self.values[i,:l],
+                "children_default": self.children_default[i,:k],
+                "feature": self.features[i,:k],
+                "threshold": self.thresholds[i,:k],
+                "value": self.values[i,:k],
                 "node_sample_weight": self.sum_hess[i]
             }, data=data, data_missing=data_missing))
         return trees
