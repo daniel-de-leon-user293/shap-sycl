@@ -1341,13 +1341,13 @@ void GetPathLengths(const PathVectorT& device_paths,
 }
 
 struct PathTooLongOp {
-  size_t operator()(size_t length) { return length > 32; }
+  size_t operator()(size_t length) const { return length > 32; }
 };
 
 template <typename SplitConditionT>
 struct IncorrectVOp {
   const PathElement<SplitConditionT>* paths;
-  size_t operator()(size_t idx) {
+  size_t operator()(size_t idx) const {
     auto a = paths[idx - 1];
     auto b = paths[idx];
     return a.path_idx == b.path_idx && a.v != b.v;
