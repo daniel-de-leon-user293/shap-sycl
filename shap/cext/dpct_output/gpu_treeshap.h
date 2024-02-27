@@ -1065,11 +1065,25 @@ void GetBinSegments(const PathVectorT &paths, const SizeVectorT &bin_map,
             d_bin_map[path_idx],
         1);
   });
-  std::exclusive_scan(
+  //std::exclusive_scan(
+  /*
+  oneapi::dpl::exclusive_scan(
       oneapi::dpl::execution::make_device_policy(q_ct1),
-      bin_segments->begin(), bin_segments->end());//#,
+      bin_segments->begin(), bin_segments->end()//);,
       //(decltype(bin_segments->end())::value_type)bin_segments->begin());
+      bin_segments->begin(), 1);
+  */
+  oneapi::dpl::exclusive_scan(
+        //oneapi::dpl::execution::make_device_policy(dpct::get_in_order_queue()),
+        //thrust::cuda::par(alloc), device_bin_segments->begin(),
+        oneapi::dpl::execution::make_device_policy(q_ct1),
+        bin_segments->begin(),
+        bin_segments->end(),
+        bin_segments->begin(),
+        1);
 }
+
+
 
 struct DeduplicateKeyTransformOp {
   template <typename SplitConditionT>
